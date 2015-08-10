@@ -34,6 +34,7 @@
             this.btnClientes = new System.Windows.Forms.Button();
             this.lblCosto = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.txtCosto = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblNro = new System.Windows.Forms.Label();
@@ -73,7 +74,7 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.dgvDatos = new StockVentas.customDgvw();
-            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.grpABM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -134,6 +135,17 @@
             this.lblTotal.Size = new System.Drawing.Size(36, 18);
             this.lblTotal.TabIndex = 19;
             this.lblTotal.Text = "total";
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSalir.Location = new System.Drawing.Point(417, 10);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(133, 29);
+            this.btnSalir.TabIndex = 6;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // txtCosto
             // 
@@ -232,6 +244,7 @@
             // 
             // grpABM
             // 
+            this.grpABM.Controls.Add(this.btnImprimir);
             this.grpABM.Controls.Add(this.btnArticulos);
             this.grpABM.Controls.Add(this.chkDev);
             this.grpABM.Controls.Add(this.btnBorrar);
@@ -257,9 +270,9 @@
             // btnArticulos
             // 
             this.btnArticulos.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnArticulos.Location = new System.Drawing.Point(669, 67);
+            this.btnArticulos.Location = new System.Drawing.Point(580, 64);
             this.btnArticulos.Name = "btnArticulos";
-            this.btnArticulos.Size = new System.Drawing.Size(133, 29);
+            this.btnArticulos.Size = new System.Drawing.Size(114, 29);
             this.btnArticulos.TabIndex = 9;
             this.btnArticulos.Text = "Articulos";
             this.btnArticulos.UseVisualStyleBackColor = true;
@@ -281,9 +294,9 @@
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(524, 67);
+            this.btnBorrar.Location = new System.Drawing.Point(459, 64);
             this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(133, 29);
+            this.btnBorrar.Size = new System.Drawing.Size(114, 29);
             this.btnBorrar.TabIndex = 8;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
@@ -291,9 +304,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(89, 67);
+            this.button2.Location = new System.Drawing.Point(96, 64);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(133, 29);
+            this.button2.Size = new System.Drawing.Size(114, 29);
             this.button2.TabIndex = 6;
             this.button2.Text = "Grabar";
             this.button2.UseVisualStyleBackColor = true;
@@ -309,9 +322,9 @@
             // 
             // btnCancelEdit
             // 
-            this.btnCancelEdit.Location = new System.Drawing.Point(379, 67);
+            this.btnCancelEdit.Location = new System.Drawing.Point(338, 64);
             this.btnCancelEdit.Name = "btnCancelEdit";
-            this.btnCancelEdit.Size = new System.Drawing.Size(133, 29);
+            this.btnCancelEdit.Size = new System.Drawing.Size(114, 29);
             this.btnCancelEdit.TabIndex = 7;
             this.btnCancelEdit.Text = "Cancelar edición";
             this.btnCancelEdit.UseVisualStyleBackColor = true;
@@ -319,9 +332,9 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(234, 67);
+            this.btnEditar.Location = new System.Drawing.Point(217, 64);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(133, 29);
+            this.btnEditar.Size = new System.Drawing.Size(114, 29);
             this.btnEditar.TabIndex = 7;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -517,16 +530,16 @@
             this.dgvDatos.Size = new System.Drawing.Size(890, 317);
             this.dgvDatos.TabIndex = 4;
             // 
-            // btnSalir
+            // btnImprimir
             // 
-            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(417, 10);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(133, 29);
-            this.btnSalir.TabIndex = 6;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.btnImprimir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnImprimir.Location = new System.Drawing.Point(701, 64);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(114, 29);
+            this.btnImprimir.TabIndex = 9;
+            this.btnImprimir.Text = "Imprimir factura";
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // frmVentas
             // 
@@ -607,5 +620,6 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnImprimir;
     }
 }

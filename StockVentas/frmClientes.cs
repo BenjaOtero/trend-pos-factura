@@ -28,8 +28,7 @@ namespace StockVentas
 
         public frmClientes()
         {
-            InitializeComponent();
-
+          InitializeComponent();
         }
 
         public frmClientes(ref frmVentas instanciaVentas)
@@ -45,19 +44,26 @@ namespace StockVentas
             this.ControlBox = true;
             this.MaximizeBox = false;
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            BL.Utilitarios.AddEventosABM(grpCampos, ref btnGrabar);
+            dsClientes = BL.ClientesBLL.GetClientes();
+            tblClientes = dsClientes.Tables[0];
+            BL.Utilitarios.AddEventosABM(grpCampos, ref btnGrabar, ref tblClientes);
             tblFallidas = new DataTable();
             tblFallidas.TableName = "ClientesFallidas";
             tblFallidas.Columns.Add("Id", typeof(int));
             tblFallidas.Columns.Add("Accion", typeof(string));
             tblFallidas.Columns["Id"].Unique = true;
             tblFallidas.PrimaryKey = new DataColumn[] { tblFallidas.Columns["Id"] };
-            dsClientes = BL.ClientesBLL.GetClientes();
-            tblClientes = dsClientes.Tables[0];
             DataView viewClientes = new DataView(tblClientes);
             bindingSource1.DataSource = viewClientes;
             bindingNavigator1.BindingSource = bindingSource1;
             BL.Utilitarios.DataBindingsAdd(bindingSource1, grpCampos);
+            Dictionary<Int32, String> condiciones = new Dictionary<int, string>();
+            condiciones.Add(1, "CONSUMIDOR FINAL");
+            condiciones.Add(2, "RESPONSABLE INSCRIPTO");
+            cmbCondicion.DataSource = new BindingSource(condiciones, null);
+            cmbCondicion.DisplayMember = "Value";
+            cmbCondicion.ValueMember = "Value";
+            cmbCondicion.DataBindings.Add("SelectedValue", bindingSource1, "CondicionIvaCLI", false, DataSourceUpdateMode.OnPropertyChanged);
             gvwDatos.DataSource = bindingSource1;
             gvwDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gvwDatos.Columns["IdClienteCLI"].HeaderText = "Nº cliente";
@@ -129,14 +135,6 @@ namespace StockVentas
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {
-            DataRow[] found = tblClientes.Select("RazonSocialCLI = '" + txtRazonSocialCLI.Text + "'");
-            if (found.Count() > 0)
-            {
-                string mensaje = "No se puede agregar el registro '" + txtRazonSocialCLI.Text + "' porque ya existe";
-                MessageBox.Show(mensaje, "Trend", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtRazonSocialCLI.Focus();
-                return;
-            }
             bindingSource1.EndEdit();
             bindingSource1.Position = 0;
             bindingSource1.Sort = "RazonSocialCLI";

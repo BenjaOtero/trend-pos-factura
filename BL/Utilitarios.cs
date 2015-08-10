@@ -15,6 +15,7 @@ namespace BL
     public class Utilitarios
     {
         static Button grabar;
+        static DataTable tblTabla;
 
         public static void SoloNumeros(object sender, KeyPressEventArgs e)
         {
@@ -42,9 +43,11 @@ namespace BL
             {
                 e.Handled = false;
             }
-            if (e.KeyChar == '-')
+            if (e.KeyChar == '.')
             {
-                e.Handled = false;
+                // si se pulsa en el punto se convertirá en coma
+                e.Handled = true; //anula la tecla "." pulsada
+                SendKeys.Send(",");
             }
             if (e.KeyChar == '\b')
             {
@@ -174,8 +177,10 @@ namespace BL
             if (e.KeyCode == Keys.Return) SendKeys.Send("{TAB}");
         }
 
-        public static void AddEventosABM(Control grpCampos, ref Button btnGrabar)
+        public static void AddEventosABM(Control grpCampos, ref Button btnGrabar, ref DataTable tbl)
         {
+            tblTabla = tbl;
+            tblTabla.ColumnChanged += new DataColumnChangeEventHandler(HabilitarGrabar);
             grabar = btnGrabar;
             foreach (Control ctl in grpCampos.Controls)
             {

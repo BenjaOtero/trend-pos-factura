@@ -679,5 +679,13 @@ namespace StockVentas
             this.Close();
         }
 
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.RowCount > 0)
+            {
+                int x = dgvDatos.RowCount;
+            }
+        }
+
     }
 }
