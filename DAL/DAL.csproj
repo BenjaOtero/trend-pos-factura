@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlicuotasIvaDAL.cs" />
     <Compile Include="ArticulosDAL.cs" />
     <Compile Include="ClientesDAL.cs" />
     <Compile Include="DatosPosDAL.cs" />

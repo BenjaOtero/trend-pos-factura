@@ -46,13 +46,8 @@
             this.lblFecha = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grpABM = new System.Windows.Forms.GroupBox();
-            this.btnArticulos = new System.Windows.Forms.Button();
             this.chkDev = new System.Windows.Forms.CheckBox();
-            this.btnBorrar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.cmbForma = new System.Windows.Forms.ComboBox();
-            this.btnCancelEdit = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
@@ -73,13 +68,20 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.dgvDatos = new StockVentas.customDgvw();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnImprimir = new System.Windows.Forms.Button();
+            this.btnArticulos = new System.Windows.Forms.Button();
+            this.btnBorrar = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancelEdit = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.dgvDatos = new StockVentas.customDgvw();
             this.groupBox1.SuspendLayout();
             this.grpABM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,7 +101,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.lblFecha);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(890, 105);
             this.groupBox1.TabIndex = 3;
@@ -244,14 +246,8 @@
             // 
             // grpABM
             // 
-            this.grpABM.Controls.Add(this.btnImprimir);
-            this.grpABM.Controls.Add(this.btnArticulos);
             this.grpABM.Controls.Add(this.chkDev);
-            this.grpABM.Controls.Add(this.btnBorrar);
-            this.grpABM.Controls.Add(this.button2);
             this.grpABM.Controls.Add(this.cmbForma);
-            this.grpABM.Controls.Add(this.btnCancelEdit);
-            this.grpABM.Controls.Add(this.btnEditar);
             this.grpABM.Controls.Add(this.txtDescripcion);
             this.grpABM.Controls.Add(this.label6);
             this.grpABM.Controls.Add(this.txtPrecio);
@@ -261,29 +257,18 @@
             this.grpABM.Controls.Add(this.label10);
             this.grpABM.Controls.Add(this.label8);
             this.grpABM.Controls.Add(this.label7);
-            this.grpABM.Location = new System.Drawing.Point(12, 123);
+            this.grpABM.Location = new System.Drawing.Point(12, 110);
             this.grpABM.Name = "grpABM";
-            this.grpABM.Size = new System.Drawing.Size(890, 106);
+            this.grpABM.Size = new System.Drawing.Size(890, 63);
             this.grpABM.TabIndex = 6;
             this.grpABM.TabStop = false;
-            // 
-            // btnArticulos
-            // 
-            this.btnArticulos.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnArticulos.Location = new System.Drawing.Point(580, 64);
-            this.btnArticulos.Name = "btnArticulos";
-            this.btnArticulos.Size = new System.Drawing.Size(114, 29);
-            this.btnArticulos.TabIndex = 9;
-            this.btnArticulos.Text = "Articulos";
-            this.btnArticulos.UseVisualStyleBackColor = true;
-            this.btnArticulos.Click += new System.EventHandler(this.btnArticulos_Click);
             // 
             // chkDev
             // 
             this.chkDev.AutoSize = true;
             this.chkDev.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.chkDev.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkDev.Location = new System.Drawing.Point(811, 11);
+            this.chkDev.Location = new System.Drawing.Point(795, 13);
             this.chkDev.Name = "chkDev";
             this.chkDev.Size = new System.Drawing.Size(35, 33);
             this.chkDev.TabIndex = 5;
@@ -292,57 +277,17 @@
             this.chkDev.UseVisualStyleBackColor = true;
             this.chkDev.Validating += new System.ComponentModel.CancelEventHandler(this.chkDev_Validating);
             // 
-            // btnBorrar
-            // 
-            this.btnBorrar.Location = new System.Drawing.Point(459, 64);
-            this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(114, 29);
-            this.btnBorrar.TabIndex = 8;
-            this.btnBorrar.Text = "Borrar";
-            this.btnBorrar.UseVisualStyleBackColor = true;
-            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(96, 64);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(114, 29);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Grabar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnGrabar_Click);
-            // 
             // cmbForma
             // 
             this.cmbForma.FormattingEnabled = true;
-            this.cmbForma.Location = new System.Drawing.Point(671, 28);
+            this.cmbForma.Location = new System.Drawing.Point(655, 30);
             this.cmbForma.Name = "cmbForma";
             this.cmbForma.Size = new System.Drawing.Size(138, 21);
             this.cmbForma.TabIndex = 4;
             // 
-            // btnCancelEdit
-            // 
-            this.btnCancelEdit.Location = new System.Drawing.Point(338, 64);
-            this.btnCancelEdit.Name = "btnCancelEdit";
-            this.btnCancelEdit.Size = new System.Drawing.Size(114, 29);
-            this.btnCancelEdit.TabIndex = 7;
-            this.btnCancelEdit.Text = "Cancelar edición";
-            this.btnCancelEdit.UseVisualStyleBackColor = true;
-            this.btnCancelEdit.Click += new System.EventHandler(this.btnCancelEdit_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(217, 64);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(114, 29);
-            this.btnEditar.TabIndex = 7;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(191, 29);
+            this.txtDescripcion.Location = new System.Drawing.Point(175, 31);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(331, 20);
             this.txtDescripcion.TabIndex = 1;
@@ -352,7 +297,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(188, 10);
+            this.label6.Location = new System.Drawing.Point(172, 12);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 15);
             this.label6.TabIndex = 10;
@@ -360,7 +305,7 @@
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(601, 29);
+            this.txtPrecio.Location = new System.Drawing.Point(585, 31);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(61, 20);
             this.txtPrecio.TabIndex = 3;
@@ -368,7 +313,7 @@
             // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(531, 29);
+            this.txtCantidad.Location = new System.Drawing.Point(515, 31);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(61, 20);
             this.txtCantidad.TabIndex = 2;
@@ -376,7 +321,7 @@
             // 
             // txtArticulo
             // 
-            this.txtArticulo.Location = new System.Drawing.Point(79, 29);
+            this.txtArticulo.Location = new System.Drawing.Point(63, 31);
             this.txtArticulo.Name = "txtArticulo";
             this.txtArticulo.Size = new System.Drawing.Size(103, 20);
             this.txtArticulo.TabIndex = 0;
@@ -388,7 +333,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(603, 10);
+            this.label9.Location = new System.Drawing.Point(587, 12);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(42, 15);
             this.label9.TabIndex = 10;
@@ -399,7 +344,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label10.Location = new System.Drawing.Point(673, 10);
+            this.label10.Location = new System.Drawing.Point(657, 12);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(74, 15);
             this.label10.TabIndex = 10;
@@ -410,7 +355,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(530, 10);
+            this.label8.Location = new System.Drawing.Point(514, 12);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 15);
             this.label8.TabIndex = 10;
@@ -421,7 +366,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(76, 10);
+            this.label7.Location = new System.Drawing.Point(60, 12);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 15);
             this.label7.TabIndex = 10;
@@ -521,6 +466,82 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnImprimir);
+            this.groupBox2.Controls.Add(this.btnArticulos);
+            this.groupBox2.Controls.Add(this.btnBorrar);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.btnCancelEdit);
+            this.groupBox2.Controls.Add(this.btnEditar);
+            this.groupBox2.Location = new System.Drawing.Point(12, 174);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(890, 50);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnImprimir.Location = new System.Drawing.Point(691, 14);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(114, 29);
+            this.btnImprimir.TabIndex = 14;
+            this.btnImprimir.Text = "Imprimir factura";
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // btnArticulos
+            // 
+            this.btnArticulos.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnArticulos.Location = new System.Drawing.Point(570, 14);
+            this.btnArticulos.Name = "btnArticulos";
+            this.btnArticulos.Size = new System.Drawing.Size(114, 29);
+            this.btnArticulos.TabIndex = 15;
+            this.btnArticulos.Text = "Articulos";
+            this.btnArticulos.UseVisualStyleBackColor = true;
+            this.btnArticulos.Click += new System.EventHandler(this.btnArticulos_Click);
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Location = new System.Drawing.Point(449, 14);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(114, 29);
+            this.btnBorrar.TabIndex = 13;
+            this.btnBorrar.Text = "Borrar";
+            this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(86, 14);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(114, 29);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Grabar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnGrabar_Click);
+            // 
+            // btnCancelEdit
+            // 
+            this.btnCancelEdit.Location = new System.Drawing.Point(328, 14);
+            this.btnCancelEdit.Name = "btnCancelEdit";
+            this.btnCancelEdit.Size = new System.Drawing.Size(114, 29);
+            this.btnCancelEdit.TabIndex = 11;
+            this.btnCancelEdit.Text = "Cancelar edición";
+            this.btnCancelEdit.UseVisualStyleBackColor = true;
+            this.btnCancelEdit.Click += new System.EventHandler(this.btnCancelEdit_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(207, 14);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(114, 29);
+            this.btnEditar.TabIndex = 12;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
             // dgvDatos
             // 
             this.dgvDatos.AllowUserToResizeRows = false;
@@ -530,17 +551,6 @@
             this.dgvDatos.Size = new System.Drawing.Size(890, 317);
             this.dgvDatos.TabIndex = 4;
             // 
-            // btnImprimir
-            // 
-            this.btnImprimir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnImprimir.Location = new System.Drawing.Point(701, 64);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(114, 29);
-            this.btnImprimir.TabIndex = 9;
-            this.btnImprimir.Text = "Imprimir factura";
-            this.btnImprimir.UseVisualStyleBackColor = true;
-            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
-            // 
             // frmVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -548,6 +558,7 @@
             this.CancelButton = this.btnSalir;
             this.ClientSize = new System.Drawing.Size(914, 564);
             this.ControlBox = false;
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.grpABM);
             this.Controls.Add(this.dgvDatos);
@@ -568,6 +579,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -579,13 +591,8 @@
         private customDgvw dgvDatos;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox grpABM;
-        private System.Windows.Forms.Button btnArticulos;
         private System.Windows.Forms.CheckBox chkDev;
-        private System.Windows.Forms.Button btnBorrar;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox cmbForma;
-        private System.Windows.Forms.Button btnCancelEdit;
-        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtPrecio;
@@ -620,6 +627,12 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.Button btnArticulos;
+        private System.Windows.Forms.Button btnBorrar;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancelEdit;
+        private System.Windows.Forms.Button btnEditar;
     }
 }

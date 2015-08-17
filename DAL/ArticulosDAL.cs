@@ -64,6 +64,7 @@ namespace DAL
             SqlInsertCommand1.Parameters.Add("p_id", MySqlDbType.VarChar, 55, "IdArticuloART");
             SqlInsertCommand1.Parameters.Add("p_idItem", MySqlDbType.Int32, 11, "IdItemART");
             SqlInsertCommand1.Parameters.Add("p_idColor", MySqlDbType.Int32, 11, "IdColorART");
+            SqlInsertCommand1.Parameters.Add("p_idAlicuota", MySqlDbType.Int16, 3, "IdAliculotaIvaART");
             SqlInsertCommand1.Parameters.Add("p_talle", MySqlDbType.VarChar, 50, "TalleART");
             SqlInsertCommand1.Parameters.Add("p_idProveedor", MySqlDbType.Int32, 11, "IdProveedorART");
             SqlInsertCommand1.Parameters.Add("p_descripcion", MySqlDbType.VarChar, 55, "DescripcionART");

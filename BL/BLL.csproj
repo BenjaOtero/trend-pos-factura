@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlicuotasIvaBLL.cs" />
     <Compile Include="ArticulosBLL.cs" />
     <Compile Include="ClientesBLL.cs" />
     <Compile Include="DatosPosBLL.cs" />

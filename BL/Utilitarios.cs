@@ -121,6 +121,8 @@ namespace BL
             tblClientes.TableName = "Clientes";
             DataTable tblFormasPago = ds.Tables[2];
             tblFormasPago.TableName = "FormasPago";
+            DataTable tblAlicuotasIva = ds.Tables[3];
+            tblAlicuotasIva.TableName = "AlicuotasIva";
             if (tblArticulos.Rows.Count > 0)
             {
                 foreach (DataRow rowArticulo in tblArticulos.Rows)
@@ -146,12 +148,20 @@ namespace BL
                     rowForma.SetAdded();
                 }
             }
-            if (ds.Tables.Count == 3)
+            if (tblAlicuotasIva.Rows.Count > 0)
+            {
+                foreach (DataRow rowAlicuota in tblAlicuotasIva.Rows)
+                {
+                    rowAlicuota.SetAdded();
+                }
+            }
+            if (ds.Tables.Count == 4)
             {
                 BL.DatosPosBLL.DeleteAll(existenClientes);
                 BL.ArticulosBLL.InsertarRemotos(ds);
                 if(existenClientes ==0) BL.ClientesBLL.InsertRemotos(ds);
                 BL.FormasPagoBLL.InsertRemotos(ds);
+                BL.AlicuotasIvaBLL.InsertRemotos(ds);
             }
             return ds;
         }

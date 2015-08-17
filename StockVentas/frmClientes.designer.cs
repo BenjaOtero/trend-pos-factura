@@ -31,7 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClientes));
             this.grpCampos = new System.Windows.Forms.GroupBox();
+            this.cmbCondicion = new System.Windows.Forms.ComboBox();
             this.txtFechaNacCLI = new System.Windows.Forms.MaskedTextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -77,8 +79,6 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.cmbCondicion = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.grpCampos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvwDatos)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -122,6 +122,14 @@
             this.grpCampos.TabIndex = 0;
             this.grpCampos.TabStop = false;
             // 
+            // cmbCondicion
+            // 
+            this.cmbCondicion.FormattingEnabled = true;
+            this.cmbCondicion.Location = new System.Drawing.Point(297, 46);
+            this.cmbCondicion.Name = "cmbCondicion";
+            this.cmbCondicion.Size = new System.Drawing.Size(285, 21);
+            this.cmbCondicion.TabIndex = 28;
+            // 
             // txtFechaNacCLI
             // 
             this.txtFechaNacCLI.Location = new System.Drawing.Point(367, 147);
@@ -130,6 +138,17 @@
             this.txtFechaNacCLI.Size = new System.Drawing.Size(215, 20);
             this.txtFechaNacCLI.TabIndex = 7;
             this.txtFechaNacCLI.ValidatingType = typeof(System.DateTime);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label13.Location = new System.Drawing.Point(197, 46);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(80, 15);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Condicion iva";
             // 
             // label6
             // 
@@ -147,7 +166,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label9.Location = new System.Drawing.Point(294, 116);
+            this.label9.Location = new System.Drawing.Point(7, 115);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(57, 15);
             this.label9.TabIndex = 26;
@@ -266,9 +285,9 @@
             // txtProvinciaCLI
             // 
             this.txtProvinciaCLI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtProvinciaCLI.Location = new System.Drawing.Point(367, 116);
+            this.txtProvinciaCLI.Location = new System.Drawing.Point(77, 115);
             this.txtProvinciaCLI.Name = "txtProvinciaCLI";
-            this.txtProvinciaCLI.Size = new System.Drawing.Size(215, 20);
+            this.txtProvinciaCLI.Size = new System.Drawing.Size(218, 20);
             this.txtProvinciaCLI.TabIndex = 5;
             // 
             // txtRazonSocialCLI
@@ -555,25 +574,6 @@
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // cmbCondicion
-            // 
-            this.cmbCondicion.FormattingEnabled = true;
-            this.cmbCondicion.Location = new System.Drawing.Point(297, 46);
-            this.cmbCondicion.Name = "cmbCondicion";
-            this.cmbCondicion.Size = new System.Drawing.Size(285, 21);
-            this.cmbCondicion.TabIndex = 28;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label13.Location = new System.Drawing.Point(197, 46);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 15);
-            this.label13.TabIndex = 27;
-            this.label13.Text = "Condicion iva";
             // 
             // frmClientes
             // 

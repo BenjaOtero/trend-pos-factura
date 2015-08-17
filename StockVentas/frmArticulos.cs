@@ -61,6 +61,7 @@ namespace StockVentas
             gvwDatos.Columns["ImagenBackART"].Visible = false;
             gvwDatos.Columns["ImagenColorART"].Visible = false;
             gvwDatos.Columns["NuevoART"].Visible = false;
+            gvwDatos.Columns["IdAliculotaIvaART"].Visible = false;
             gvwDatos.Sort(gvwDatos.Columns["DescripcionART"], ListSortDirection.Ascending);
             gvwDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             btnAceptar.Enabled = false;
