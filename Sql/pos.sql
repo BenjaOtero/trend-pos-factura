@@ -96,7 +96,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 
-insert  into `clientes`(`IdClienteCLI`,`RazonSocialCLI`,`CUIT`,`CondicionIvaCLI`,`DireccionCLI`,`LocalidadCLI`,`ProvinciaCLI`,`TransporteCLI`,`ContactoCLI`,`TelefonoCLI`,`MovilCLI`,`CorreoCLI`,`FechaNacCLI`) values (1,'PUBLICO','',NULL,'','','','','','','',NULL,NULL);
+insert  into `clientes`(`IdClienteCLI`,`RazonSocialCLI`,`CUIT`,`CondicionIvaCLI`,`DireccionCLI`,`LocalidadCLI`,`ProvinciaCLI`,`TransporteCLI`,`ContactoCLI`,`TelefonoCLI`,`MovilCLI`,`CorreoCLI`,`FechaNacCLI`) values (1,'PUBLICO','',NULL,'','','','','','','',NULL,NULL),(1548511682,'ÑOÑO',NULL,'CONSUMIDOR FINAL',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1930563440,'RAMON RENDON','30570135585','RESPONSABLE INSCRIPTO',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 UNLOCK TABLES;
 
@@ -133,7 +133,7 @@ CREATE TABLE `fondocaja` (
 
 LOCK TABLES `fondocaja` WRITE;
 
-insert  into `fondocaja`(`IdFondoFONP`,`FechaFONP`,`IdPcFONP`,`ImporteFONP`) values (848171385,'2015-08-10 00:00:00',1,0),(600558985,'2015-08-17 00:00:00',1,0);
+insert  into `fondocaja`(`IdFondoFONP`,`FechaFONP`,`IdPcFONP`,`ImporteFONP`) values (848171385,'2015-08-10 00:00:00',1,0),(600558985,'2015-08-17 00:00:00',1,0),(1994389017,'2015-08-18 00:00:00',1,0);
 
 UNLOCK TABLES;
 
@@ -271,6 +271,8 @@ CREATE TABLE `ventas` (
 
 LOCK TABLES `ventas` WRITE;
 
+insert  into `ventas`(`IdVentaVEN`,`IdPCVEN`,`FechaVEN`,`IdClienteVEN`) values (445318986,1,'2015-08-18 19:14:08',1930563440),(1418943314,1,'2015-08-18 19:16:30',1548511682),(1699923147,1,'2015-08-18 18:05:13',1),(1786024008,1,'2015-08-18 19:40:46',1548511682);
+
 UNLOCK TABLES;
 
 /*Table structure for table `ventasdetalle` */
@@ -304,6 +306,8 @@ CREATE TABLE `ventasdetalle` (
 /*Data for the table `ventasdetalle` */
 
 LOCK TABLES `ventasdetalle` WRITE;
+
+insert  into `ventasdetalle`(`IdDVEN`,`IdVentaDVEN`,`IdLocalDVEN`,`IdArticuloDVEN`,`DescripcionDVEN`,`CantidadDVEN`,`PrecioPublicoDVEN`,`PrecioCostoDVEN`,`PrecioMayorDVEN`,`IdFormaPagoDVEN`,`NroCuponDVEN`,`NroFacturaDVEN`,`IdEmpleadoDVEN`,`LiquidadoDVEN`,`EsperaDVEN`,`DevolucionDVEN`) values (226018768,1699923147,13,'0260010000',NULL,1,80,55,0,1,NULL,NULL,NULL,NULL,NULL,0),(345274222,445318986,13,'0260010000',NULL,1,80,55,0,1,NULL,NULL,NULL,NULL,NULL,0),(561664820,1418943314,13,'0260010000',NULL,1,80,55,0,1,NULL,NULL,NULL,NULL,NULL,0),(910609748,1786024008,13,'0260010000',NULL,1,80,55,0,1,NULL,NULL,NULL,NULL,NULL,0);
 
 UNLOCK TABLES;
 
@@ -696,7 +700,7 @@ DELIMITER $$
 /*!50003 CREATE DEFINER=`ncsoftwa_re`@`%` PROCEDURE `Clientes_Listar`()
 BEGIN
 select *
-FROM Clientes
+FROM `clientes`
 order by RazonSocialCLI
 ;
 END */$$
@@ -2267,8 +2271,8 @@ BEGIN
 INSERT INTO ventasdetalle(`IdDVEN`, `IdVentaDVEN`, `IdLocalDVEN`, `IdArticuloDVEN`, `CantidadDVEN`, `PrecioPublicoDVEN`,
 `PrecioCostoDVEN`, `PrecioMayorDVEN`, `IdFormaPagoDVEN`, `NroCuponDVEN`, `NroFacturaDVEN`, 
 `IdEmpleadoDVEN`, `LiquidadoDVEN`, `DevolucionDVEN`)
-VALUES(p_id_detalle, p_id_venta, p_id_local, p_articulo, p_cantidad, REPLACE(p_precioPublico, ",","."), REPLACE(p_precioCosto, ",","."),
-REPLACE(p_precioMayor, ",","."), p_forma_pago, p_nro_cupon, p_nro_factura, p_id_empleado, p_liquidado, p_devolucion)
+VALUES(p_id_detalle, p_id_venta, p_id_local, p_articulo, p_cantidad, REPLACE(p_publico, ",","."), REPLACE(p_costo, ",","."),
+REPLACE(p_mayor, ",","."), p_forma_pago, p_nro_cupon, p_nro_factura, p_id_empleado, p_liquidado, p_devolucion)
 ;
 END */$$
 DELIMITER ;
@@ -2594,12 +2598,12 @@ DELIMITER $$
 /*!50003 CREATE DEFINER=`ncsoftwa_re`@`%` PROCEDURE `Ventas_Foraneos`()
 BEGIN
 select * FROM articuloscons;
-SELECT * FROM Clientes;
-SELECT * FROM FormasPago;
-SELECT * FROM Locales
+SELECT * FROM `clientes`;
+SELECT * FROM `formaspago`;
+SELECT * FROM `locales`
 	WHERE NombreLOC NOT LIKE 'Entradas' OR NombreLOC NOT LIKE 'Salidas'
 	ORDER BY IdLocalLOC;
-SELECT * FROM Pc;
+SELECT * FROM `pc`;
 END */$$
 DELIMITER ;
 

@@ -19,6 +19,8 @@ namespace StockVentas
         DataTable tblVentas;
         DataTable tblVentasDetalle;
         DataTable tblDetalleOriginal;
+        DataSet dsClientes;
+        DataTable tblClientes; 
         DataView viewVentas;
         DataView viewDetalle;
         DataView viewDetalleOriginal;
@@ -598,8 +600,8 @@ namespace StockVentas
 
         public void CargarComboClientes()
         {
-            DataSet dsClientes = BL.ClientesBLL.GetClientes();
-            DataTable tblClientes = dsClientes.Tables[0];            
+            dsClientes = BL.ClientesBLL.GetClientes();
+            tblClientes = dsClientes.Tables[0];            
             tblClientes.DefaultView.Sort = "RazonSocialCLI";
             cmbCliente.ValueMember = "IdClienteCLI";
             cmbCliente.DisplayMember = "RazonSocialCLI";
@@ -646,6 +648,7 @@ namespace StockVentas
         private void frmClientes_FormClosed(object sender, FormClosedEventArgs e)
         {
             CargarComboClientes();
+            txtArticulo.Focus();
         }
 
         public void SetStateForm(FormState state)
@@ -736,6 +739,25 @@ namespace StockVentas
                 
             }
 
+            string idCliente = cmbCliente.SelectedValue.ToString();
+            DataRow[] foundCliente = tblClientes.Select("IdClienteCLI = '" + idCliente + "'");
+            string condicionIva = foundCliente[0]["CondicionIvaCLI"].ToString();
+            int cabeceraCbteTipo;
+            int detalleDocTipo;
+            string detalleDocNro;
+            if (condicionIva == "RESPONSABLE INSCRIPTO")
+            {
+                cabeceraCbteTipo = 1;
+                detalleDocTipo = 80;
+                detalleDocNro = foundCliente[0]["CUIT"].ToString();
+            }
+            else
+            {
+                cabeceraCbteTipo = 6;
+                detalleDocTipo = 99;
+                detalleDocNro = "0";
+            } 
+    
             // Ver WSFEv1 Fallos conexión en Camuzzo
             WSAFIPFE.Factura fe = new WSAFIPFE.Factura();
             Boolean bResultado = false;
@@ -751,12 +773,13 @@ namespace StockVentas
 
                     /*Según el manual del desarrollador (pagina 15), el error 10007 se da por que no informas alguno de los 
                      * tipos validos son 01 02 03 04 05 34 39 60 63 para comprobantes A y 06 07 08 09 10 35 40 64 y 61 para los B.*/
-                    fe.F1CabeceraCbteTipo = 1;
-                    int nroComp = fe.F1CompUltimoAutorizado(1, 1) + 1;
+                    fe.F1CabeceraCbteTipo = cabeceraCbteTipo;
+                    int nroComp = fe.F1CompUltimoAutorizado(1, cabeceraCbteTipo) + 1;
                     fe.f1Indice = 0;
                     fe.F1DetalleConcepto = 1;  //Concepto del comprobante.  01-Productos, 02-Servicios, 03-Productos y Servicios
-                    fe.F1DetalleDocTipo = 80;    // 96: DNI, 80: CUIT, 99: Consumidor Final
-                    fe.F1DetalleDocNro = "30570135585";
+                    fe.F1DetalleDocTipo = detalleDocTipo;    // 96: DNI, 80: CUIT, 99: Consumidor Final
+                    fe.F1DetalleDocNro = detalleDocNro;
+                 //   fe.F1DetalleDocNro = "30570135585";
                     fe.F1DetalleCbteDesde = nroComp;
                     fe.F1DetalleCbteHasta = nroComp; // Número de comprobante hasta. En caso de ser un solo comprobante, este dato coincide con el anterior.
 
