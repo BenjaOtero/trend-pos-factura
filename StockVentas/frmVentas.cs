@@ -756,8 +756,8 @@ namespace StockVentas
                 cabeceraCbteTipo = 6;
                 detalleDocTipo = 99;
                 detalleDocNro = "0";
-            } 
-    
+            }         
+
             // Ver WSFEv1 Fallos conexión en Camuzzo
             WSAFIPFE.Factura fe = new WSAFIPFE.Factura();
             Boolean bResultado = false;
@@ -789,44 +789,70 @@ namespace StockVentas
                         Al ser un dato opcional, si no se asigna fecha, por defecto se asignará la fecha del proceso.*/
                     string fecha = DateTime.Now.ToString("yyyyMMdd");
                     fe.F1DetalleCbteFch = fecha;
-                    fe.F1DetalleImpTotal = 176.25; // total factura
-                    fe.F1DetalleImpTotalConc = 0; // preguntar Ariel  Importe Neto No Grabado, debe ser mayor a cero y menor o igual al importe total (F1DetalleImpTotal).
-                    fe.F1DetalleImpNeto = 150; // total bases imponibles
-                    fe.F1DetalleImpOpEx = 0; // preguntar Ariel
-                    fe.F1DetalleImpTrib = 0; // preguntar Ariel
-                    fe.F1DetalleImpIva = 26.25;  // total ivas
-                    fe.F1DetalleFchServDesde = ""; // se debe poner fecha para servicios o para productos y servicios. Para productos solos puede ser vacío
-                    fe.F1DetalleFchServHasta = ""; // Idem anterior completar si F1DetalleConcepto > 1
-                    fe.F1DetalleFchVtoPago = ""; // Idem anterior completar si F1DetalleConcepto > 1
-                    fe.F1DetalleMonId = "PES";
-                    fe.F1DetalleMonCotiz = 1;
 
-                    fe.F1DetalleTributoItemCantidad = 1;  //preguntar Ariel Cantidad de Tributos relacionados al comprobante
+                  /*  fe.F1DetalleTributoItemCantidad = 1;  //preguntar Ariel Cantidad de Tributos relacionados al comprobante
                     fe.f1IndiceItem = 0;
                     fe.F1DetalleTributoId = 3;
                     fe.F1DetalleTributoDesc = "Impuesto Municipal Matanza";
                     fe.F1DetalleTributoBaseImp = 0;
                     fe.F1DetalleTributoAlic = 5.2;
-                    fe.F1DetalleTributoImporte = 0;
+                    fe.F1DetalleTributoImporte = 0;*/
+                    var groupedData = from b in tblIVA.AsEnumerable()
+                                      group b by b.Field<int>("IdAlicuota") into g
+                                      select new
+                                      {
+                                          DetalleIvaId = g.Key,
+                                          Count = g.Count(),
+                                          DetalleIvaBaseImp = g.Sum(x => x.Field<decimal>("SubtotalSinIva")),
+                                          DetalleIvaImporte = g.Sum(x => x.Field<decimal>("SubtotalIva"))
+                                      };
+                    int DetalleIvaItemCantidad = groupedData.Count();
+                    fe.F1DetalleIvaItemCantidad = DetalleIvaItemCantidad;
+                    int indiceItem = 0;
+                    foreach (var registro in groupedData)
+                    {
+                        fe.f1IndiceItem = indiceItem;
+                        //En F1DetalleIvaId va el código de la alícuota o tasa (obtenido de una lista de AFIP: 5 para 21% 4 para 10.50%, etc).
+                        fe.F1DetalleIvaId = registro.DetalleIvaId;
+                        fe.F1DetalleIvaBaseImp = Convert.ToDouble(registro.DetalleIvaBaseImp);  //El precio del producto
+                        fe.F1DetalleIvaImporte = Convert.ToDouble(registro.DetalleIvaImporte);  //El importe del impuesto.
+                        indiceItem++;
+                    }
 
-                    fe.F1DetalleIvaItemCantidad = 2;
-                    fe.f1IndiceItem = 0;
-                    fe.F1DetalleIvaId = 5;  //El código de la alícuota o tasa (obtenido de una lista de AFIP: 1 para 21% 2 para 10.50%, etc).
+                    
+               /*     fe.f1IndiceItem = 0;
+                    fe.F1DetalleIvaId = 5;  //El código de la alícuota o tasa (obtenido de una lista de AFIP: 5 para 21% 4 para 10.50%, etc).
                     fe.F1DetalleIvaBaseImp = 100;  //El precio del producto
                     fe.F1DetalleIvaImporte = 21;  //El importe del impuesto.
 
                     fe.f1IndiceItem = 1;
                     fe.F1DetalleIvaId = 4;
                     fe.F1DetalleIvaBaseImp = 50;
-                    fe.F1DetalleIvaImporte = 5.25;
+                    fe.F1DetalleIvaImporte = 5.25;*/
 
+
+                    var detalleImpNeto = tblIVA.AsEnumerable().Sum(x => x.Field<decimal>("SubtotalSinIva"));
+                    var detalleImpIva = tblIVA.AsEnumerable().Sum(x => x.Field<decimal>("SubtotalIva"));
+                    double detalleImpTotal = Convert.ToDouble(detalleImpNeto + detalleImpIva);
+
+                    fe.F1DetalleImpTotal = detalleImpTotal; // total factura
+                    fe.F1DetalleImpTotalConc = 0; // preguntar Ariel  Importe Neto No Grabado, debe ser mayor a cero y menor o igual al importe total (F1DetalleImpTotal).
+                    fe.F1DetalleImpNeto = Convert.ToDouble(detalleImpNeto); // total bases imponibles
+                    fe.F1DetalleImpOpEx = 0; // preguntar Ariel
+                    fe.F1DetalleImpTrib = 0; // preguntar Ariel
+                    fe.F1DetalleImpIva = Convert.ToDouble(detalleImpIva); ;  // total ivas
+                    fe.F1DetalleFchServDesde = ""; // se debe poner fecha para servicios o para productos y servicios. Para productos solos puede ser vacío
+                    fe.F1DetalleFchServHasta = ""; // Idem anterior completar si F1DetalleConcepto > 1
+                    fe.F1DetalleFchVtoPago = ""; // Idem anterior completar si F1DetalleConcepto > 1
+                    fe.F1DetalleMonId = "PES";
+                    fe.F1DetalleMonCotiz = 1;
 
                     fe.F1DetalleCbtesAsocItemCantidad = 0;
                     fe.F1DetalleOpcionalItemCantidad = 0;
 
                     fe.ArchivoXMLRecibido = @"c:\recibido.xml";
                     fe.ArchivoXMLEnviado = @"c:\enviado.xml";
-                    bResultado = fe.F1CAESolicitar();
+                //    bResultado = fe.F1CAESolicitar();
                     if (bResultado)
                     {
                         MessageBox.Show("resultado verdadero ");
@@ -847,6 +873,8 @@ namespace StockVentas
                         MessageBox.Show("número comprobante:" + fe.F1RespuestaDetalleCbteDesdeS);
                         MessageBox.Show("error detallado comprobante: " + fe.F1RespuestaDetalleObservacionMsg1);
                     }
+                    rptFactura informeFactura = new rptFactura(tblIVA, foundCliente);
+                    informeFactura.Show();
                 }
                 else
                 {

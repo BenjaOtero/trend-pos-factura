@@ -60,6 +60,8 @@
     <ApplicationIcon>icono_app.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data.Entity, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
@@ -72,6 +74,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -84,6 +87,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Fallidas.cs" />
     <Compile Include="customDgvw.cs">
       <SubType>Component</SubType>
@@ -193,6 +201,13 @@
     <Compile Include="reloj.Designer.cs">
       <DependentUpon>reloj.cs</DependentUpon>
     </Compile>
+    <Compile Include="rptFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rptFactura.Designer.cs">
+      <DependentUpon>rptFactura.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="bin\Debug\Informes\factura.rdlc" />
     <EmbeddedResource Include="frmArqueoCaja.resx">
       <DependentUpon>frmArqueoCaja.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,11 +272,29 @@
     <EmbeddedResource Include="reloj.resx">
       <DependentUpon>reloj.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptFactura.resx">
+      <DependentUpon>rptFactura.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="app.manifest" />
+    <None Include="bin\Debug\StockVentas.exe.config" />
+    <None Include="bin\Release\StockVentas.exe.config" />
+    <None Include="bin\Release\StockVentas.vshost.exe.config" />
+    <None Include="bin\Release\StockVentas.vshost.exe.manifest" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -344,6 +377,17 @@
     <None Include="Resources\LogoTrend1.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\StockVentas.exe" />
+    <Content Include="bin\Debug\StockVentas.pdb" />
+    <Content Include="bin\Release\BL.dll" />
+    <Content Include="bin\Release\BL.pdb" />
+    <Content Include="bin\Release\DAL.dll" />
+    <Content Include="bin\Release\DAL.pdb" />
+    <Content Include="bin\Release\Entities.dll" />
+    <Content Include="bin\Release\Entities.pdb" />
+    <Content Include="bin\Release\StockVentas.exe" />
+    <Content Include="bin\Release\StockVentas.pdb" />
+    <Content Include="bin\Release\StockVentas.vshost.exe" />
     <Content Include="icono_app.ico" />
     <Content Include="Resources\icono_app.ico" />
   </ItemGroup>

@@ -58,8 +58,9 @@ namespace StockVentas
             bindingNavigator1.BindingSource = bindingSource1;
             BL.Utilitarios.DataBindingsAdd(bindingSource1, grpCampos);
             Dictionary<Int32, String> condiciones = new Dictionary<int, string>();
-            condiciones.Add(1, "CONSUMIDOR FINAL");
-            condiciones.Add(2, "RESPONSABLE INSCRIPTO");
+            condiciones.Add(1, "Consumidor Final");
+            condiciones.Add(2, "Responsable Inscripto");
+            condiciones.Add(3, "Responsable Monotributo");
             cmbCondicion.DataSource = new BindingSource(condiciones, null);
             cmbCondicion.DisplayMember = "Value";
             cmbCondicion.ValueMember = "Value";
