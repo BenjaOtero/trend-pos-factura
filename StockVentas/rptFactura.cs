@@ -13,12 +13,14 @@ namespace StockVentas
     public partial class rptFactura : Form
     {
         DataTable tblIVA;
+        DataTable tblRazonSocial;
         DataRow[] foundCliente;
 
-        public rptFactura(DataTable tblIVA, DataRow[] foundCliente)
+        public rptFactura(DataTable tblIVA, DataRow[] foundCliente, DataTable tblRazonSocial)
         {
             InitializeComponent();
             this.tblIVA = tblIVA;
+            this.tblRazonSocial = tblRazonSocial;
             this.foundCliente = foundCliente;
         }
 
@@ -57,6 +59,7 @@ namespace StockVentas
             string path = Application.StartupPath + @"\Informes\factura.rdlc";
             this.reportViewer1.LocalReport.ReportPath = path;
             reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", tblIVA));
+            reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet2", tblRazonSocial));
           //  this.reportViewer1.LocalReport.SetParameters(parametros);
             this.reportViewer1.RefreshReport();
             this.HorizontalScroll.Enabled = false;

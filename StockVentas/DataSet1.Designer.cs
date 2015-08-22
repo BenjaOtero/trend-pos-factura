@@ -28,6 +28,8 @@ namespace StockVentas {
         
         private ClientesDataTable tableClientes;
         
+        private RazonSocialDataTable tableRazonSocial;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -61,6 +63,9 @@ namespace StockVentas {
                 }
                 if ((ds.Tables["Clientes"] != null)) {
                     base.Tables.Add(new ClientesDataTable(ds.Tables["Clientes"]));
+                }
+                if ((ds.Tables["RazonSocial"] != null)) {
+                    base.Tables.Add(new RazonSocialDataTable(ds.Tables["RazonSocial"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -97,6 +102,16 @@ namespace StockVentas {
         public ClientesDataTable Clientes {
             get {
                 return this.tableClientes;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public RazonSocialDataTable RazonSocial {
+            get {
+                return this.tableRazonSocial;
             }
         }
         
@@ -173,6 +188,9 @@ namespace StockVentas {
                 if ((ds.Tables["Clientes"] != null)) {
                     base.Tables.Add(new ClientesDataTable(ds.Tables["Clientes"]));
                 }
+                if ((ds.Tables["RazonSocial"] != null)) {
+                    base.Tables.Add(new RazonSocialDataTable(ds.Tables["RazonSocial"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -218,6 +236,12 @@ namespace StockVentas {
                     this.tableClientes.InitVars();
                 }
             }
+            this.tableRazonSocial = ((RazonSocialDataTable)(base.Tables["RazonSocial"]));
+            if ((initTable == true)) {
+                if ((this.tableRazonSocial != null)) {
+                    this.tableRazonSocial.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -232,6 +256,8 @@ namespace StockVentas {
             base.Tables.Add(this.tableTablaIva);
             this.tableClientes = new ClientesDataTable();
             base.Tables.Add(this.tableClientes);
+            this.tableRazonSocial = new RazonSocialDataTable();
+            base.Tables.Add(this.tableRazonSocial);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -243,6 +269,12 @@ namespace StockVentas {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeClientes() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeRazonSocial() {
             return false;
         }
         
@@ -306,6 +338,9 @@ namespace StockVentas {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void ClientesRowChangeEventHandler(object sender, ClientesRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void RazonSocialRowChangeEventHandler(object sender, RazonSocialRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -984,6 +1019,393 @@ namespace StockVentas {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class RazonSocialDataTable : global::System.Data.TypedTableBase<RazonSocialRow> {
+            
+            private global::System.Data.DataColumn columnIdRazonSocialRAZ;
+            
+            private global::System.Data.DataColumn columnRazonSocialRAZ;
+            
+            private global::System.Data.DataColumn columnNombreFantasiaRAZ;
+            
+            private global::System.Data.DataColumn columnDomicilioRAZ;
+            
+            private global::System.Data.DataColumn columnLocalidadRAZ;
+            
+            private global::System.Data.DataColumn columnProvinciaRAZ;
+            
+            private global::System.Data.DataColumn columnIdCondicionIvaRAZ;
+            
+            private global::System.Data.DataColumn columnCuitRAZ;
+            
+            private global::System.Data.DataColumn columnIngresosBrutosRAZ;
+            
+            private global::System.Data.DataColumn columnInicioActividadRAZ;
+            
+            private global::System.Data.DataColumn columnPuntoVentaRAZ;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RazonSocialDataTable() {
+                this.TableName = "RazonSocial";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal RazonSocialDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected RazonSocialDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IdRazonSocialRAZColumn {
+                get {
+                    return this.columnIdRazonSocialRAZ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RazonSocialRAZColumn {
+                get {
+                    return this.columnRazonSocialRAZ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreFantasiaRAZColumn {
+                get {
+                    return this.columnNombreFantasiaRAZ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DomicilioRAZColumn {
+                get {
+                    return this.columnDomicilioRAZ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn LocalidadRAZColumn {
+                get {
+                    return this.columnLocalidadRAZ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ProvinciaRAZColumn {
+                get {
+                    return this.columnProvinciaRAZ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IdCondicionIvaRAZColumn {
+                get {
+                    return this.columnIdCondicionIvaRAZ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CuitRAZColumn {
+                get {
+                    return this.columnCuitRAZ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IngresosBrutosRAZColumn {
+                get {
+                    return this.columnIngresosBrutosRAZ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn InicioActividadRAZColumn {
+                get {
+                    return this.columnInicioActividadRAZ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PuntoVentaRAZColumn {
+                get {
+                    return this.columnPuntoVentaRAZ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RazonSocialRow this[int index] {
+                get {
+                    return ((RazonSocialRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event RazonSocialRowChangeEventHandler RazonSocialRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event RazonSocialRowChangeEventHandler RazonSocialRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event RazonSocialRowChangeEventHandler RazonSocialRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event RazonSocialRowChangeEventHandler RazonSocialRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddRazonSocialRow(RazonSocialRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RazonSocialRow AddRazonSocialRow(string IdRazonSocialRAZ, string RazonSocialRAZ, string NombreFantasiaRAZ, string DomicilioRAZ, string LocalidadRAZ, string ProvinciaRAZ, string IdCondicionIvaRAZ, string CuitRAZ, string IngresosBrutosRAZ, string InicioActividadRAZ, string PuntoVentaRAZ) {
+                RazonSocialRow rowRazonSocialRow = ((RazonSocialRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        IdRazonSocialRAZ,
+                        RazonSocialRAZ,
+                        NombreFantasiaRAZ,
+                        DomicilioRAZ,
+                        LocalidadRAZ,
+                        ProvinciaRAZ,
+                        IdCondicionIvaRAZ,
+                        CuitRAZ,
+                        IngresosBrutosRAZ,
+                        InicioActividadRAZ,
+                        PuntoVentaRAZ};
+                rowRazonSocialRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowRazonSocialRow);
+                return rowRazonSocialRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                RazonSocialDataTable cln = ((RazonSocialDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new RazonSocialDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnIdRazonSocialRAZ = base.Columns["IdRazonSocialRAZ"];
+                this.columnRazonSocialRAZ = base.Columns["RazonSocialRAZ"];
+                this.columnNombreFantasiaRAZ = base.Columns["NombreFantasiaRAZ"];
+                this.columnDomicilioRAZ = base.Columns["DomicilioRAZ"];
+                this.columnLocalidadRAZ = base.Columns["LocalidadRAZ"];
+                this.columnProvinciaRAZ = base.Columns["ProvinciaRAZ"];
+                this.columnIdCondicionIvaRAZ = base.Columns["IdCondicionIvaRAZ"];
+                this.columnCuitRAZ = base.Columns["CuitRAZ"];
+                this.columnIngresosBrutosRAZ = base.Columns["IngresosBrutosRAZ"];
+                this.columnInicioActividadRAZ = base.Columns["InicioActividadRAZ"];
+                this.columnPuntoVentaRAZ = base.Columns["PuntoVentaRAZ"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnIdRazonSocialRAZ = new global::System.Data.DataColumn("IdRazonSocialRAZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdRazonSocialRAZ);
+                this.columnRazonSocialRAZ = new global::System.Data.DataColumn("RazonSocialRAZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRazonSocialRAZ);
+                this.columnNombreFantasiaRAZ = new global::System.Data.DataColumn("NombreFantasiaRAZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreFantasiaRAZ);
+                this.columnDomicilioRAZ = new global::System.Data.DataColumn("DomicilioRAZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDomicilioRAZ);
+                this.columnLocalidadRAZ = new global::System.Data.DataColumn("LocalidadRAZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLocalidadRAZ);
+                this.columnProvinciaRAZ = new global::System.Data.DataColumn("ProvinciaRAZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProvinciaRAZ);
+                this.columnIdCondicionIvaRAZ = new global::System.Data.DataColumn("IdCondicionIvaRAZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdCondicionIvaRAZ);
+                this.columnCuitRAZ = new global::System.Data.DataColumn("CuitRAZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCuitRAZ);
+                this.columnIngresosBrutosRAZ = new global::System.Data.DataColumn("IngresosBrutosRAZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIngresosBrutosRAZ);
+                this.columnInicioActividadRAZ = new global::System.Data.DataColumn("InicioActividadRAZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInicioActividadRAZ);
+                this.columnPuntoVentaRAZ = new global::System.Data.DataColumn("PuntoVentaRAZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPuntoVentaRAZ);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RazonSocialRow NewRazonSocialRow() {
+                return ((RazonSocialRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new RazonSocialRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(RazonSocialRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.RazonSocialRowChanged != null)) {
+                    this.RazonSocialRowChanged(this, new RazonSocialRowChangeEvent(((RazonSocialRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.RazonSocialRowChanging != null)) {
+                    this.RazonSocialRowChanging(this, new RazonSocialRowChangeEvent(((RazonSocialRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.RazonSocialRowDeleted != null)) {
+                    this.RazonSocialRowDeleted(this, new RazonSocialRowChangeEvent(((RazonSocialRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.RazonSocialRowDeleting != null)) {
+                    this.RazonSocialRowDeleting(this, new RazonSocialRowChangeEvent(((RazonSocialRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveRazonSocialRow(RazonSocialRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DataSet1 ds = new DataSet1();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "RazonSocialDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class TablaIvaRow : global::System.Data.DataRow {
@@ -1434,6 +1856,329 @@ namespace StockVentas {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class RazonSocialRow : global::System.Data.DataRow {
+            
+            private RazonSocialDataTable tableRazonSocial;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal RazonSocialRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableRazonSocial = ((RazonSocialDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string IdRazonSocialRAZ {
+                get {
+                    try {
+                        return ((string)(this[this.tableRazonSocial.IdRazonSocialRAZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IdRazonSocialRAZ\' de la tabla \'RazonSocial\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRazonSocial.IdRazonSocialRAZColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string RazonSocialRAZ {
+                get {
+                    try {
+                        return ((string)(this[this.tableRazonSocial.RazonSocialRAZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'RazonSocialRAZ\' de la tabla \'RazonSocial\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRazonSocial.RazonSocialRAZColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NombreFantasiaRAZ {
+                get {
+                    try {
+                        return ((string)(this[this.tableRazonSocial.NombreFantasiaRAZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NombreFantasiaRAZ\' de la tabla \'RazonSocial\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRazonSocial.NombreFantasiaRAZColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DomicilioRAZ {
+                get {
+                    try {
+                        return ((string)(this[this.tableRazonSocial.DomicilioRAZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DomicilioRAZ\' de la tabla \'RazonSocial\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRazonSocial.DomicilioRAZColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string LocalidadRAZ {
+                get {
+                    try {
+                        return ((string)(this[this.tableRazonSocial.LocalidadRAZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'LocalidadRAZ\' de la tabla \'RazonSocial\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRazonSocial.LocalidadRAZColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ProvinciaRAZ {
+                get {
+                    try {
+                        return ((string)(this[this.tableRazonSocial.ProvinciaRAZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ProvinciaRAZ\' de la tabla \'RazonSocial\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRazonSocial.ProvinciaRAZColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string IdCondicionIvaRAZ {
+                get {
+                    try {
+                        return ((string)(this[this.tableRazonSocial.IdCondicionIvaRAZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IdCondicionIvaRAZ\' de la tabla \'RazonSocial\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRazonSocial.IdCondicionIvaRAZColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CuitRAZ {
+                get {
+                    try {
+                        return ((string)(this[this.tableRazonSocial.CuitRAZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CuitRAZ\' de la tabla \'RazonSocial\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRazonSocial.CuitRAZColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string IngresosBrutosRAZ {
+                get {
+                    try {
+                        return ((string)(this[this.tableRazonSocial.IngresosBrutosRAZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IngresosBrutosRAZ\' de la tabla \'RazonSocial\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRazonSocial.IngresosBrutosRAZColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string InicioActividadRAZ {
+                get {
+                    try {
+                        return ((string)(this[this.tableRazonSocial.InicioActividadRAZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'InicioActividadRAZ\' de la tabla \'RazonSocial\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRazonSocial.InicioActividadRAZColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PuntoVentaRAZ {
+                get {
+                    try {
+                        return ((string)(this[this.tableRazonSocial.PuntoVentaRAZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PuntoVentaRAZ\' de la tabla \'RazonSocial\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRazonSocial.PuntoVentaRAZColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIdRazonSocialRAZNull() {
+                return this.IsNull(this.tableRazonSocial.IdRazonSocialRAZColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIdRazonSocialRAZNull() {
+                this[this.tableRazonSocial.IdRazonSocialRAZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRazonSocialRAZNull() {
+                return this.IsNull(this.tableRazonSocial.RazonSocialRAZColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRazonSocialRAZNull() {
+                this[this.tableRazonSocial.RazonSocialRAZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreFantasiaRAZNull() {
+                return this.IsNull(this.tableRazonSocial.NombreFantasiaRAZColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreFantasiaRAZNull() {
+                this[this.tableRazonSocial.NombreFantasiaRAZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDomicilioRAZNull() {
+                return this.IsNull(this.tableRazonSocial.DomicilioRAZColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDomicilioRAZNull() {
+                this[this.tableRazonSocial.DomicilioRAZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsLocalidadRAZNull() {
+                return this.IsNull(this.tableRazonSocial.LocalidadRAZColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetLocalidadRAZNull() {
+                this[this.tableRazonSocial.LocalidadRAZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsProvinciaRAZNull() {
+                return this.IsNull(this.tableRazonSocial.ProvinciaRAZColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetProvinciaRAZNull() {
+                this[this.tableRazonSocial.ProvinciaRAZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIdCondicionIvaRAZNull() {
+                return this.IsNull(this.tableRazonSocial.IdCondicionIvaRAZColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIdCondicionIvaRAZNull() {
+                this[this.tableRazonSocial.IdCondicionIvaRAZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCuitRAZNull() {
+                return this.IsNull(this.tableRazonSocial.CuitRAZColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCuitRAZNull() {
+                this[this.tableRazonSocial.CuitRAZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIngresosBrutosRAZNull() {
+                return this.IsNull(this.tableRazonSocial.IngresosBrutosRAZColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIngresosBrutosRAZNull() {
+                this[this.tableRazonSocial.IngresosBrutosRAZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsInicioActividadRAZNull() {
+                return this.IsNull(this.tableRazonSocial.InicioActividadRAZColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetInicioActividadRAZNull() {
+                this[this.tableRazonSocial.InicioActividadRAZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPuntoVentaRAZNull() {
+                return this.IsNull(this.tableRazonSocial.PuntoVentaRAZColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPuntoVentaRAZNull() {
+                this[this.tableRazonSocial.PuntoVentaRAZColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1487,6 +2232,40 @@ namespace StockVentas {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ClientesRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class RazonSocialRowChangeEvent : global::System.EventArgs {
+            
+            private RazonSocialRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RazonSocialRowChangeEvent(RazonSocialRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RazonSocialRow Row {
                 get {
                     return this.eventRow;
                 }

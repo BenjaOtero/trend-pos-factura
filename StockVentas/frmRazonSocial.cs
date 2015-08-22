@@ -44,9 +44,10 @@ namespace StockVentas
             cmbIdCondicionIvaRAZ.DataSource = tblCondicionIva;
             BL.Utilitarios.DataBindingsAdd(bindingSource1, grpCampos);
             BL.Utilitarios.AddEventosABM(grpCampos, ref btnGrabar, ref tblRazonSocial);
-            txtPuntoVentaRAZ.KeyPress += new KeyPressEventHandler(BL.Utilitarios.SoloNumeros);            
+            txtPuntoVentaRAZ.KeyPress += new KeyPressEventHandler(BL.Utilitarios.SoloNumeros);  
+            this.txtPuntoVentaRAZ.Validated += new System.EventHandler(this.txtPuntoVentaRAZ_Validated);
+            this.txtPuntoVentaRAZ.Validating += new System.ComponentModel.CancelEventHandler(this.Validar);            
             SetStateForm(FormState.inicial);
-            DataTable tabla = tblRazonSocial.GetChanges();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -59,6 +60,7 @@ namespace StockVentas
         {
             try
             {
+                int largo = txtPuntoVentaRAZ.Text.Length;
                 bindingSource1.EndEdit();
                 SetStateForm(FormState.inicial);
                 //  bindingSource1.RemoveFilter();
@@ -149,6 +151,50 @@ namespace StockVentas
             return;
         }
 
+        private void txtPuntoVentaRAZ_Enter(object sender, EventArgs e)
+        {
+            this.BeginInvoke((MethodInvoker)delegate()
+            {
+                txtPuntoVentaRAZ.SelectAll();
+            });
+        }
+
+        private void txtPuntoVentaRAZ_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void txtPuntoVentaRAZ_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtPuntoVentaRAZ, "");
+        }
+
+        private void Validar(object sender, CancelEventArgs e)
+        {
+            if ((sender == (object)txtPuntoVentaRAZ))
+            {
+                MaskedTextBox myObj = sender as MaskedTextBox;
+                if (string.IsNullOrEmpty(myObj.Text))
+                {
+                    this.errorProvider1.SetError(txtPuntoVentaRAZ, "Debe proporcionar un número de punto de venta.");
+                    e.Cancel = true;
+                }
+                int largo = txtPuntoVentaRAZ.Text.Length;
+                if (largo < 4) e.Cancel = true;
+                this.errorProvider1.SetError(txtPuntoVentaRAZ, "El punto de venta debe tener 4 dígitos.");
+            }
+
+        }
+
+        private void txtInicioActividadRAZ_Enter(object sender, EventArgs e)
+        {
+            this.BeginInvoke((MethodInvoker)delegate()
+            {
+                txtInicioActividadRAZ.SelectAll();
+            });
+        }
+
+        
 
     }
 }

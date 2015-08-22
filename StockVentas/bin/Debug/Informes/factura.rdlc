@@ -58,6 +58,66 @@
         <rd:TableAdapterName />
       </rd:DataSetInfo>
     </DataSet>
+    <DataSet Name="DataSet2">
+      <Fields>
+        <Field Name="IdRazonSocialRAZ">
+          <DataField>IdRazonSocialRAZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RazonSocialRAZ">
+          <DataField>RazonSocialRAZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreFantasiaRAZ">
+          <DataField>NombreFantasiaRAZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DomicilioRAZ">
+          <DataField>DomicilioRAZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LocalidadRAZ">
+          <DataField>LocalidadRAZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProvinciaRAZ">
+          <DataField>ProvinciaRAZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IdCondicionIvaRAZ">
+          <DataField>IdCondicionIvaRAZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CuitRAZ">
+          <DataField>CuitRAZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IngresosBrutosRAZ">
+          <DataField>IngresosBrutosRAZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="InicioActividadRAZ">
+          <DataField>InicioActividadRAZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PuntoVentaRAZ">
+          <DataField>PuntoVentaRAZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSet1</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DataSet1</rd:DataSetName>
+        <rd:SchemaPath>C:\Trend\POS\trunk\StockVentas\DataSet1.xsd</rd:SchemaPath>
+        <rd:TableName>RazonSocial</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
   </DataSets>
   <Body>
     <ReportItems>
@@ -425,7 +485,7 @@
         <Top>0.17639cm</Top>
         <Left>1cm</Left>
         <Height>1.2cm</Height>
-        <Width>19cm</Width>
+        <Width>19.00004cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -452,7 +512,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>RAZON SOCIAL EMISOR</Value>
+                      <Value>=First(Fields!NombreFantasiaRAZ.Value, "DataSet2")</Value>
                       <Style>
                         <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -519,7 +579,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>NAVARRO CAROLINA DEL VALLE</Value>
+                      <Value>=First(Fields!RazonSocialRAZ.Value, "DataSet2")</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                         <FontWeight>Normal</FontWeight>
@@ -551,7 +611,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Tucuman 481, Jesus Maria, Cordoba</Value>
+                      <Value>=First(Fields!DomicilioRAZ.Value, "DataSet2") &amp; ", " &amp; First(Fields!LocalidadRAZ.Value, "DataSet2") &amp; ", " &amp; First(Fields!ProvinciaRAZ.Value, "DataSet2")</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                         <FontWeight>Normal</FontWeight>

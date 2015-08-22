@@ -44,9 +44,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtInicioActividadRAZ = new System.Windows.Forms.TextBox();
             this.txtIngresosBrutosRAZ = new System.Windows.Forms.TextBox();
             this.txtCuitRAZ = new System.Windows.Forms.TextBox();
             this.txtProvinciaRAZ = new System.Windows.Forms.TextBox();
@@ -56,11 +56,13 @@
             this.txtRazonSocialRAZ = new System.Windows.Forms.TextBox();
             this.txtIdRazonSocialRAZ = new System.Windows.Forms.TextBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.txtPuntoVentaRAZ = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.txtPuntoVentaRAZ = new System.Windows.Forms.MaskedTextBox();
+            this.txtInicioActividadRAZ = new System.Windows.Forms.MaskedTextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2.SuspendLayout();
             this.grpCampos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -117,6 +119,8 @@
             // 
             // grpCampos
             // 
+            this.grpCampos.Controls.Add(this.txtInicioActividadRAZ);
+            this.grpCampos.Controls.Add(this.txtPuntoVentaRAZ);
             this.grpCampos.Controls.Add(this.cmbIdCondicionIvaRAZ);
             this.grpCampos.Controls.Add(this.label10);
             this.grpCampos.Controls.Add(this.label9);
@@ -129,14 +133,12 @@
             this.grpCampos.Controls.Add(this.label11);
             this.grpCampos.Controls.Add(this.label4);
             this.grpCampos.Controls.Add(this.label3);
-            this.grpCampos.Controls.Add(this.txtInicioActividadRAZ);
             this.grpCampos.Controls.Add(this.txtIngresosBrutosRAZ);
             this.grpCampos.Controls.Add(this.txtCuitRAZ);
             this.grpCampos.Controls.Add(this.txtProvinciaRAZ);
             this.grpCampos.Controls.Add(this.txtLocalidadRAZ);
             this.grpCampos.Controls.Add(this.txtDomicilioRAZ);
             this.grpCampos.Controls.Add(this.txtNombreFantasiaRAZ);
-            this.grpCampos.Controls.Add(this.txtPuntoVentaRAZ);
             this.grpCampos.Controls.Add(this.txtRazonSocialRAZ);
             this.grpCampos.Controls.Add(this.txtIdRazonSocialRAZ);
             this.grpCampos.Location = new System.Drawing.Point(11, 7);
@@ -151,7 +153,7 @@
             this.cmbIdCondicionIvaRAZ.Location = new System.Drawing.Point(114, 200);
             this.cmbIdCondicionIvaRAZ.Name = "cmbIdCondicionIvaRAZ";
             this.cmbIdCondicionIvaRAZ.Size = new System.Drawing.Size(375, 21);
-            this.cmbIdCondicionIvaRAZ.TabIndex = 7;
+            this.cmbIdCondicionIvaRAZ.TabIndex = 8;
             // 
             // label10
             // 
@@ -241,6 +243,17 @@
             this.label5.TabIndex = 22;
             this.label5.Text = "Nombre fantasía";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label11.Location = new System.Drawing.Point(8, 72);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(88, 15);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Punto de venta";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -263,21 +276,13 @@
             this.label3.TabIndex = 22;
             this.label3.Text = "ID";
             // 
-            // txtInicioActividadRAZ
-            // 
-            this.txtInicioActividadRAZ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtInicioActividadRAZ.Location = new System.Drawing.Point(114, 279);
-            this.txtInicioActividadRAZ.Name = "txtInicioActividadRAZ";
-            this.txtInicioActividadRAZ.Size = new System.Drawing.Size(375, 20);
-            this.txtInicioActividadRAZ.TabIndex = 10;
-            // 
             // txtIngresosBrutosRAZ
             // 
             this.txtIngresosBrutosRAZ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtIngresosBrutosRAZ.Location = new System.Drawing.Point(114, 253);
             this.txtIngresosBrutosRAZ.Name = "txtIngresosBrutosRAZ";
             this.txtIngresosBrutosRAZ.Size = new System.Drawing.Size(375, 20);
-            this.txtIngresosBrutosRAZ.TabIndex = 9;
+            this.txtIngresosBrutosRAZ.TabIndex = 10;
             // 
             // txtCuitRAZ
             // 
@@ -285,7 +290,7 @@
             this.txtCuitRAZ.Location = new System.Drawing.Point(114, 227);
             this.txtCuitRAZ.Name = "txtCuitRAZ";
             this.txtCuitRAZ.Size = new System.Drawing.Size(375, 20);
-            this.txtCuitRAZ.TabIndex = 8;
+            this.txtCuitRAZ.TabIndex = 9;
             // 
             // txtProvinciaRAZ
             // 
@@ -293,7 +298,7 @@
             this.txtProvinciaRAZ.Location = new System.Drawing.Point(114, 175);
             this.txtProvinciaRAZ.Name = "txtProvinciaRAZ";
             this.txtProvinciaRAZ.Size = new System.Drawing.Size(375, 20);
-            this.txtProvinciaRAZ.TabIndex = 6;
+            this.txtProvinciaRAZ.TabIndex = 7;
             // 
             // txtLocalidadRAZ
             // 
@@ -301,7 +306,7 @@
             this.txtLocalidadRAZ.Location = new System.Drawing.Point(114, 149);
             this.txtLocalidadRAZ.Name = "txtLocalidadRAZ";
             this.txtLocalidadRAZ.Size = new System.Drawing.Size(375, 20);
-            this.txtLocalidadRAZ.TabIndex = 5;
+            this.txtLocalidadRAZ.TabIndex = 6;
             // 
             // txtDomicilioRAZ
             // 
@@ -309,7 +314,7 @@
             this.txtDomicilioRAZ.Location = new System.Drawing.Point(114, 123);
             this.txtDomicilioRAZ.Name = "txtDomicilioRAZ";
             this.txtDomicilioRAZ.Size = new System.Drawing.Size(375, 20);
-            this.txtDomicilioRAZ.TabIndex = 4;
+            this.txtDomicilioRAZ.TabIndex = 5;
             // 
             // txtNombreFantasiaRAZ
             // 
@@ -317,7 +322,7 @@
             this.txtNombreFantasiaRAZ.Location = new System.Drawing.Point(114, 97);
             this.txtNombreFantasiaRAZ.Name = "txtNombreFantasiaRAZ";
             this.txtNombreFantasiaRAZ.Size = new System.Drawing.Size(375, 20);
-            this.txtNombreFantasiaRAZ.TabIndex = 3;
+            this.txtNombreFantasiaRAZ.TabIndex = 4;
             // 
             // txtRazonSocialRAZ
             // 
@@ -337,22 +342,27 @@
             // 
             // txtPuntoVentaRAZ
             // 
-            this.txtPuntoVentaRAZ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPuntoVentaRAZ.Location = new System.Drawing.Point(114, 71);
+            this.txtPuntoVentaRAZ.Location = new System.Drawing.Point(114, 72);
+            this.txtPuntoVentaRAZ.Mask = "9999";
             this.txtPuntoVentaRAZ.Name = "txtPuntoVentaRAZ";
             this.txtPuntoVentaRAZ.Size = new System.Drawing.Size(375, 20);
-            this.txtPuntoVentaRAZ.TabIndex = 2;
+            this.txtPuntoVentaRAZ.TabIndex = 3;
+            this.txtPuntoVentaRAZ.Enter += new System.EventHandler(this.txtPuntoVentaRAZ_Enter);
+
             // 
-            // label11
+            // txtInicioActividadRAZ
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label11.Location = new System.Drawing.Point(8, 72);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(88, 15);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "Punto de venta";
+            this.txtInicioActividadRAZ.Location = new System.Drawing.Point(114, 279);
+            this.txtInicioActividadRAZ.Mask = "00/00/0000";
+            this.txtInicioActividadRAZ.Name = "txtInicioActividadRAZ";
+            this.txtInicioActividadRAZ.Size = new System.Drawing.Size(375, 20);
+            this.txtInicioActividadRAZ.TabIndex = 11;
+            this.txtInicioActividadRAZ.ValidatingType = typeof(System.DateTime);
+            this.txtInicioActividadRAZ.Enter += new System.EventHandler(this.txtInicioActividadRAZ_Enter);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmRazonSocial
             // 
@@ -370,6 +380,7 @@
             this.grpCampos.ResumeLayout(false);
             this.grpCampos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -402,9 +413,10 @@
         private System.Windows.Forms.TextBox txtNombreFantasiaRAZ;
         private System.Windows.Forms.TextBox txtRazonSocialRAZ;
         private System.Windows.Forms.TextBox txtIdRazonSocialRAZ;
-        private System.Windows.Forms.TextBox txtInicioActividadRAZ;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtPuntoVentaRAZ;
+        private System.Windows.Forms.MaskedTextBox txtPuntoVentaRAZ;
+        private System.Windows.Forms.MaskedTextBox txtInicioActividadRAZ;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
 
     }
 }

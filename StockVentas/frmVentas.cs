@@ -873,7 +873,8 @@ namespace StockVentas
                         MessageBox.Show("número comprobante:" + fe.F1RespuestaDetalleCbteDesdeS);
                         MessageBox.Show("error detallado comprobante: " + fe.F1RespuestaDetalleObservacionMsg1);
                     }
-                    rptFactura informeFactura = new rptFactura(tblIVA, foundCliente);
+                    DataTable tblRazonSocial = BL.RazonSocialBLL.GetRazonSocial();
+                    rptFactura informeFactura = new rptFactura(tblIVA, foundCliente, tblRazonSocial);
                     informeFactura.Show();
                 }
                 else

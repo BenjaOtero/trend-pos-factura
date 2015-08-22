@@ -249,7 +249,7 @@ CREATE TABLE `razonsocial` (
   `CuitRAZ` varchar(15) DEFAULT NULL,
   `IngresosBrutosRAZ` varchar(15) DEFAULT NULL,
   `InicioActividadRAZ` datetime DEFAULT NULL,
-  `PuntoVentaRAZ` int(11) DEFAULT NULL,
+  `PuntoVentaRAZ` varchar(4) DEFAULT NULL,
   PRIMARY KEY (`IdRazonSocialRAZ`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -257,7 +257,7 @@ CREATE TABLE `razonsocial` (
 
 LOCK TABLES `razonsocial` WRITE;
 
-insert  into `razonsocial`(`IdRazonSocialRAZ`,`RazonSocialRAZ`,`NombreFantasiaRAZ`,`DomicilioRAZ`,`LocalidadRAZ`,`ProvinciaRAZ`,`IdCondicionIvaRAZ`,`CuitRAZ`,`IngresosBrutosRAZ`,`InicioActividadRAZ`,`PuntoVentaRAZ`) values (1,'Navarro Carolina del Valle','KARMINNA','Tucuman 481','Jesus Maria','Cordoba',2,'27220379588','270598927','2013-10-01 00:00:00',1);
+insert  into `razonsocial`(`IdRazonSocialRAZ`,`RazonSocialRAZ`,`NombreFantasiaRAZ`,`DomicilioRAZ`,`LocalidadRAZ`,`ProvinciaRAZ`,`IdCondicionIvaRAZ`,`CuitRAZ`,`IngresosBrutosRAZ`,`InicioActividadRAZ`,`PuntoVentaRAZ`) values (1,'Navarro Carolina del Valle','KARMINNA','Tucuman 481','Jesus Maria','Cordoba',2,'27220379588','270598927','2013-10-01 00:00:00','0001');
 
 UNLOCK TABLES;
 
@@ -316,6 +316,8 @@ CREATE TABLE `ventas` (
 
 LOCK TABLES `ventas` WRITE;
 
+insert  into `ventas`(`IdVentaVEN`,`IdPCVEN`,`FechaVEN`,`IdClienteVEN`) values (314545698,1,'2015-08-22 16:42:56',1),(597652313,1,'2015-08-22 16:37:54',1),(1260092812,1,'2015-08-22 16:02:57',1);
+
 UNLOCK TABLES;
 
 /*Table structure for table `ventasdetalle` */
@@ -349,6 +351,8 @@ CREATE TABLE `ventasdetalle` (
 /*Data for the table `ventasdetalle` */
 
 LOCK TABLES `ventasdetalle` WRITE;
+
+insert  into `ventasdetalle`(`IdDVEN`,`IdVentaDVEN`,`IdLocalDVEN`,`IdArticuloDVEN`,`DescripcionDVEN`,`CantidadDVEN`,`PrecioPublicoDVEN`,`PrecioCostoDVEN`,`PrecioMayorDVEN`,`IdFormaPagoDVEN`,`NroCuponDVEN`,`NroFacturaDVEN`,`IdEmpleadoDVEN`,`LiquidadoDVEN`,`EsperaDVEN`,`DevolucionDVEN`) values (403104812,314545698,13,'0260010000',NULL,1,80,55,0,1,NULL,NULL,NULL,NULL,NULL,0),(413727400,597652313,13,'0260010000',NULL,1,80,55,0,1,NULL,NULL,NULL,NULL,NULL,0),(999831102,1260092812,13,'0260010000',NULL,1,80,55,0,1,NULL,NULL,NULL,NULL,NULL,0);
 
 UNLOCK TABLES;
 
@@ -2853,13 +2857,13 @@ DELIMITER $$
 
 /*!50003 CREATE DEFINER=`ncsoftwa_re`@`%` PROCEDURE `Ventas_Foraneos`()
 BEGIN
-select * FROM Articulos;
-SELECT * FROM Clientes;
-SELECT * FROM FormasPago;
-SELECT * FROM Locales
+select * FROM articuloscons;
+SELECT * FROM clientes;
+SELECT * FROM formaspago;
+SELECT * FROM locales
 	WHERE NombreLOC NOT LIKE 'Entradas' OR NombreLOC NOT LIKE 'Salidas'
 	ORDER BY IdLocalLOC;
-SELECT * FROM Pc;
+SELECT * FROM pc;
 END */$$
 DELIMITER ;
 
@@ -3206,7 +3210,7 @@ DROP TABLE IF EXISTS `ventaspesoscons2`;
 /*!50001 DROP TABLE IF EXISTS `articuloscons` */;
 /*!50001 DROP VIEW IF EXISTS `articuloscons` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`ncsoftwa_re`@`%` SQL SECURITY DEFINER VIEW `articuloscons` AS select `articulos`.`IdArticuloART` AS `IdArticuloART`,`articulos`.`IdItemART` AS `IdItemART`,`articulos`.`IdColorART` AS `IdColorART`,`articulos`.`IdAliculotaIvaART` AS `IdAliculotaIvaART`,`articulos`.`TalleART` AS `TalleART`,`articulos`.`IdProveedorART` AS `IdProveedorART`,`articulos`.`DescripcionART` AS `DescripcionART`,`articulos`.`DescripcionWebART` AS `DescripcionWebART`,`articulos`.`PrecioCostoART` AS `PrecioCostoART`,`articulos`.`PrecioPublicoART` AS `PrecioPublicoART`,`articulos`.`PrecioMayorART` AS `PrecioMayorART`,`articulos`.`FechaART` AS `FechaART`,`articulos`.`ImagenART` AS `ImagenART`,`articulos`.`ImagenBackART` AS `ImagenBackART`,`articulos`.`ImagenColorART` AS `ImagenColorART`,`articulos`.`ActivoWebART` AS `ActivoWebART`,`articulos`.`NuevoART` AS `NuevoART`,`alicuotasiva`.`PorcentajeALI` AS `PorcentajeALI` from (`alicuotasiva` join `articulos` on((`alicuotasiva`.`IdAlicuotaALI` = `articulos`.`IdAliculotaIvaART`))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`ncsoftwa_re`@`%` SQL SECURITY DEFINER VIEW `articuloscons` AS select `articulos`.`IdArticuloART` AS `IdArticuloART`,`articulos`.`IdItemART` AS `IdItemART`,`articulos`.`IdColorART` AS `IdColorART`,`articulos`.`IdAliculotaIvaART` AS `IdAliculotaIvaART`,`articulos`.`TalleART` AS `TalleART`,`articulos`.`IdProveedorART` AS `IdProveedorART`,`articulos`.`DescripcionART` AS `DescripcionART`,`articulos`.`DescripcionWebART` AS `DescripcionWebART`,`articulos`.`PrecioCostoART` AS `PrecioCostoART`,`articulos`.`PrecioPublicoART` AS `PrecioPublicoART`,`articulos`.`PrecioMayorART` AS `PrecioMayorART`,`articulos`.`FechaART` AS `FechaART`,`articulos`.`ImagenART` AS `ImagenART`,`articulos`.`ImagenBackART` AS `ImagenBackART`,`articulos`.`ImagenColorART` AS `ImagenColorART`,`articulos`.`ActivoWebART` AS `ActivoWebART`,`articulos`.`NuevoART` AS `NuevoART`,`alicuotasiva`.`PorcentajeALI` AS `PorcentajeALI` from (`articulos` join `alicuotasiva` on((`articulos`.`IdAliculotaIvaART` = `alicuotasiva`.`IdAlicuotaALI`))) */;
 
 /*View structure for view fondocajacons */
 

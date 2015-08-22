@@ -9,6 +9,7 @@ using System.Net.NetworkInformation;
 using System.ComponentModel;
 using System.ServiceProcess;
 using System.Configuration;
+using System.Threading;
 
 namespace BL
 {
@@ -168,18 +169,9 @@ namespace BL
 
         public static void SelTextoTextBox(object sender, EventArgs e)
         {
-            try
-            {
-                TextBox tb = (TextBox)sender;
-                tb.SelectionStart = 0;
-                tb.SelectionLength = tb.Text.Length;
-            }
-            catch (InvalidCastException)
-            {
-                MaskedTextBox tb = (MaskedTextBox)sender;
-                tb.SelectionStart = 0;
-                tb.SelectionLength = tb.Text.Length;
-            }
+            TextBox tb = (TextBox)sender;
+            tb.SelectionStart = 0;
+            tb.SelectionLength = tb.Text.Length;
         }
 
         public static void EnterTab(object sender, KeyEventArgs e)
@@ -194,9 +186,13 @@ namespace BL
             grabar = btnGrabar;
             foreach (Control ctl in grpCampos.Controls)
             {
-                if (ctl is TextBox || ctl is MaskedTextBox)
+                if (ctl is TextBox)
                 {
                     ctl.Enter += new System.EventHandler(SelTextoTextBox);
+                    ctl.KeyDown += new System.Windows.Forms.KeyEventHandler(EnterTab);
+                }
+                if (ctl is MaskedTextBox)
+                {
                     ctl.KeyDown += new System.Windows.Forms.KeyEventHandler(EnterTab);
                 }
             }
@@ -222,7 +218,7 @@ namespace BL
         {
             foreach (Control ctl in grp.Controls)
             {
-                if (ctl is TextBox)
+                if (ctl is TextBox || ctl is MaskedTextBox)
                 {
                     string campo = ctl.Name.Substring(3, ctl.Name.Length - 3);
                     ctl.DataBindings.Add("Text", bnd, campo, false, DataSourceUpdateMode.OnPropertyChanged);
