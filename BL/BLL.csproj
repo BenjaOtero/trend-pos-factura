@@ -49,6 +49,7 @@
     <Compile Include="AlicuotasIvaBLL.cs" />
     <Compile Include="ArticulosBLL.cs" />
     <Compile Include="ClientesBLL.cs" />
+    <Compile Include="CondicionIvaBLL.cs" />
     <Compile Include="DatosPosBLL.cs" />
     <Compile Include="FallidasBLL.cs" />
     <Compile Include="FondoCajaBLL.cs" />
@@ -58,6 +59,7 @@
     </Compile>
     <Compile Include="PcsBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RazonSocialBLL.cs" />
     <Compile Include="StockBLL.cs" />
     <Compile Include="TesoreriaMovimientosBLL.cs" />
     <Compile Include="TransaccionesBLL.cs" />

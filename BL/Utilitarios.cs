@@ -121,8 +121,8 @@ namespace BL
             tblClientes.TableName = "Clientes";
             DataTable tblFormasPago = ds.Tables[2];
             tblFormasPago.TableName = "FormasPago";
-            DataTable tblAlicuotasIva = ds.Tables[3];
-            tblAlicuotasIva.TableName = "AlicuotasIva";
+        /*    DataTable tblAlicuotasIva = ds.Tables[3];
+            tblAlicuotasIva.TableName = "AlicuotasIva";*/
             if (tblArticulos.Rows.Count > 0)
             {
                 foreach (DataRow rowArticulo in tblArticulos.Rows)
@@ -148,14 +148,14 @@ namespace BL
                     rowForma.SetAdded();
                 }
             }
-            if (tblAlicuotasIva.Rows.Count > 0)
+        /*    if (tblAlicuotasIva.Rows.Count > 0)
             {
                 foreach (DataRow rowAlicuota in tblAlicuotasIva.Rows)
                 {
                     rowAlicuota.SetAdded();
                 }
-            }
-            if (ds.Tables.Count == 4)
+            }*/
+            if (ds.Tables.Count == 3)
             {
                 BL.DatosPosBLL.DeleteAll(existenClientes);
                 BL.ArticulosBLL.InsertarRemotos(ds);
@@ -198,6 +198,13 @@ namespace BL
                 {
                     ctl.Enter += new System.EventHandler(SelTextoTextBox);
                     ctl.KeyDown += new System.Windows.Forms.KeyEventHandler(EnterTab);
+                }
+            }
+            foreach (Control ctl in grpCampos.Controls)
+            {
+                if (ctl is ComboBox)
+                {
+                    ctl.KeyDown += new System.Windows.Forms.KeyEventHandler(EnterTab);
                     ctl.TextChanged += new System.EventHandler(HabilitarGrabar);
                 }
             }
@@ -219,6 +226,11 @@ namespace BL
                 {
                     string campo = ctl.Name.Substring(3, ctl.Name.Length - 3);
                     ctl.DataBindings.Add("Text", bnd, campo, false, DataSourceUpdateMode.OnPropertyChanged);
+                }
+                else if (ctl is ComboBox)
+                {
+                    string campo = ctl.Name.Substring(3, ctl.Name.Length - 3);
+                    ctl.DataBindings.Add("SelectedValue", bnd, campo, false, DataSourceUpdateMode.OnPropertyChanged);
                 }
                 else if (ctl is CheckBox)
                 {

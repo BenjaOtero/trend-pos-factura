@@ -10,8 +10,19 @@ using DAL;
 
 namespace BL
 {
-    class AlicuotasIvaBLL
+    public class AlicuotasIvaBLL
     {
+        public static DataTable GetAlicuotasIva()
+        {
+            DataTable tbl = DAL.AlicuotasIvaDAL.GetAlicuotasIva();
+            return tbl;
+        }
+
+        public static void GrabarDB(DataTable tblAlicuotasIva)
+        {
+            DAL.AlicuotasIvaDAL.GrabarDB(tblAlicuotasIva);
+        }
+
         public static void InsertRemotos(DataSet dt)
         {
             MySqlTransaction tr = null;

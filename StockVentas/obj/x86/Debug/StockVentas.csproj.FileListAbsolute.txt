@@ -468,3 +468,6 @@ C:\Trend\POS\trunk\StockVentas\bin\Debug\Google.GData.Extensions.dll
 C:\Trend\POS\trunk\StockVentas\obj\x86\Debug\StockVentas.rptFactura.resources
 C:\Trend\POS\trunk\StockVentas\obj\x86\Debug\RdlCompile.cache
 C:\Trend\POS\trunk\StockVentas\obj\x86\Debug\RdlCompile.compiled
+C:\Trend\POS\trunk\StockVentas\obj\x86\Debug\StockVentas.frmCondicionIva.resources
+C:\Trend\POS\trunk\StockVentas\obj\x86\Debug\StockVentas.frmRazonSocial.resources
+C:\Trend\POS\trunk\StockVentas\obj\x86\Debug\StockVentas.frmAlicuotasIva.resources

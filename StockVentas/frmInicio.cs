@@ -73,88 +73,18 @@ namespace StockVentas
                     label1.Text = "Configurando servidor de base de datos . . .";
                     ConfigurarMySQL();
                 }
-                label1.Text = "Actualizando base de datos . . .";
-                try
-                {
-                    ds = BL.Utilitarios.ActualizarBD();
-                    try
-                    {
-                        AgregarFondoCaja();
-                    }
-                    catch (Exception)
-                    {
-                        //invoca al hilo principal através de un delegado
-                        this.Invoke((Action)delegate
-                        {
-                            string mensajeFondo = "No se inicializó el fondo de caja.";
-                            MessageBox.Show(this, mensajeFondo, "Trend Sistemas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        });
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    if (ex.Number == 1049) // no existe la base de datos
-                    {
-                        ConfigurarMySQL();
-                        ds = BL.Utilitarios.ActualizarBD();
-                    }
-                }
-                catch (Exception)
-                {
-                    //invoca al hilo principal através de un delegado
-                    this.Invoke((Action)delegate
-                    {
-                        string mensaje = "No se pudieron actualizar los datos. Verifique la conexión a internet.";
-                        MessageBox.Show(this, mensaje, "Trend Sistemas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Application.Exit();
-                    });
-                }
             }
             else
             {
-                if (!ExisteServicioMySQL())
+                if (this.InvokeRequired) //si da true es porque estoy en un subproceso distinto al hilo principal
                 {
-                    if (this.InvokeRequired) //si da true es porque estoy en un subproceso distinto al hilo principal
+                    string mensaje = "No se puede iniciar la aplicación sin internet.";
+                    //invoca al hilo principal através de un delegado
+                    this.Invoke((Action)delegate
                     {
-                        string mensaje = "No se puede iniciar la aplicación sin internet.";
-                        //invoca al hilo principal através de un delegado
-                        this.Invoke((Action)delegate
-                        {
-                            MessageBox.Show(this, mensaje, "Trend Sistemas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            Application.Exit();
-                        });
-                    }
-                }
-                else
-                {
-                    if (this.InvokeRequired) //si da true es porque estoy en un subproceso distinto al hilo principal
-                    {
-                        string mensaje = "No hay conexión a internet. ¿Desea trabajar sin conexión?";
-                        //invoca al hilo principal através de un delegado
-                        this.Invoke((Action)delegate
-                        {
-                            if (MessageBox.Show(this, mensaje, "Trend Sistemas", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No)
-                            {
-                                Application.Exit();
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    AgregarFondoCaja();
-                                }
-                                catch (Exception)
-                                {
-                                    //invoca al hilo principal através de un delegado
-                                    this.Invoke((Action)delegate
-                                    {
-                                        string mensajeFondo = "No se inicializó el fondo de caja.";
-                                        MessageBox.Show(this, mensajeFondo, "Trend Sistemas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    });
-                                } 
-                            }
-                        });
-                    }
+                        MessageBox.Show(this, mensaje, "Trend Sistemas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Application.Exit();
+                    });
                 }
             }
         }
@@ -223,30 +153,6 @@ namespace StockVentas
                 }
             }
             return existeServicio;
-        }
-
-        private void AgregarFondoCaja()
-        {
-            string fecha = DateTime.Today.ToString("yyyy-MM-dd");
-            DataSet dsFondoCaja = BL.FondoCajaBLL.CrearDataset(fecha, 1);
-            DataTable tblFondoCaja = dsFondoCaja.Tables[1];
-            DataView viewFondoCaja = new DataView(tblFondoCaja);
-            if (viewFondoCaja.Count == 0)
-            {
-                viewFondoCaja.RowStateFilter = DataViewRowState.Added;
-                Random rand = new Random();
-                int clave = rand.Next(1, 2000000000);
-                DataRowView rowView = viewFondoCaja.AddNew();
-                rowView["IdFondoFONP"] = clave;
-                rowView["FechaFONP"] = DateTime.Today;
-                rowView["IdPcFONP"] = 1; // Jesus Maria
-                rowView["ImporteFONP"] = 0;
-                rowView.EndEdit();
-            }
-            if (tblFondoCaja.GetChanges() != null)
-            {
-                BL.FondoCajaBLL.GrabarDB(dsFondoCaja, ref codigoError, false);
-            }
         }
 
         private void IniciarAplicacion()

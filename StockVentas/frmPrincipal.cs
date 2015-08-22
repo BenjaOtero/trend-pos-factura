@@ -39,6 +39,27 @@ namespace StockVentas
             this.Icon = ico;
         }
 
+        private void alícuotasIVAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAlicuotasIva newMDIChild = new frmAlicuotasIva();
+            newMDIChild.MdiParent = this;
+            newMDIChild.Show();
+        }
+
+        private void condiciónIVAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCondicionIva newMDIChild = new frmCondicionIva();
+            newMDIChild.MdiParent = this;
+            newMDIChild.Show();
+        }
+
+        private void datosEmpresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRazonSocial newMDIChild = new frmRazonSocial();
+            newMDIChild.MdiParent = this;
+            newMDIChild.Show();
+        }
+
         private void ventasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -101,11 +122,6 @@ namespace StockVentas
         private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void frmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
         }
 
         private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)

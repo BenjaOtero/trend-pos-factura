@@ -97,6 +97,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Dynamic.cs" />
+    <Compile Include="frmAlicuotasIva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlicuotasIva.designer.cs">
+      <DependentUpon>frmAlicuotasIva.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmArqueoCaja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,12 @@
     </Compile>
     <Compile Include="frmClientes.designer.cs">
       <DependentUpon>frmClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCondicionIva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCondicionIva.designer.cs">
+      <DependentUpon>frmCondicionIva.cs</DependentUpon>
     </Compile>
     <Compile Include="frmFondoCajaPunto.cs">
       <SubType>Form</SubType>
@@ -150,6 +162,12 @@
     </Compile>
     <Compile Include="frmProgress_2.Designer.cs">
       <DependentUpon>frmProgress_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRazonSocial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRazonSocial.designer.cs">
+      <DependentUpon>frmRazonSocial.cs</DependentUpon>
     </Compile>
     <Compile Include="frmStockInforme.cs">
       <SubType>Form</SubType>
@@ -208,6 +226,9 @@
       <DependentUpon>rptFactura.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="bin\Debug\Informes\factura.rdlc" />
+    <EmbeddedResource Include="frmAlicuotasIva.resx">
+      <DependentUpon>frmAlicuotasIva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmArqueoCaja.resx">
       <DependentUpon>frmArqueoCaja.cs</DependentUpon>
     </EmbeddedResource>
@@ -217,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCondicionIva.resx">
+      <DependentUpon>frmCondicionIva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFondoCajaPunto.resx">
       <DependentUpon>frmFondoCajaPunto.cs</DependentUpon>
@@ -237,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProgress_2.resx">
       <DependentUpon>frmProgress_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRazonSocial.resx">
+      <DependentUpon>frmRazonSocial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmStockInforme.resx">
       <DependentUpon>frmStockInforme.cs</DependentUpon>

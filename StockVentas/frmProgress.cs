@@ -20,6 +20,7 @@ namespace StockVentas
         public static DataSet dsStockMov = null;
         public static DataSet dsArqueo = null;
         public static DataSet dsVentasPesosCons = null;
+        private DataTable tabla;
         private DataRowView rowView = null;
         private string origen = null;
         private string accion = null;
@@ -48,6 +49,14 @@ namespace StockVentas
         public frmProgress(string origen, string accion): this()
         {
         //    instancia = this;
+            this.origen = origen;
+            this.accion = accion;
+        }
+
+        public frmProgress(DataTable tabla, string origen, string accion)
+            : this()
+        {
+            this.tabla = tabla;
             this.origen = origen;
             this.accion = accion;
         }
@@ -204,6 +213,9 @@ namespace StockVentas
             {                
                 switch (origen)
                 {
+                    case "frmAlicuotasIva":
+                        BL.AlicuotasIvaBLL.GrabarDB(tabla);
+                        break;
                     case "frmArqueoCajaAdmin_borrarTesoreria":
                     //    BL.TesoreriaMovimientosBLL.BorrarByPK(PK, ref codigoError);
                         break;
@@ -212,6 +224,12 @@ namespace StockVentas
                         break;*/
                     case "frmClientes":
                       //  BL.ClientesBLL.GrabarDB(dt);
+                        break;
+                    case "frmCondicionIva":
+                        BL.CondicionIvaBLL.GrabarDB(tabla);
+                        break;
+                    case "frmRazonSocial":
+                        BL.RazonSocialBLL.GrabarDB(tabla);
                         break;
                     case "frmVentas":
                   //      BL.TransaccionesBLL.GrabarVentas(dt, rowView, ref codigoError);
