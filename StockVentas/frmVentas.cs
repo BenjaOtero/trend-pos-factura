@@ -242,7 +242,6 @@ namespace StockVentas
             cmbForma.KeyDown += new System.Windows.Forms.KeyEventHandler(Utilitarios.EnterTab);
             cmbForma.Validating += new System.ComponentModel.CancelEventHandler(BL.Utilitarios.ValidarComboBox);
             chkDev.KeyDown += new System.Windows.Forms.KeyEventHandler(Utilitarios.EnterTab);
-        //    tblVentasDetalle.ColumnChanged += new DataColumnChangeEventHandler(HabilitarGrabar);
             SetStateForm(FormState.insercion);            
         }
 
@@ -873,8 +872,12 @@ namespace StockVentas
                         MessageBox.Show("número comprobante:" + fe.F1RespuestaDetalleCbteDesdeS);
                         MessageBox.Show("error detallado comprobante: " + fe.F1RespuestaDetalleObservacionMsg1);
                     }
+                    DataTable tblCliente = tblClientes.Clone();
+                    tblCliente.ImportRow(foundCliente[0]);
                     DataTable tblRazonSocial = BL.RazonSocialBLL.GetRazonSocial();
-                    rptFactura informeFactura = new rptFactura(tblIVA, foundCliente, tblRazonSocial);
+                    string strNroCbte = nroComp.ToString();
+                    string strFechaEmision = dateTimePicker1.Value.ToString("dd/MM/yyyy");
+                    rptFactura informeFactura = new rptFactura(tblIVA, tblCliente, tblRazonSocial, strNroCbte, strFechaEmision);
                     informeFactura.Show();
                 }
                 else

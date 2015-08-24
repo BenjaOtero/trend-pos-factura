@@ -46,7 +46,16 @@ namespace StockVentas
             BL.Utilitarios.AddEventosABM(grpCampos, ref btnGrabar, ref tblRazonSocial);
             txtPuntoVentaRAZ.KeyPress += new KeyPressEventHandler(BL.Utilitarios.SoloNumeros);  
             this.txtPuntoVentaRAZ.Validated += new System.EventHandler(this.txtPuntoVentaRAZ_Validated);
-            this.txtPuntoVentaRAZ.Validating += new System.ComponentModel.CancelEventHandler(this.Validar);            
+            this.txtPuntoVentaRAZ.Validating += new System.ComponentModel.CancelEventHandler(this.Validar);
+            foreach (Control ctl in grpCampos.Controls)
+            {
+                if (ctl is TextBox || ctl is MaskedTextBox || ctl is ComboBox)
+                {
+                    ctl.Validating += new System.ComponentModel.CancelEventHandler(this.Validar);
+                    ctl.Validated += new System.EventHandler(this.Validado);                    
+                }
+            }
+
             SetStateForm(FormState.inicial);
         }
 
@@ -171,19 +180,128 @@ namespace StockVentas
 
         private void Validar(object sender, CancelEventArgs e)
         {
-            if ((sender == (object)txtPuntoVentaRAZ))
+            if ((sender == (object)txtRazonSocialRAZ))
             {
-                MaskedTextBox myObj = sender as MaskedTextBox;
-                if (string.IsNullOrEmpty(myObj.Text))
+                if (string.IsNullOrEmpty(txtRazonSocialRAZ.Text))
                 {
-                    this.errorProvider1.SetError(txtPuntoVentaRAZ, "Debe proporcionar un número de punto de venta.");
+                    this.errorProvider1.SetError(txtRazonSocialRAZ, "Debe escribir una razón social.");
                     e.Cancel = true;
                 }
+            }
+            if ((sender == (object)txtPuntoVentaRAZ))
+            {
                 int largo = txtPuntoVentaRAZ.Text.Length;
                 if (largo < 4) e.Cancel = true;
                 this.errorProvider1.SetError(txtPuntoVentaRAZ, "El punto de venta debe tener 4 dígitos.");
             }
+            if ((sender == (object)txtNombreFantasiaRAZ))
+            {
+                if (string.IsNullOrEmpty(txtNombreFantasiaRAZ.Text))
+                {
+                    this.errorProvider1.SetError(txtNombreFantasiaRAZ, "Debe escribir un nombre de fantasía.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)txtDomicilioRAZ))
+            {
+                if (string.IsNullOrEmpty(txtDomicilioRAZ.Text))
+                {
+                    this.errorProvider1.SetError(txtDomicilioRAZ, "Debe escribir un domicilio.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)txtLocalidadRAZ))
+            {
+                if (string.IsNullOrEmpty(txtLocalidadRAZ.Text))
+                {
+                    this.errorProvider1.SetError(txtLocalidadRAZ, "Debe escribir una localidad.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)txtProvinciaRAZ))
+            {
+                if (string.IsNullOrEmpty(txtProvinciaRAZ.Text))
+                {
+                    this.errorProvider1.SetError(txtProvinciaRAZ, "Debe escribir una provincia.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)cmbIdCondicionIvaRAZ))
+            {
+                if (string.IsNullOrEmpty(cmbIdCondicionIvaRAZ.Text))
+                {
+                    this.errorProvider1.SetError(cmbIdCondicionIvaRAZ, "Debe seleccionar una condición frente al IVA.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)txtCuitRAZ))
+            {
+                if (string.IsNullOrEmpty(txtCuitRAZ.Text))
+                {
+                    this.errorProvider1.SetError(txtCuitRAZ, "Debe escribir un número de CUIT.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)txtIngresosBrutosRAZ))
+            {
+                if (string.IsNullOrEmpty(txtIngresosBrutosRAZ.Text))
+                {
+                    this.errorProvider1.SetError(txtIngresosBrutosRAZ, "Debe escribir un número de Ingresos Brutos.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)txtInicioActividadRAZ))
+            {
+                if (string.IsNullOrEmpty(txtInicioActividadRAZ.Text))
+                {
+                    this.errorProvider1.SetError(txtInicioActividadRAZ, "Debe escribir una fecha.");
+                    e.Cancel = true;
+                }
+            }
+        }
 
+        private void Validado(object sender, EventArgs e)
+        {
+            if ((sender == (object)txtRazonSocialRAZ))
+            {
+                this.errorProvider1.SetError(txtRazonSocialRAZ, "");
+            }
+            if ((sender == (object)txtPuntoVentaRAZ))
+            {
+                this.errorProvider1.SetError(txtPuntoVentaRAZ, "");
+            }
+            if ((sender == (object)txtNombreFantasiaRAZ))
+            {
+                this.errorProvider1.SetError(txtNombreFantasiaRAZ, "");
+            }
+            if ((sender == (object)txtDomicilioRAZ))
+            {
+                this.errorProvider1.SetError(txtDomicilioRAZ, "");
+            }
+            if ((sender == (object)txtLocalidadRAZ))
+            {
+                this.errorProvider1.SetError(txtLocalidadRAZ, "");
+            }
+            if ((sender == (object)txtProvinciaRAZ))
+            {
+                this.errorProvider1.SetError(txtProvinciaRAZ, "");
+            }
+            if ((sender == (object)cmbIdCondicionIvaRAZ))
+            {
+                this.errorProvider1.SetError(cmbIdCondicionIvaRAZ, "");
+            }
+            if ((sender == (object)txtCuitRAZ))
+            {
+                this.errorProvider1.SetError(txtCuitRAZ, "");
+            }
+            if ((sender == (object)txtIngresosBrutosRAZ))
+            {
+                this.errorProvider1.SetError(txtIngresosBrutosRAZ, "");
+            }
+            if ((sender == (object)txtInicioActividadRAZ))
+            {
+                this.errorProvider1.SetError(txtInicioActividadRAZ, "");
+            }
         }
 
         private void txtInicioActividadRAZ_Enter(object sender, EventArgs e)

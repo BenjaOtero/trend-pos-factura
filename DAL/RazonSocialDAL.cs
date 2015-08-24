@@ -58,7 +58,7 @@ namespace DAL
             SqlUpdateCommand1.Parameters.Add("p_cuit", MySqlDbType.VarChar, 50, "CuitRAZ");
             SqlUpdateCommand1.Parameters.Add("p_ingresosB", MySqlDbType.VarChar, 50, "IngresosBrutosRAZ");
             SqlUpdateCommand1.Parameters.Add("p_inicio", MySqlDbType.DateTime, 50, "InicioActividadRAZ");
-            SqlUpdateCommand1.Parameters.Add("p_punto", MySqlDbType.Int16, 3, "PuntoVentaRAZ");
+            SqlUpdateCommand1.Parameters.Add("p_punto", MySqlDbType.String, 4, "PuntoVentaRAZ");
             SqlUpdateCommand1.CommandType = CommandType.StoredProcedure;
 
             // IMPLEMENTACIÓN DE LA ORDEN INSERT
@@ -72,7 +72,7 @@ namespace DAL
             SqlInsertCommand1.Parameters.Add("p_cuit", MySqlDbType.VarChar, 50, "CuitRAZ");
             SqlInsertCommand1.Parameters.Add("p_ingresosB", MySqlDbType.VarChar, 50, "IngresosBrutosRAZ");
             SqlInsertCommand1.Parameters.Add("p_inicio", MySqlDbType.DateTime, 50, "InicioActividadRAZ");
-            SqlInsertCommand1.Parameters.Add("p_punto", MySqlDbType.Int16, 3, "PuntoVentaRAZ");
+            SqlInsertCommand1.Parameters.Add("p_punto", MySqlDbType.String, 4, "PuntoVentaRAZ");
             SqlInsertCommand1.CommandType = CommandType.StoredProcedure;
 
             // IMPLEMENTACIÓN DE LA ORDEN DELETE

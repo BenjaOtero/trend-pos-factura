@@ -83,7 +83,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WSAFIPFE">
-      <HintPath>..\..\..\..\Program Files\SC\WSAFIPFE\WSAFIPFE.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files (x86)\SC\WSAFIPFE\WSAFIPFE.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

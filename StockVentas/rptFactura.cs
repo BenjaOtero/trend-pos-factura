@@ -14,27 +14,26 @@ namespace StockVentas
     {
         DataTable tblIVA;
         DataTable tblRazonSocial;
-        DataRow[] foundCliente;
+        DataTable tblCliente;
+        string strNroComp;
+        string strFechaEmision;
 
-        public rptFactura(DataTable tblIVA, DataRow[] foundCliente, DataTable tblRazonSocial)
+        public rptFactura(DataTable tblIVA, DataTable tblCliente, DataTable tblRazonSocial, string strNroComp, string strFechaEmision)
         {
             InitializeComponent();
             this.tblIVA = tblIVA;
             this.tblRazonSocial = tblRazonSocial;
-            this.foundCliente = foundCliente;
+            this.tblCliente = tblCliente;
+            this.strNroComp = strNroComp;
+            this.strFechaEmision = strFechaEmision;
         }
 
         private void rptFactura_Load(object sender, EventArgs e)
         {
             string cabeceraCbteTipo;
             string codigoComprobante;
-            string condicionIva = foundCliente[0]["CondicionIvaCLI"].ToString();
-            string cuit = foundCliente[0]["CUIT"].ToString();
-            string razonSocial = foundCliente[0]["RazonSocialCLI"].ToString();
-            string direccion = foundCliente[0]["RazonSocialCLI"].ToString();
-            string localidad = foundCliente[0]["RazonSocialCLI"].ToString();
-            string provincia = foundCliente[0]["ProvinciaCLI"].ToString();
-            if (condicionIva == "RESPONSABLE INSCRIPTO")
+            int condicionIva = Convert.ToInt16(tblCliente.Rows[0]["CondicionIvaCLI"].ToString());            
+            if (condicionIva == 1)
             {
                 cabeceraCbteTipo = "A";
                 codigoComprobante = "COD.01";
@@ -44,23 +43,21 @@ namespace StockVentas
                 cabeceraCbteTipo = "B";
                 codigoComprobante = "COD.06";
             }
-       /*     ReportParameter[] parametros = new ReportParameter[8];
-            parametros[0] = new ReportParameter("cabeceraCbteTipo", cabeceraCbteTipo);
-            parametros[1] = new ReportParameter("condicionIvaCliente", condicionIva);
-            parametros[2] = new ReportParameter("cuit", cuit);
-            parametros[3] = new ReportParameter("razonSocial", razonSocial);
-            parametros[4] = new ReportParameter("direccion", razonSocial);
-            parametros[5] = new ReportParameter("razonSocial", razonSocial);
-            parametros[6] = new ReportParameter("razonSocial", razonSocial);
-            parametros[7] = new ReportParameter("codigoComprobante", codigoComprobante);*/
+
+            ReportParameter[] parametros = new ReportParameter[4];
+            parametros[0] = new ReportParameter("prmtrCabeceraCbteTipo", cabeceraCbteTipo);
+            parametros[1] = new ReportParameter("prmtrCodigoComprobante", codigoComprobante);
+            parametros[2] = new ReportParameter("prmtrFechaEmision", strFechaEmision);
+            parametros[3] = new ReportParameter("prmtrNroCbte", strNroComp);
 
 
             this.reportViewer1.ProcessingMode = ProcessingMode.Local;
             string path = Application.StartupPath + @"\Informes\factura.rdlc";
             this.reportViewer1.LocalReport.ReportPath = path;
-            reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", tblIVA));
-            reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet2", tblRazonSocial));
-          //  this.reportViewer1.LocalReport.SetParameters(parametros);
+            reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsTablaIva", tblIVA));
+            reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsRazonSocial", tblRazonSocial));
+            reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsCliente", tblCliente));
+            this.reportViewer1.LocalReport.SetParameters(parametros);
             this.reportViewer1.RefreshReport();
             this.HorizontalScroll.Enabled = false;
         }

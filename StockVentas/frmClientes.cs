@@ -15,6 +15,7 @@ namespace StockVentas
         frmVentas instanciaVentas = null;
         DataSet dsClientes;
         private DataTable tblClientes;
+        private DataTable tblCondicionIva;
         DataTable tblFallidas;
         private int? codigoError = null;
 
@@ -46,6 +47,7 @@ namespace StockVentas
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             dsClientes = BL.ClientesBLL.GetClientes();
             tblClientes = dsClientes.Tables[0];
+            tblCondicionIva = BL.CondicionIvaBLL.GetCondicionIva();
             BL.Utilitarios.AddEventosABM(grpCampos, ref btnGrabar, ref tblClientes);
             tblFallidas = new DataTable();
             tblFallidas.TableName = "ClientesFallidas";
@@ -56,15 +58,11 @@ namespace StockVentas
             DataView viewClientes = new DataView(tblClientes);
             bindingSource1.DataSource = viewClientes;
             bindingNavigator1.BindingSource = bindingSource1;
+            tblCondicionIva = BL.CondicionIvaBLL.GetCondicionIva();
+            cmbCondicionIvaCLI.DataSource = tblCondicionIva;
+            cmbCondicionIvaCLI.DisplayMember = "DescripcionCIVA";
+            cmbCondicionIvaCLI.ValueMember = "IdCondicionIvaCIVA";
             BL.Utilitarios.DataBindingsAdd(bindingSource1, grpCampos);
-            Dictionary<Int32, String> condiciones = new Dictionary<int, string>();
-            condiciones.Add(1, "Consumidor Final");
-            condiciones.Add(2, "Responsable Inscripto");
-            condiciones.Add(3, "Responsable Monotributo");
-            cmbCondicion.DataSource = new BindingSource(condiciones, null);
-            cmbCondicion.DisplayMember = "Value";
-            cmbCondicion.ValueMember = "Value";
-            cmbCondicion.DataBindings.Add("SelectedValue", bindingSource1, "CondicionIvaCLI", false, DataSourceUpdateMode.OnPropertyChanged);
             gvwDatos.DataSource = bindingSource1;
             gvwDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gvwDatos.Columns["IdClienteCLI"].HeaderText = "Nº cliente";
@@ -79,6 +77,7 @@ namespace StockVentas
             gvwDatos.Columns["MovilCLI"].Visible = false;
             gvwDatos.Columns["CorreoCLI"].Visible = false;
             gvwDatos.Columns["FechaNacCLI"].Visible = false;
+            gvwDatos.Columns["CondicionIvaCLI"].Visible = false;
             bindingSource1.Sort = "RazonSocialCLI";
             int itemFound = bindingSource1.Find("RazonSocialCLI", "PUBLICO");
             bindingSource1.Position = itemFound;
@@ -91,7 +90,7 @@ namespace StockVentas
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             string parametros = txtParametros.Text;
-            bindingSource1.Filter = "RazonSocialCLI LIKE '" + parametros + "*'";
+            bindingSource1.Filter = "RazonSocialCLI LIKE '" + parametros + "*' OR CUIT LIKE '" + parametros + "'";
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
