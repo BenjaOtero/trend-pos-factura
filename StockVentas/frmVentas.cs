@@ -769,10 +769,11 @@ namespace StockVentas
                 {
                     fe.F1CabeceraCantReg = 1;
                     fe.F1CabeceraPtoVta = 1;
+                    
 
                     /*Según el manual del desarrollador (pagina 15), el error 10007 se da por que no informas alguno de los 
                      * tipos validos son 01 02 03 04 05 34 39 60 63 para comprobantes A y 06 07 08 09 10 35 40 64 y 61 para los B.*/
-                    fe.F1CabeceraCbteTipo = cabeceraCbteTipo;
+                    fe.F1CabeceraCbteTipo = 2;
                     int nroComp = fe.F1CompUltimoAutorizado(1, cabeceraCbteTipo) + 1;
                     fe.f1Indice = 0;
                     fe.F1DetalleConcepto = 1;  //Concepto del comprobante.  01-Productos, 02-Servicios, 03-Productos y Servicios

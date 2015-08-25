@@ -51,7 +51,6 @@
             this.txtLocalidadCLI = new System.Windows.Forms.TextBox();
             this.txtDireccionCLI = new System.Windows.Forms.TextBox();
             this.txtCorreoCLI = new System.Windows.Forms.TextBox();
-            this.txtCUIT = new System.Windows.Forms.TextBox();
             this.txtTransporteCLI = new System.Windows.Forms.TextBox();
             this.txtMovilCLI = new System.Windows.Forms.TextBox();
             this.txtTelefonoCLI = new System.Windows.Forms.TextBox();
@@ -79,6 +78,7 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.txtCUIT = new System.Windows.Forms.MaskedTextBox();
             this.grpCampos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvwDatos)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -90,6 +90,7 @@
             // 
             // grpCampos
             // 
+            this.grpCampos.Controls.Add(this.txtCUIT);
             this.grpCampos.Controls.Add(this.cmbCondicionIvaCLI);
             this.grpCampos.Controls.Add(this.txtFechaNacCLI);
             this.grpCampos.Controls.Add(this.label13);
@@ -110,7 +111,6 @@
             this.grpCampos.Controls.Add(this.txtLocalidadCLI);
             this.grpCampos.Controls.Add(this.txtDireccionCLI);
             this.grpCampos.Controls.Add(this.txtCorreoCLI);
-            this.grpCampos.Controls.Add(this.txtCUIT);
             this.grpCampos.Controls.Add(this.txtTransporteCLI);
             this.grpCampos.Controls.Add(this.txtMovilCLI);
             this.grpCampos.Controls.Add(this.txtTelefonoCLI);
@@ -321,13 +321,6 @@
             this.txtCorreoCLI.Name = "txtCorreoCLI";
             this.txtCorreoCLI.Size = new System.Drawing.Size(285, 20);
             this.txtCorreoCLI.TabIndex = 7;
-            // 
-            // txtCUIT
-            // 
-            this.txtCUIT.Location = new System.Drawing.Point(92, 72);
-            this.txtCUIT.Name = "txtCUIT";
-            this.txtCUIT.Size = new System.Drawing.Size(285, 20);
-            this.txtCUIT.TabIndex = 2;
             // 
             // txtTransporteCLI
             // 
@@ -575,6 +568,15 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // txtCUIT
+            // 
+            this.txtCUIT.Location = new System.Drawing.Point(92, 71);
+            this.txtCUIT.Mask = "00-00000000-0";
+            this.txtCUIT.Name = "txtCUIT";
+            this.txtCUIT.Size = new System.Drawing.Size(285, 20);
+            this.txtCUIT.TabIndex = 2;
+            this.txtCUIT.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
             // frmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -639,7 +641,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtProvinciaCLI;
         private System.Windows.Forms.TextBox txtLocalidadCLI;
-        private System.Windows.Forms.TextBox txtCUIT;
         private System.Windows.Forms.TextBox txtMovilCLI;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
@@ -658,5 +659,6 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ComboBox cmbCondicionIvaCLI;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.MaskedTextBox txtCUIT;
     }
 }

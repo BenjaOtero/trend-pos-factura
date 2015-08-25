@@ -51,7 +51,7 @@ namespace DAL
                 SqlConnection1 = DALBase.GetRemoteConnection();
             }
             MySqlDataAdapter da = AdaptadorABM(SqlConnection1);
-            da.Update(dt, "Clientes");
+            da.Update(dt, "clientes");
             SqlConnection1.Close();
         }
 

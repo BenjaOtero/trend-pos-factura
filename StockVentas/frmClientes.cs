@@ -78,6 +78,7 @@ namespace StockVentas
             gvwDatos.Columns["CorreoCLI"].Visible = false;
             gvwDatos.Columns["FechaNacCLI"].Visible = false;
             gvwDatos.Columns["CondicionIvaCLI"].Visible = false;
+            gvwDatos.Columns["DescripcionCIVA"].Visible = false;
             bindingSource1.Sort = "RazonSocialCLI";
             int itemFound = bindingSource1.Find("RazonSocialCLI", "PUBLICO");
             bindingSource1.Position = itemFound;

@@ -708,6 +708,8 @@ namespace StockVentas {
             
             private global::System.Data.DataColumn columnProvinciaCLI;
             
+            private global::System.Data.DataColumn columnDescripcionCIVA;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ClientesDataTable() {
@@ -799,6 +801,14 @@ namespace StockVentas {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DescripcionCIVAColumn {
+                get {
+                    return this.columnDescripcionCIVA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -834,7 +844,7 @@ namespace StockVentas {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ClientesRow AddClientesRow(string IdClienteCLI, string RazonSocialCLI, string CUIT, string CondicionIvaCLI, string DireccionCLI, string LocalidadCLI, string ProvinciaCLI) {
+            public ClientesRow AddClientesRow(string IdClienteCLI, string RazonSocialCLI, string CUIT, string CondicionIvaCLI, string DireccionCLI, string LocalidadCLI, string ProvinciaCLI, string DescripcionCIVA) {
                 ClientesRow rowClientesRow = ((ClientesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdClienteCLI,
@@ -843,7 +853,8 @@ namespace StockVentas {
                         CondicionIvaCLI,
                         DireccionCLI,
                         LocalidadCLI,
-                        ProvinciaCLI};
+                        ProvinciaCLI,
+                        DescripcionCIVA};
                 rowClientesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowClientesRow);
                 return rowClientesRow;
@@ -873,6 +884,7 @@ namespace StockVentas {
                 this.columnDireccionCLI = base.Columns["DireccionCLI"];
                 this.columnLocalidadCLI = base.Columns["LocalidadCLI"];
                 this.columnProvinciaCLI = base.Columns["ProvinciaCLI"];
+                this.columnDescripcionCIVA = base.Columns["DescripcionCIVA"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -892,6 +904,8 @@ namespace StockVentas {
                 base.Columns.Add(this.columnLocalidadCLI);
                 this.columnProvinciaCLI = new global::System.Data.DataColumn("ProvinciaCLI", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProvinciaCLI);
+                this.columnDescripcionCIVA = new global::System.Data.DataColumn("DescripcionCIVA", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionCIVA);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1786,6 +1800,22 @@ namespace StockVentas {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DescripcionCIVA {
+                get {
+                    try {
+                        return ((string)(this[this.tableClientes.DescripcionCIVAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DescripcionCIVA\' de la tabla \'Clientes\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableClientes.DescripcionCIVAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsIdClienteCLINull() {
                 return this.IsNull(this.tableClientes.IdClienteCLIColumn);
             }
@@ -1866,6 +1896,18 @@ namespace StockVentas {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetProvinciaCLINull() {
                 this[this.tableClientes.ProvinciaCLIColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescripcionCIVANull() {
+                return this.IsNull(this.tableClientes.DescripcionCIVAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescripcionCIVANull() {
+                this[this.tableClientes.DescripcionCIVAColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -20,6 +20,7 @@ namespace DAL
             SqlDataAdapter1.SelectCommand = SqlSelectCommand1;
             SqlSelectCommand1.CommandType = CommandType.StoredProcedure;
             DataTable tbl = new DataTable();
+            tbl.TableName = "razonsocial";
             SqlDataAdapter1.Fill(tbl);
             SqlConnection1.Close();
             return tbl;

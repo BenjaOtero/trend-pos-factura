@@ -36,6 +36,7 @@
               <xs:element name="DireccionCLI" msprop:Generator_ColumnVarNameInTable="columnDireccionCLI" msprop:Generator_ColumnPropNameInRow="DireccionCLI" msprop:Generator_ColumnPropNameInTable="DireccionCLIColumn" msprop:Generator_UserColumnName="DireccionCLI" type="xs:string" minOccurs="0" />
               <xs:element name="LocalidadCLI" msprop:Generator_ColumnVarNameInTable="columnLocalidadCLI" msprop:Generator_ColumnPropNameInRow="LocalidadCLI" msprop:Generator_ColumnPropNameInTable="LocalidadCLIColumn" msprop:Generator_UserColumnName="LocalidadCLI" type="xs:string" minOccurs="0" />
               <xs:element name="ProvinciaCLI" msprop:Generator_ColumnVarNameInTable="columnProvinciaCLI" msprop:Generator_ColumnPropNameInRow="ProvinciaCLI" msprop:Generator_ColumnPropNameInTable="ProvinciaCLIColumn" msprop:Generator_UserColumnName="ProvinciaCLI" type="xs:string" minOccurs="0" />
+              <xs:element name="DescripcionCIVA" msprop:Generator_ColumnVarNameInTable="columnDescripcionCIVA" msprop:Generator_ColumnPropNameInRow="DescripcionCIVA" msprop:Generator_ColumnPropNameInTable="DescripcionCIVAColumn" msprop:Generator_UserColumnName="DescripcionCIVA" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
