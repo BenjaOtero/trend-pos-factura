@@ -148,5 +148,12 @@ namespace StockVentas
             newMDIChild.Show();
         }
 
+        private void pruebaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPruebas newMDIChild = new frmPruebas();
+            newMDIChild.MdiParent = this;
+            newMDIChild.Show();
+        }
+
     }
 }

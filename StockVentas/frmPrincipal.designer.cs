@@ -54,6 +54,10 @@
             this.ventasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.arqueoDeCajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.baseDeDatosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.alícuotasIVAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.condiciónIVAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.datosEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,10 +70,7 @@
             this.mantenimientoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.crearPcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.baseDeDatosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.alícuotasIVAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.condiciónIVAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.datosEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pruebaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -262,6 +263,37 @@
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // baseDeDatosToolStripMenuItem1
+            // 
+            this.baseDeDatosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.alícuotasIVAToolStripMenuItem,
+            this.condiciónIVAToolStripMenuItem,
+            this.datosEmpresaToolStripMenuItem});
+            this.baseDeDatosToolStripMenuItem1.Name = "baseDeDatosToolStripMenuItem1";
+            this.baseDeDatosToolStripMenuItem1.Size = new System.Drawing.Size(87, 20);
+            this.baseDeDatosToolStripMenuItem1.Text = "&Base de datos";
+            // 
+            // alícuotasIVAToolStripMenuItem
+            // 
+            this.alícuotasIVAToolStripMenuItem.Name = "alícuotasIVAToolStripMenuItem";
+            this.alícuotasIVAToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.alícuotasIVAToolStripMenuItem.Text = "Alícuotas IVA";
+            this.alícuotasIVAToolStripMenuItem.Click += new System.EventHandler(this.alícuotasIVAToolStripMenuItem_Click);
+            // 
+            // condiciónIVAToolStripMenuItem
+            // 
+            this.condiciónIVAToolStripMenuItem.Name = "condiciónIVAToolStripMenuItem";
+            this.condiciónIVAToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.condiciónIVAToolStripMenuItem.Text = "Condición IVA";
+            this.condiciónIVAToolStripMenuItem.Click += new System.EventHandler(this.condiciónIVAToolStripMenuItem_Click);
+            // 
+            // datosEmpresaToolStripMenuItem
+            // 
+            this.datosEmpresaToolStripMenuItem.Name = "datosEmpresaToolStripMenuItem";
+            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.datosEmpresaToolStripMenuItem.Text = "Datos empresa";
+            this.datosEmpresaToolStripMenuItem.Click += new System.EventHandler(this.datosEmpresaToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem13
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
@@ -306,35 +338,36 @@
             // ventasToolStripMenuItem2
             // 
             this.ventasToolStripMenuItem2.Name = "ventasToolStripMenuItem2";
-            this.ventasToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.ventasToolStripMenuItem2.Size = new System.Drawing.Size(147, 22);
             this.ventasToolStripMenuItem2.Text = "Arqueo de caja";
             this.ventasToolStripMenuItem2.Click += new System.EventHandler(this.arqueoDeCajaToolStripMenuItem1_Click);
             // 
             // artículosToolStripMenuItem
             // 
             this.artículosToolStripMenuItem.Name = "artículosToolStripMenuItem";
-            this.artículosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.artículosToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.artículosToolStripMenuItem.Text = "Artículos";
             this.artículosToolStripMenuItem.Click += new System.EventHandler(this.btnArticulos_Click);
             // 
             // lotesTarjetasToolStripMenuItem
             // 
             this.lotesTarjetasToolStripMenuItem.Name = "lotesTarjetasToolStripMenuItem";
-            this.lotesTarjetasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lotesTarjetasToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.lotesTarjetasToolStripMenuItem.Text = "Lotes tarjetas";
             this.lotesTarjetasToolStripMenuItem.Click += new System.EventHandler(this.lotesTarjetasToolStripMenuItem_Click);
             // 
             // toolStripMenuItem20
             // 
             this.toolStripMenuItem20.Name = "toolStripMenuItem20";
-            this.toolStripMenuItem20.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem20.Size = new System.Drawing.Size(147, 22);
             this.toolStripMenuItem20.Text = "Stock";
             this.toolStripMenuItem20.Click += new System.EventHandler(this.stockDeArtículosToolStripMenuItem_Click);
             // 
             // mantenimientoToolStripMenuItem1
             // 
             this.mantenimientoToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.crearPcToolStripMenuItem});
+            this.crearPcToolStripMenuItem,
+            this.pruebaToolStripMenuItem});
             this.mantenimientoToolStripMenuItem1.Name = "mantenimientoToolStripMenuItem1";
             this.mantenimientoToolStripMenuItem1.Size = new System.Drawing.Size(89, 20);
             this.mantenimientoToolStripMenuItem1.Text = "&Mantenimiento";
@@ -353,36 +386,12 @@
             this.salirToolStripMenuItem1.Text = "&Salir";
             this.salirToolStripMenuItem1.Click += new System.EventHandler(this.salirToolStripMenuItem1_Click);
             // 
-            // baseDeDatosToolStripMenuItem1
+            // pruebaToolStripMenuItem
             // 
-            this.baseDeDatosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alícuotasIVAToolStripMenuItem,
-            this.condiciónIVAToolStripMenuItem,
-            this.datosEmpresaToolStripMenuItem});
-            this.baseDeDatosToolStripMenuItem1.Name = "baseDeDatosToolStripMenuItem1";
-            this.baseDeDatosToolStripMenuItem1.Size = new System.Drawing.Size(87, 20);
-            this.baseDeDatosToolStripMenuItem1.Text = "&Base de datos";
-            // 
-            // alícuotasIVAToolStripMenuItem
-            // 
-            this.alícuotasIVAToolStripMenuItem.Name = "alícuotasIVAToolStripMenuItem";
-            this.alícuotasIVAToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.alícuotasIVAToolStripMenuItem.Text = "Alícuotas IVA";
-            this.alícuotasIVAToolStripMenuItem.Click += new System.EventHandler(this.alícuotasIVAToolStripMenuItem_Click);
-            // 
-            // condiciónIVAToolStripMenuItem
-            // 
-            this.condiciónIVAToolStripMenuItem.Name = "condiciónIVAToolStripMenuItem";
-            this.condiciónIVAToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.condiciónIVAToolStripMenuItem.Text = "Condición IVA";
-            this.condiciónIVAToolStripMenuItem.Click += new System.EventHandler(this.condiciónIVAToolStripMenuItem_Click);
-            // 
-            // datosEmpresaToolStripMenuItem
-            // 
-            this.datosEmpresaToolStripMenuItem.Name = "datosEmpresaToolStripMenuItem";
-            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.datosEmpresaToolStripMenuItem.Text = "Datos empresa";
-            this.datosEmpresaToolStripMenuItem.Click += new System.EventHandler(this.datosEmpresaToolStripMenuItem_Click);
+            this.pruebaToolStripMenuItem.Name = "pruebaToolStripMenuItem";
+            this.pruebaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pruebaToolStripMenuItem.Text = "Prueba";
+            this.pruebaToolStripMenuItem.Click += new System.EventHandler(this.pruebaToolStripMenuItem_Click);
             // 
             // frmPrincipal
             // 
@@ -450,6 +459,7 @@
         private System.Windows.Forms.ToolStripMenuItem alícuotasIVAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem condiciónIVAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem datosEmpresaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pruebaToolStripMenuItem;
     }
 }
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
+using System.IO;
 
 namespace StockVentas
 {
@@ -60,6 +61,21 @@ namespace StockVentas
             this.reportViewer1.LocalReport.SetParameters(parametros);
             this.reportViewer1.RefreshReport();
             this.HorizontalScroll.Enabled = false;
+            CreatePDF();
+        }
+
+
+        void CreatePDF()
+        {
+            Warning[] warnings;
+            string[] streamids;
+            string mimeType;
+            string encoding;
+            string extension;
+            byte[] bytes = reportViewer1.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamids, out warnings);
+            FileStream fs = new FileStream(@"c:\output.pdf",FileMode.Create);
+            fs.Write(bytes, 0, bytes.Length);
+            fs.Close();
         }
     }
 }
