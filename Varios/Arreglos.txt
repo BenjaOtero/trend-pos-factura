@@ -1,9 +1,21 @@
 -ayuda
 -Mente al desinstalar POS si desinstalo Mysqlserver y borro archivos de bd
 -Mente instalacion (crear pc?) modificar el codigo donde hace referencia al nro de pc.
--arreglar mirror db
 -en frmVentas poner precioPublicoART en vez de PrecioMayorART
 -borrar ventas desde frmArqueo borra cualquier venta
+
+
+	POR HACER
+-frmArticulos
+-Libro iva
+-citiVentas
+-informe ventas por cliente con cae AFIP 
+	datos: nro cuit, nro CAE, fecha emisión, tipo comprobante, nro  
+
+http://www.codeproject.com/Articles/2048/Simple-MAPI-NET
+http://www.codeproject.com/Articles/17561/Programmatically-adding-attachments-to-emails-in-C
+
+
 
 
 
