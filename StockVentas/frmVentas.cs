@@ -52,8 +52,26 @@ namespace StockVentas
         public frmVentas()
         {
             InitializeComponent();
+        }
+
+        public frmVentas(string tipo)
+        {
+            InitializeComponent();
             tblVentas = BL.VentasBLL.GetTabla();
             tblVentasDetalle = BL.VentasDetalleBLL.GetTabla();
+            switch (tipo)
+            {
+                case "factura":
+                    this.Text = "Factura";
+                    break;
+                case "credito":
+                    this.Text = "Nota de crédito";
+                    break;
+                case "debito":
+                    this.Text = "Nota de débito";
+                    break;
+
+            }
         }
 
         public frmVentas(string PK, int idPc, DataTable tblVentas, DataTable tblVentasDetalle)
@@ -879,6 +897,7 @@ namespace StockVentas
                     string strNroCbte = nroComp.ToString();
                     string strFechaEmision = dateTimePicker1.Value.ToString("dd/MM/yyyy");
                     rptFactura informeFactura = new rptFactura(tblIVA, tblCliente, tblRazonSocial, strNroCbte, strFechaEmision);
+
                     informeFactura.Show();
                 }
                 else

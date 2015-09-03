@@ -63,43 +63,33 @@ namespace StockVentas
         private void ventasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            frmVentas newMDIChild = new frmVentas();
+            frmVentas newMDIChild = new frmVentas("factura");
             newMDIChild.MdiParent = this;
             newMDIChild.Show();
             Cursor.Current = Cursors.Arrow;
         }
 
-        private void movimientosDeTesoreríaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toolStripCredito_Click(object sender, EventArgs e)
         {
-            frmTesoreriaMov newMDIChild = new frmTesoreriaMov();
+            Cursor.Current = Cursors.WaitCursor;
+            frmVentas newMDIChild = new frmVentas("credito");
             newMDIChild.MdiParent = this;
             newMDIChild.Show();
+            Cursor.Current = Cursors.Arrow;
         }
 
-        private void fondoDeCajaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toolStripDebito_Click(object sender, EventArgs e)
         {
-            frmFondoCajaPunto newMDIChild = new frmFondoCajaPunto();
+            Cursor.Current = Cursors.WaitCursor;
+            frmVentas newMDIChild = new frmVentas("debito");
             newMDIChild.MdiParent = this;
             newMDIChild.Show();
+            Cursor.Current = Cursors.Arrow;
         }
-
-        private void stockDeArtículosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmStockInter newMDIChild = new frmStockInter();
-            newMDIChild.MdiParent = this;
-            newMDIChild.Show();
-        }       
 
         private void arqueoDeCajaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmArqueoInter newMDIChild = new frmArqueoInter();
-            newMDIChild.MdiParent = this;
-            newMDIChild.Show();
-        }
-
-        private void ventasEnPesos_Click(object sender, EventArgs e)
-        {
-            frmVentasPesosInter newMDIChild = new frmVentasPesosInter();
             newMDIChild.MdiParent = this;
             newMDIChild.Show();
         }
@@ -139,13 +129,6 @@ namespace StockVentas
         public static void bckWrk_DoWork()
         {
             DataSet ds = BL.Utilitarios.ActualizarBD();
-        }
-
-        private void lotesTarjetasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmVentasLotesTarjetas newMDIChild = new frmVentasLotesTarjetas();
-            newMDIChild.MdiParent = this;
-            newMDIChild.Show();
         }
 
         private void pruebaToolStripMenuItem_Click(object sender, EventArgs e)

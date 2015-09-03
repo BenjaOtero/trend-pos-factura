@@ -163,9 +163,9 @@
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label5.Location = new System.Drawing.Point(641, 74);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 15);
+            this.label5.Size = new System.Drawing.Size(40, 15);
             this.label5.TabIndex = 19;
-            this.label5.Text = "Total venta: ";
+            this.label5.Text = "Total: ";
             // 
             // lblNro
             // 
@@ -487,7 +487,7 @@
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(114, 29);
             this.btnImprimir.TabIndex = 14;
-            this.btnImprimir.Text = "Imprimir factura";
+            this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
