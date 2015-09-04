@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClientes));
             this.grpCampos = new System.Windows.Forms.GroupBox();
+            this.txtCUIT = new System.Windows.Forms.MaskedTextBox();
             this.cmbCondicionIvaCLI = new System.Windows.Forms.ComboBox();
-            this.txtFechaNacCLI = new System.Windows.Forms.MaskedTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -43,7 +43,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtProvinciaCLI = new System.Windows.Forms.TextBox();
@@ -78,7 +77,7 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.txtCUIT = new System.Windows.Forms.MaskedTextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpCampos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvwDatos)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -86,13 +85,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // grpCampos
             // 
             this.grpCampos.Controls.Add(this.txtCUIT);
             this.grpCampos.Controls.Add(this.cmbCondicionIvaCLI);
-            this.grpCampos.Controls.Add(this.txtFechaNacCLI);
             this.grpCampos.Controls.Add(this.label13);
             this.grpCampos.Controls.Add(this.label6);
             this.grpCampos.Controls.Add(this.label9);
@@ -103,7 +102,6 @@
             this.grpCampos.Controls.Add(this.label4);
             this.grpCampos.Controls.Add(this.label10);
             this.grpCampos.Controls.Add(this.label3);
-            this.grpCampos.Controls.Add(this.label11);
             this.grpCampos.Controls.Add(this.label2);
             this.grpCampos.Controls.Add(this.label1);
             this.grpCampos.Controls.Add(this.txtProvinciaCLI);
@@ -118,9 +116,18 @@
             this.grpCampos.Controls.Add(this.txtIdClienteCLI);
             this.grpCampos.Location = new System.Drawing.Point(12, 255);
             this.grpCampos.Name = "grpCampos";
-            this.grpCampos.Size = new System.Drawing.Size(392, 367);
+            this.grpCampos.Size = new System.Drawing.Size(392, 343);
             this.grpCampos.TabIndex = 0;
             this.grpCampos.TabStop = false;
+            // 
+            // txtCUIT
+            // 
+            this.txtCUIT.Location = new System.Drawing.Point(92, 71);
+            this.txtCUIT.Mask = "00-00000000-0";
+            this.txtCUIT.Name = "txtCUIT";
+            this.txtCUIT.Size = new System.Drawing.Size(285, 20);
+            this.txtCUIT.TabIndex = 2;
+            this.txtCUIT.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // cmbCondicionIvaCLI
             // 
@@ -129,15 +136,6 @@
             this.cmbCondicionIvaCLI.Name = "cmbCondicionIvaCLI";
             this.cmbCondicionIvaCLI.Size = new System.Drawing.Size(285, 21);
             this.cmbCondicionIvaCLI.TabIndex = 3;
-            // 
-            // txtFechaNacCLI
-            // 
-            this.txtFechaNacCLI.Location = new System.Drawing.Point(92, 335);
-            this.txtFechaNacCLI.Mask = "00/00/0000";
-            this.txtFechaNacCLI.Name = "txtFechaNacCLI";
-            this.txtFechaNacCLI.Size = new System.Drawing.Size(285, 20);
-            this.txtFechaNacCLI.TabIndex = 12;
-            this.txtFechaNacCLI.ValidatingType = typeof(System.DateTime);
             // 
             // label13
             // 
@@ -192,7 +190,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 15);
             this.label5.TabIndex = 26;
-            this.label5.Text = "Dirección";
+            this.label5.Text = "Domicilio";
             // 
             // label7
             // 
@@ -248,17 +246,6 @@
             this.label3.Size = new System.Drawing.Size(55, 15);
             this.label3.TabIndex = 24;
             this.label3.Text = "Teléfono";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label11.Location = new System.Drawing.Point(6, 335);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 15);
-            this.label11.TabIndex = 23;
-            this.label11.Text = "Fecha N.";
             // 
             // label2
             // 
@@ -316,7 +303,7 @@
             // 
             // txtCorreoCLI
             // 
-            this.txtCorreoCLI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCorreoCLI.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txtCorreoCLI.Location = new System.Drawing.Point(92, 203);
             this.txtCorreoCLI.Name = "txtCorreoCLI";
             this.txtCorreoCLI.Size = new System.Drawing.Size(285, 20);
@@ -382,7 +369,7 @@
             this.groupBox2.Controls.Add(this.btnBuscar);
             this.groupBox2.Location = new System.Drawing.Point(410, 315);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(209, 307);
+            this.groupBox2.Size = new System.Drawing.Size(209, 283);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
@@ -490,7 +477,7 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 637);
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 614);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -568,20 +555,15 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // txtCUIT
+            // errorProvider1
             // 
-            this.txtCUIT.Location = new System.Drawing.Point(92, 71);
-            this.txtCUIT.Mask = "00-00000000-0";
-            this.txtCUIT.Name = "txtCUIT";
-            this.txtCUIT.Size = new System.Drawing.Size(285, 20);
-            this.txtCUIT.TabIndex = 2;
-            this.txtCUIT.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 662);
+            this.ClientSize = new System.Drawing.Size(632, 639);
             this.ControlBox = false;
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.grpCampos);
@@ -604,6 +586,7 @@
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -643,9 +626,7 @@
         private System.Windows.Forms.TextBox txtLocalidadCLI;
         private System.Windows.Forms.TextBox txtMovilCLI;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtCorreoCLI;
-        private System.Windows.Forms.MaskedTextBox txtFechaNacCLI;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
@@ -660,5 +641,6 @@
         private System.Windows.Forms.ComboBox cmbCondicionIvaCLI;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.MaskedTextBox txtCUIT;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

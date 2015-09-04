@@ -40,6 +40,8 @@ namespace StockVentas
         public string idArticulo;
         public int? idCliente = null;
         string articuloOld = string.Empty;
+        string codigoComprobante;
+        string strTipo;
 
         public enum FormState
         {
@@ -54,15 +56,15 @@ namespace StockVentas
             InitializeComponent();
         }
 
-        public frmVentas(string tipo)
+        public frmVentas(string strTipo)
         {
             InitializeComponent();
             tblVentas = BL.VentasBLL.GetTabla();
             tblVentasDetalle = BL.VentasDetalleBLL.GetTabla();
-            switch (tipo)
+            switch (strTipo)
             {
                 case "factura":
-                    this.Text = "Factura";
+                    this.Text = "Factura";                    
                     break;
                 case "credito":
                     this.Text = "Nota de crédito";
@@ -72,6 +74,7 @@ namespace StockVentas
                     break;
 
             }
+            this.strTipo = strTipo;
         }
 
         public frmVentas(string PK, int idPc, DataTable tblVentas, DataTable tblVentasDetalle)
@@ -138,8 +141,6 @@ namespace StockVentas
             cmbForma.AutoCompleteCustomSource = formasColection;
             cmbForma.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cmbForma.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-
             lblCosto.Visible = false;
             txtCosto.Visible = false;
             btnEditar.CausesValidation = false;
@@ -752,33 +753,62 @@ namespace StockVentas
                 fila["Precio"] = precio;
                 fila["SubtotalSinIva"] = cantidad * precio;
                 fila["SubtotalIva"] = cantidad * ivaImporte;
-                tblIVA.Rows.Add(fila);
-                
+                tblIVA.Rows.Add(fila);                
             }
 
             string idCliente = cmbCliente.SelectedValue.ToString();
             DataRow[] foundCliente = tblClientes.Select("IdClienteCLI = '" + idCliente + "'");
             string condicionIva = foundCliente[0]["CondicionIvaCLI"].ToString();
-            int cabeceraCbteTipo;
+            int cabeceraCbteTipo = 0;
             int detalleDocTipo;
             string detalleDocNro;
             if (condicionIva == "RESPONSABLE INSCRIPTO")
-            {
-                cabeceraCbteTipo = 1;
+            {                
                 detalleDocTipo = 80;
                 detalleDocNro = foundCliente[0]["CUIT"].ToString();
+                switch (strTipo)
+                { 
+                    case "factura":
+                        cabeceraCbteTipo = 1;
+                        this.strTipo = "FACTURA";
+                        break;
+                    case "debito":
+                        cabeceraCbteTipo = 2;
+                        this.strTipo = "NOTA DE DÉBITO";
+                        break;
+                    case "credito":
+                        cabeceraCbteTipo = 3;
+                        this.strTipo = "NOTA DE CRÉDITO";
+                        break;
+                }
             }
             else
             {
-                cabeceraCbteTipo = 6;
                 detalleDocTipo = 99;
                 detalleDocNro = "0";
+                switch (strTipo)
+                {
+                    case "factura":
+                        cabeceraCbteTipo = 6;
+                        this.strTipo = "FACTURA";
+                        break;
+                    case "debito":
+                        cabeceraCbteTipo = 7;
+                        this.strTipo = "NOTA DE DÉBITO";
+                        break;
+                    case "credito":
+                        this.strTipo = "NOTA DE CRÉDITO";
+                        cabeceraCbteTipo = 8;
+                        break;
+                }
             }         
 
             // Ver WSFEv1 Fallos conexión en Camuzzo
             WSAFIPFE.Factura fe = new WSAFIPFE.Factura();
             Boolean bResultado = false;
-            bResultado = fe.iniciar(WSAFIPFE.Factura.modoFiscal.Test, "27220379588", @"C:\Trend\Factura-electronica\Carolina Navarro\pedido.pfx", @" ");
+            DataTable tblRazonSocial = BL.RazonSocialBLL.GetRazonSocial();
+            string cuit = tblRazonSocial.Rows[0]["CuitRAZ"].ToString();
+            bResultado = fe.iniciar(WSAFIPFE.Factura.modoFiscal.Test, cuit, @"C:\Trend\Factura-electronica\Carolina Navarro\pedido.pfx", @" ");
             if (bResultado)
             {
                 fe.ArchivoCertificadoPassword = "";
@@ -791,7 +821,7 @@ namespace StockVentas
 
                     /*Según el manual del desarrollador (pagina 15), el error 10007 se da por que no informas alguno de los 
                      * tipos validos son 01 02 03 04 05 34 39 60 63 para comprobantes A y 06 07 08 09 10 35 40 64 y 61 para los B.*/
-                    fe.F1CabeceraCbteTipo = 2;
+                    fe.F1CabeceraCbteTipo = cabeceraCbteTipo;
                     int nroComp = fe.F1CompUltimoAutorizado(1, cabeceraCbteTipo) + 1;
                     fe.f1Indice = 0;
                     fe.F1DetalleConcepto = 1;  //Concepto del comprobante.  01-Productos, 02-Servicios, 03-Productos y Servicios
@@ -858,7 +888,7 @@ namespace StockVentas
                     fe.F1DetalleImpNeto = Convert.ToDouble(detalleImpNeto); // total bases imponibles
                     fe.F1DetalleImpOpEx = 0; // preguntar Ariel
                     fe.F1DetalleImpTrib = 0; // preguntar Ariel
-                    fe.F1DetalleImpIva = Convert.ToDouble(detalleImpIva); ;  // total ivas
+                    fe.F1DetalleImpIva = Convert.ToDouble(detalleImpIva);  // total ivas
                     fe.F1DetalleFchServDesde = ""; // se debe poner fecha para servicios o para productos y servicios. Para productos solos puede ser vacío
                     fe.F1DetalleFchServHasta = ""; // Idem anterior completar si F1DetalleConcepto > 1
                     fe.F1DetalleFchVtoPago = ""; // Idem anterior completar si F1DetalleConcepto > 1
@@ -892,11 +922,10 @@ namespace StockVentas
                         MessageBox.Show("error detallado comprobante: " + fe.F1RespuestaDetalleObservacionMsg1);
                     }
                     DataTable tblCliente = tblClientes.Clone();
-                    tblCliente.ImportRow(foundCliente[0]);
-                    DataTable tblRazonSocial = BL.RazonSocialBLL.GetRazonSocial();
+                    tblCliente.ImportRow(foundCliente[0]);                    
                     string strNroCbte = nroComp.ToString();
                     string strFechaEmision = dateTimePicker1.Value.ToString("dd/MM/yyyy");
-                    rptFactura informeFactura = new rptFactura(tblIVA, tblCliente, tblRazonSocial, strNroCbte, strFechaEmision);
+                    rptFactura informeFactura = new rptFactura(tblIVA, tblCliente, tblRazonSocial, strNroCbte, strFechaEmision, strTipo);
 
                     informeFactura.Show();
                 }

@@ -438,6 +438,8 @@
     <Content Include="bin\Release\StockVentas.pdb" />
     <Content Include="bin\Release\StockVentas.vshost.exe" />
     <Content Include="icono_app.ico" />
+    <Content Include="Resources\email.jpg" />
+    <None Include="Resources\email1.jpg" />
     <Content Include="Resources\icono_app.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

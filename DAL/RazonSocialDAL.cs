@@ -60,6 +60,7 @@ namespace DAL
             SqlUpdateCommand1.Parameters.Add("p_ingresosB", MySqlDbType.VarChar, 50, "IngresosBrutosRAZ");
             SqlUpdateCommand1.Parameters.Add("p_inicio", MySqlDbType.DateTime, 50, "InicioActividadRAZ");
             SqlUpdateCommand1.Parameters.Add("p_punto", MySqlDbType.String, 4, "PuntoVentaRAZ");
+            SqlUpdateCommand1.Parameters.Add("p_correo", MySqlDbType.VarChar, 50, "CorreoRAZ");
             SqlUpdateCommand1.CommandType = CommandType.StoredProcedure;
 
             // IMPLEMENTACIÓN DE LA ORDEN INSERT

@@ -76,15 +76,21 @@ namespace StockVentas
             gvwDatos.Columns["TelefonoCLI"].Visible = false;
             gvwDatos.Columns["MovilCLI"].Visible = false;
             gvwDatos.Columns["CorreoCLI"].Visible = false;
-            gvwDatos.Columns["FechaNacCLI"].Visible = false;
             gvwDatos.Columns["CondicionIvaCLI"].Visible = false;
             gvwDatos.Columns["DescripcionCIVA"].Visible = false;
             bindingSource1.Sort = "RazonSocialCLI";
             int itemFound = bindingSource1.Find("RazonSocialCLI", "PUBLICO");
             bindingSource1.Position = itemFound;
-       //     txtFecha.Mask = "00/00/0000";
             tblClientes.RowChanging += new DataRowChangeEventHandler(Row_Changing);
             tblClientes.RowDeleting += new DataRowChangeEventHandler(Row_Deleting);
+            foreach (Control ctl in grpCampos.Controls)
+            {
+                if (ctl is TextBox || ctl is MaskedTextBox || ctl is ComboBox)
+                {
+                    ctl.Validating += new System.ComponentModel.CancelEventHandler(this.Validar);
+                    ctl.Validated += new System.EventHandler(this.Validado);
+                }
+            }
             SetStateForm(FormState.inicial);  
         }        
 
@@ -215,6 +221,98 @@ namespace StockVentas
             }
         }
 
+        private void Validar(object sender, CancelEventArgs e)
+        {
+            if ((sender == (object)txtRazonSocialCLI))
+            {
+                if (string.IsNullOrEmpty(txtRazonSocialCLI.Text))
+                {
+                    this.errorProvider1.SetError(txtRazonSocialCLI, "Debe escribir una razón social.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)txtCUIT))
+            {
+                if (string.IsNullOrEmpty(txtCUIT.Text))
+                {
+                    this.errorProvider1.SetError(txtCUIT, "Debe escribir un número de CUIT.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)cmbCondicionIvaCLI))
+            {
+                if (string.IsNullOrEmpty(cmbCondicionIvaCLI.Text))
+                {
+                    this.errorProvider1.SetError(cmbCondicionIvaCLI, "Debe seleccionar una condición frente al IVA.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)txtDireccionCLI))
+            {
+                if (string.IsNullOrEmpty(txtDireccionCLI.Text))
+                {
+                    this.errorProvider1.SetError(txtDireccionCLI, "Debe escribir un domicilio.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)txtLocalidadCLI))
+            {
+                if (string.IsNullOrEmpty(txtLocalidadCLI.Text))
+                {
+                    this.errorProvider1.SetError(txtLocalidadCLI, "Debe escribir una localidad.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)txtProvinciaCLI))
+            {
+                if (string.IsNullOrEmpty(txtProvinciaCLI.Text))
+                {
+                    this.errorProvider1.SetError(txtProvinciaCLI, "Debe escribir una provincia.");
+                    e.Cancel = true;
+                }
+            }
+            if ((sender == (object)txtCorreoCLI))
+            {
+                if (!Utilitarios.IsValidEmail(txtCorreoCLI.Text))
+                {
+                    this.errorProvider1.SetError(txtCorreoCLI, "La dirección de correo es inválida.");
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void Validado(object sender, EventArgs e)
+        {
+            if ((sender == (object)txtRazonSocialCLI))
+            {
+                this.errorProvider1.SetError(txtRazonSocialCLI, "");
+            }
+            if ((sender == (object)txtCUIT))
+            {
+                this.errorProvider1.SetError(txtCUIT, "");
+            }
+            if ((sender == (object)cmbCondicionIvaCLI))
+            {
+                this.errorProvider1.SetError(cmbCondicionIvaCLI, "");
+            }
+            if ((sender == (object)txtDireccionCLI))
+            {
+                this.errorProvider1.SetError(txtDireccionCLI, "");
+            }
+            if ((sender == (object)txtLocalidadCLI))
+            {
+                this.errorProvider1.SetError(txtLocalidadCLI, "");
+            }
+            if ((sender == (object)txtProvinciaCLI))
+            {
+                this.errorProvider1.SetError(txtProvinciaCLI, "");
+            }
+            if ((sender == (object)txtCorreoCLI))
+            {
+                this.errorProvider1.SetError(txtCorreoCLI, "");
+            }
+        }
+
         public void SetStateForm(FormState state)
         {
             if (state == FormState.inicial)
@@ -242,8 +340,6 @@ namespace StockVentas
                 txtMovilCLI.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
                 txtCorreoCLI.ReadOnly = true;
                 txtCorreoCLI.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-                txtFechaNacCLI.ReadOnly = true;
-                txtFechaNacCLI.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
                 btnBuscar.Enabled = true;
                 btnNuevo.Enabled = true;
                 btnEditar.Enabled = true;
@@ -265,7 +361,6 @@ namespace StockVentas
                 txtTelefonoCLI.ReadOnly = false;
                 txtMovilCLI.ReadOnly = false;
                 txtCorreoCLI.ReadOnly = false;
-                txtFechaNacCLI.ReadOnly = false;
                 txtIdClienteCLI.Clear();
                 txtRazonSocialCLI.Clear();
                 txtCUIT.Clear();
@@ -277,7 +372,6 @@ namespace StockVentas
                 txtTelefonoCLI.Clear();
                 txtMovilCLI.Clear();
                 txtCorreoCLI.Clear();
-                txtFechaNacCLI.Clear();
                 txtRazonSocialCLI.Focus();
                 btnBuscar.Enabled = false;
                 btnNuevo.Enabled = false;
@@ -300,7 +394,6 @@ namespace StockVentas
                 txtTelefonoCLI.ReadOnly = false;
                 txtMovilCLI.ReadOnly = false;
                 txtCorreoCLI.ReadOnly = false;
-                txtFechaNacCLI.ReadOnly = false;
                 txtRazonSocialCLI.Focus();
                 btnBuscar.Enabled = false;
                 btnNuevo.Enabled = false;

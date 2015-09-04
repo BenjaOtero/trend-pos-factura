@@ -42,8 +42,8 @@ namespace BL
                     DAL.ClientesDAL.GrabarDB(dt, grabarFallidas);
                     lock (_sync)
                     {
-                        Thread t = new Thread(() => ThreadSaveEnRemoteServer(dsRemoto, tblFallidas));
-                        t.Start();
+                      //  Thread t = new Thread(() => ThreadSaveEnRemoteServer(dsRemoto, tblFallidas));
+                     //   t.Start();
                     }
                 }
                 else

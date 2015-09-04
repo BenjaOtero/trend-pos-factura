@@ -82,7 +82,6 @@ namespace DAL
             SqlUpdateCommand1.Parameters.Add("p_telefono", MySqlDbType.VarChar, 50, "TelefonoCLI");
             SqlUpdateCommand1.Parameters.Add("p_movil", MySqlDbType.VarChar, 50, "MovilCLI");
             SqlUpdateCommand1.Parameters.Add("p_correo", MySqlDbType.VarChar, 50, "CorreoCLI");
-            SqlUpdateCommand1.Parameters.Add("p_fecha", MySqlDbType.Date, 50, "FechaNacCLI");
             SqlUpdateCommand1.CommandType = CommandType.StoredProcedure;
 
             // IMPLEMENTACIÓN DE LA ORDEN INSERT
@@ -98,7 +97,6 @@ namespace DAL
             SqlInsertCommand1.Parameters.Add("p_telefono", MySqlDbType.VarChar, 50, "TelefonoCLI");
             SqlInsertCommand1.Parameters.Add("p_movil", MySqlDbType.VarChar, 50, "MovilCLI");
             SqlInsertCommand1.Parameters.Add("p_correo", MySqlDbType.VarChar, 50, "CorreoCLI");
-            SqlInsertCommand1.Parameters.Add("p_fecha", MySqlDbType.Date, 50, "FechaNacCLI");
             SqlInsertCommand1.CommandType = CommandType.StoredProcedure;
 
             // IMPLEMENTACIÓN DE LA ORDEN DELETE

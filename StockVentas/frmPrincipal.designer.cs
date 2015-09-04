@@ -248,8 +248,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.baseDeDatosToolStripMenuItem1,
             this.toolStripMenuItem13,
-            this.toolStripCredito,
             this.toolStripDebito,
+            this.toolStripCredito,
             this.toolStripMenuItem19,
             this.mantenimientoToolStripMenuItem1,
             this.salirToolStripMenuItem1});

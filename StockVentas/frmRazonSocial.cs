@@ -31,6 +31,8 @@ namespace StockVentas
 
         private void frmRazonSocial_Load(object sender, EventArgs e)
         {
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            btnCancelar.CausesValidation = false;
             System.Drawing.Icon ico = Properties.Resources.icono_app;
             this.Icon = ico;
             this.ControlBox = true;
@@ -93,6 +95,7 @@ namespace StockVentas
 
         private void frmRazonSocial_FormClosing(object sender, FormClosingEventArgs e)
         {
+            e.Cancel = false; // permite cerrar el form por mas que 'this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;'
             bindingSource1.EndEdit();
             if (tblRazonSocial.GetChanges() != null)
             {
@@ -110,49 +113,6 @@ namespace StockVentas
 
                 // If not, end the current edit.
                 e.Binding.BindingManagerBase.EndCurrentEdit();
-        }
-
-        public void SetStateForm(FormState state)
-        {
-
-            if (state == FormState.inicial)
-            {
-
-                txtIdRazonSocialRAZ.ReadOnly = true;
-                txtRazonSocialRAZ.ReadOnly = true;
-                txtPuntoVentaRAZ.ReadOnly = true;
-                txtNombreFantasiaRAZ.ReadOnly = true;
-                txtDomicilioRAZ.ReadOnly = true;
-                txtLocalidadRAZ.ReadOnly = true;
-                txtProvinciaRAZ.ReadOnly = true;
-                cmbIdCondicionIvaRAZ.Enabled = false;
-                txtCuitRAZ.ReadOnly = true;
-                txtIngresosBrutosRAZ.ReadOnly = true;
-                txtInicioActividadRAZ.ReadOnly = true;
-                cmbIdCondicionIvaRAZ.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-                btnEditar.Enabled = true;
-                btnGrabar.Enabled = false;
-                btnCancelar.Enabled = false;
-                btnSalir.Enabled = true;
-            }
-
-            if (state == FormState.edicion)
-            {
-                txtRazonSocialRAZ.ReadOnly = false;
-                txtNombreFantasiaRAZ.ReadOnly = false;
-                txtPuntoVentaRAZ.ReadOnly = false;
-                txtDomicilioRAZ.ReadOnly = false;
-                txtLocalidadRAZ.ReadOnly = false;
-                txtProvinciaRAZ.ReadOnly = false;
-                cmbIdCondicionIvaRAZ.Enabled = true;
-                txtCuitRAZ.ReadOnly = false;
-                txtIngresosBrutosRAZ.ReadOnly = false;
-                txtInicioActividadRAZ.ReadOnly = false;
-                btnEditar.Enabled = false;
-                btnGrabar.Enabled = false;
-                btnCancelar.Enabled = true;
-                btnSalir.Enabled = false;
-            }
         }
 
         private void gvwDatos_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -258,6 +218,22 @@ namespace StockVentas
                     e.Cancel = true;
                 }
             }
+            if ((sender == (object)txtCorreoRAZ))
+            {
+                if (string.IsNullOrEmpty(txtCorreoRAZ.Text))
+                {
+                    this.errorProvider1.SetError(txtCorreoRAZ, "Debe escribir una dirección de correo.");
+                    e.Cancel = true;
+                }
+                else
+                {
+                    if (!Utilitarios.IsValidEmail(txtCorreoRAZ.Text))
+                    {
+                        this.errorProvider1.SetError(txtCorreoRAZ, "La dirección de correo es invalida.");
+                        e.Cancel = true;
+                    }
+                }
+            }
         }
 
         private void Validado(object sender, EventArgs e)
@@ -302,6 +278,10 @@ namespace StockVentas
             {
                 this.errorProvider1.SetError(txtInicioActividadRAZ, "");
             }
+            if ((sender == (object)txtCorreoRAZ))
+            {
+                this.errorProvider1.SetError(txtCorreoRAZ, "");
+            }
         }
 
         private void txtInicioActividadRAZ_Enter(object sender, EventArgs e)
@@ -312,7 +292,50 @@ namespace StockVentas
             });
         }
 
-        
+        public void SetStateForm(FormState state)
+        {
+
+            if (state == FormState.inicial)
+            {
+
+                txtIdRazonSocialRAZ.ReadOnly = true;
+                txtRazonSocialRAZ.ReadOnly = true;
+                txtPuntoVentaRAZ.ReadOnly = true;
+                txtNombreFantasiaRAZ.ReadOnly = true;
+                txtDomicilioRAZ.ReadOnly = true;
+                txtLocalidadRAZ.ReadOnly = true;
+                txtProvinciaRAZ.ReadOnly = true;
+                cmbIdCondicionIvaRAZ.Enabled = false;
+                txtCuitRAZ.ReadOnly = true;
+                txtIngresosBrutosRAZ.ReadOnly = true;
+                txtInicioActividadRAZ.ReadOnly = true;
+                txtCorreoRAZ.ReadOnly = true;
+                cmbIdCondicionIvaRAZ.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+                btnEditar.Enabled = true;
+                btnGrabar.Enabled = false;
+                btnCancelar.Enabled = false;
+                btnSalir.Enabled = true;
+            }
+
+            if (state == FormState.edicion)
+            {
+                txtRazonSocialRAZ.ReadOnly = false;
+                txtNombreFantasiaRAZ.ReadOnly = false;
+                txtPuntoVentaRAZ.ReadOnly = false;
+                txtDomicilioRAZ.ReadOnly = false;
+                txtLocalidadRAZ.ReadOnly = false;
+                txtProvinciaRAZ.ReadOnly = false;
+                cmbIdCondicionIvaRAZ.Enabled = true;
+                txtCuitRAZ.ReadOnly = false;
+                txtIngresosBrutosRAZ.ReadOnly = false;
+                txtInicioActividadRAZ.ReadOnly = false;
+                txtCorreoRAZ.ReadOnly = false;
+                btnEditar.Enabled = false;
+                btnGrabar.Enabled = false;
+                btnCancelar.Enabled = true;
+                btnSalir.Enabled = false;
+            }
+        }
 
     }
 }

@@ -565,6 +565,10 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="prmtrTipo">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <Width>21cm</Width>
   <Page>
@@ -903,7 +907,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>FACTURA</Value>
+                      <Value>=Parameters!prmtrTipo.Value</Value>
                       <Style>
                         <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>

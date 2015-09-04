@@ -35,6 +35,8 @@
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.grpCampos = new System.Windows.Forms.GroupBox();
+            this.txtInicioActividadRAZ = new System.Windows.Forms.MaskedTextBox();
+            this.txtPuntoVentaRAZ = new System.Windows.Forms.MaskedTextBox();
             this.cmbIdCondicionIvaRAZ = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -45,6 +47,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtIngresosBrutosRAZ = new System.Windows.Forms.TextBox();
@@ -53,11 +56,10 @@
             this.txtLocalidadRAZ = new System.Windows.Forms.TextBox();
             this.txtDomicilioRAZ = new System.Windows.Forms.TextBox();
             this.txtNombreFantasiaRAZ = new System.Windows.Forms.TextBox();
+            this.txtCorreoRAZ = new System.Windows.Forms.TextBox();
             this.txtRazonSocialRAZ = new System.Windows.Forms.TextBox();
             this.txtIdRazonSocialRAZ = new System.Windows.Forms.TextBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.txtPuntoVentaRAZ = new System.Windows.Forms.MaskedTextBox();
-            this.txtInicioActividadRAZ = new System.Windows.Forms.MaskedTextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2.SuspendLayout();
             this.grpCampos.SuspendLayout();
@@ -71,7 +73,7 @@
             this.groupBox2.Controls.Add(this.btnSalir);
             this.groupBox2.Controls.Add(this.btnGrabar);
             this.groupBox2.Controls.Add(this.btnEditar);
-            this.groupBox2.Location = new System.Drawing.Point(11, 332);
+            this.groupBox2.Location = new System.Drawing.Point(11, 348);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(509, 53);
             this.groupBox2.TabIndex = 1;
@@ -79,6 +81,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.CausesValidation = false;
             this.btnCancelar.Location = new System.Drawing.Point(257, 16);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(114, 26);
@@ -131,6 +134,7 @@
             this.grpCampos.Controls.Add(this.label6);
             this.grpCampos.Controls.Add(this.label5);
             this.grpCampos.Controls.Add(this.label11);
+            this.grpCampos.Controls.Add(this.label12);
             this.grpCampos.Controls.Add(this.label4);
             this.grpCampos.Controls.Add(this.label3);
             this.grpCampos.Controls.Add(this.txtIngresosBrutosRAZ);
@@ -139,20 +143,40 @@
             this.grpCampos.Controls.Add(this.txtLocalidadRAZ);
             this.grpCampos.Controls.Add(this.txtDomicilioRAZ);
             this.grpCampos.Controls.Add(this.txtNombreFantasiaRAZ);
+            this.grpCampos.Controls.Add(this.txtCorreoRAZ);
             this.grpCampos.Controls.Add(this.txtRazonSocialRAZ);
             this.grpCampos.Controls.Add(this.txtIdRazonSocialRAZ);
             this.grpCampos.Location = new System.Drawing.Point(11, 7);
             this.grpCampos.Name = "grpCampos";
-            this.grpCampos.Size = new System.Drawing.Size(509, 319);
+            this.grpCampos.Size = new System.Drawing.Size(509, 339);
             this.grpCampos.TabIndex = 0;
             this.grpCampos.TabStop = false;
+            // 
+            // txtInicioActividadRAZ
+            // 
+            this.txtInicioActividadRAZ.Location = new System.Drawing.Point(121, 279);
+            this.txtInicioActividadRAZ.Mask = "00/00/0000";
+            this.txtInicioActividadRAZ.Name = "txtInicioActividadRAZ";
+            this.txtInicioActividadRAZ.Size = new System.Drawing.Size(368, 20);
+            this.txtInicioActividadRAZ.TabIndex = 11;
+            this.txtInicioActividadRAZ.ValidatingType = typeof(System.DateTime);
+            this.txtInicioActividadRAZ.Enter += new System.EventHandler(this.txtInicioActividadRAZ_Enter);
+            // 
+            // txtPuntoVentaRAZ
+            // 
+            this.txtPuntoVentaRAZ.Location = new System.Drawing.Point(121, 72);
+            this.txtPuntoVentaRAZ.Mask = "9999";
+            this.txtPuntoVentaRAZ.Name = "txtPuntoVentaRAZ";
+            this.txtPuntoVentaRAZ.Size = new System.Drawing.Size(368, 20);
+            this.txtPuntoVentaRAZ.TabIndex = 3;
+            this.txtPuntoVentaRAZ.Enter += new System.EventHandler(this.txtPuntoVentaRAZ_Enter);
             // 
             // cmbIdCondicionIvaRAZ
             // 
             this.cmbIdCondicionIvaRAZ.FormattingEnabled = true;
-            this.cmbIdCondicionIvaRAZ.Location = new System.Drawing.Point(114, 200);
+            this.cmbIdCondicionIvaRAZ.Location = new System.Drawing.Point(121, 200);
             this.cmbIdCondicionIvaRAZ.Name = "cmbIdCondicionIvaRAZ";
-            this.cmbIdCondicionIvaRAZ.Size = new System.Drawing.Size(375, 21);
+            this.cmbIdCondicionIvaRAZ.Size = new System.Drawing.Size(368, 21);
             this.cmbIdCondicionIvaRAZ.TabIndex = 8;
             // 
             // label10
@@ -254,6 +278,17 @@
             this.label11.TabIndex = 22;
             this.label11.Text = "Punto de venta";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label12.Location = new System.Drawing.Point(8, 306);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(107, 15);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "Correo electrónico";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -279,86 +314,74 @@
             // txtIngresosBrutosRAZ
             // 
             this.txtIngresosBrutosRAZ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtIngresosBrutosRAZ.Location = new System.Drawing.Point(114, 253);
+            this.txtIngresosBrutosRAZ.Location = new System.Drawing.Point(121, 253);
             this.txtIngresosBrutosRAZ.Name = "txtIngresosBrutosRAZ";
-            this.txtIngresosBrutosRAZ.Size = new System.Drawing.Size(375, 20);
+            this.txtIngresosBrutosRAZ.Size = new System.Drawing.Size(368, 20);
             this.txtIngresosBrutosRAZ.TabIndex = 10;
             // 
             // txtCuitRAZ
             // 
             this.txtCuitRAZ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCuitRAZ.Location = new System.Drawing.Point(114, 227);
+            this.txtCuitRAZ.Location = new System.Drawing.Point(121, 227);
             this.txtCuitRAZ.Name = "txtCuitRAZ";
-            this.txtCuitRAZ.Size = new System.Drawing.Size(375, 20);
+            this.txtCuitRAZ.Size = new System.Drawing.Size(368, 20);
             this.txtCuitRAZ.TabIndex = 9;
             // 
             // txtProvinciaRAZ
             // 
             this.txtProvinciaRAZ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtProvinciaRAZ.Location = new System.Drawing.Point(114, 175);
+            this.txtProvinciaRAZ.Location = new System.Drawing.Point(121, 175);
             this.txtProvinciaRAZ.Name = "txtProvinciaRAZ";
-            this.txtProvinciaRAZ.Size = new System.Drawing.Size(375, 20);
+            this.txtProvinciaRAZ.Size = new System.Drawing.Size(368, 20);
             this.txtProvinciaRAZ.TabIndex = 7;
             // 
             // txtLocalidadRAZ
             // 
             this.txtLocalidadRAZ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtLocalidadRAZ.Location = new System.Drawing.Point(114, 149);
+            this.txtLocalidadRAZ.Location = new System.Drawing.Point(121, 149);
             this.txtLocalidadRAZ.Name = "txtLocalidadRAZ";
-            this.txtLocalidadRAZ.Size = new System.Drawing.Size(375, 20);
+            this.txtLocalidadRAZ.Size = new System.Drawing.Size(368, 20);
             this.txtLocalidadRAZ.TabIndex = 6;
             // 
             // txtDomicilioRAZ
             // 
             this.txtDomicilioRAZ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDomicilioRAZ.Location = new System.Drawing.Point(114, 123);
+            this.txtDomicilioRAZ.Location = new System.Drawing.Point(121, 123);
             this.txtDomicilioRAZ.Name = "txtDomicilioRAZ";
-            this.txtDomicilioRAZ.Size = new System.Drawing.Size(375, 20);
+            this.txtDomicilioRAZ.Size = new System.Drawing.Size(368, 20);
             this.txtDomicilioRAZ.TabIndex = 5;
             // 
             // txtNombreFantasiaRAZ
             // 
             this.txtNombreFantasiaRAZ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNombreFantasiaRAZ.Location = new System.Drawing.Point(114, 97);
+            this.txtNombreFantasiaRAZ.Location = new System.Drawing.Point(121, 97);
             this.txtNombreFantasiaRAZ.Name = "txtNombreFantasiaRAZ";
-            this.txtNombreFantasiaRAZ.Size = new System.Drawing.Size(375, 20);
+            this.txtNombreFantasiaRAZ.Size = new System.Drawing.Size(368, 20);
             this.txtNombreFantasiaRAZ.TabIndex = 4;
+            // 
+            // txtCorreoRAZ
+            // 
+            this.txtCorreoRAZ.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtCorreoRAZ.Location = new System.Drawing.Point(121, 305);
+            this.txtCorreoRAZ.Name = "txtCorreoRAZ";
+            this.txtCorreoRAZ.Size = new System.Drawing.Size(368, 20);
+            this.txtCorreoRAZ.TabIndex = 2;
             // 
             // txtRazonSocialRAZ
             // 
             this.txtRazonSocialRAZ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtRazonSocialRAZ.Location = new System.Drawing.Point(114, 45);
+            this.txtRazonSocialRAZ.Location = new System.Drawing.Point(121, 45);
             this.txtRazonSocialRAZ.Name = "txtRazonSocialRAZ";
-            this.txtRazonSocialRAZ.Size = new System.Drawing.Size(375, 20);
+            this.txtRazonSocialRAZ.Size = new System.Drawing.Size(368, 20);
             this.txtRazonSocialRAZ.TabIndex = 2;
             // 
             // txtIdRazonSocialRAZ
             // 
             this.txtIdRazonSocialRAZ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtIdRazonSocialRAZ.Location = new System.Drawing.Point(114, 19);
+            this.txtIdRazonSocialRAZ.Location = new System.Drawing.Point(121, 19);
             this.txtIdRazonSocialRAZ.Name = "txtIdRazonSocialRAZ";
-            this.txtIdRazonSocialRAZ.Size = new System.Drawing.Size(375, 20);
+            this.txtIdRazonSocialRAZ.Size = new System.Drawing.Size(368, 20);
             this.txtIdRazonSocialRAZ.TabIndex = 1;
-            // 
-            // txtPuntoVentaRAZ
-            // 
-            this.txtPuntoVentaRAZ.Location = new System.Drawing.Point(114, 72);
-            this.txtPuntoVentaRAZ.Mask = "9999";
-            this.txtPuntoVentaRAZ.Name = "txtPuntoVentaRAZ";
-            this.txtPuntoVentaRAZ.Size = new System.Drawing.Size(375, 20);
-            this.txtPuntoVentaRAZ.TabIndex = 3;
-            this.txtPuntoVentaRAZ.Enter += new System.EventHandler(this.txtPuntoVentaRAZ_Enter);
-
-            // 
-            // txtInicioActividadRAZ
-            // 
-            this.txtInicioActividadRAZ.Location = new System.Drawing.Point(114, 279);
-            this.txtInicioActividadRAZ.Mask = "00/00/0000";
-            this.txtInicioActividadRAZ.Name = "txtInicioActividadRAZ";
-            this.txtInicioActividadRAZ.Size = new System.Drawing.Size(375, 20);
-            this.txtInicioActividadRAZ.TabIndex = 11;
-            this.txtInicioActividadRAZ.ValidatingType = typeof(System.DateTime);
-            this.txtInicioActividadRAZ.Enter += new System.EventHandler(this.txtInicioActividadRAZ_Enter);
             // 
             // errorProvider1
             // 
@@ -368,7 +391,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 397);
+            this.ClientSize = new System.Drawing.Size(529, 408);
             this.ControlBox = false;
             this.Controls.Add(this.grpCampos);
             this.Controls.Add(this.groupBox2);
@@ -417,6 +440,8 @@
         private System.Windows.Forms.MaskedTextBox txtPuntoVentaRAZ;
         private System.Windows.Forms.MaskedTextBox txtInicioActividadRAZ;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtCorreoRAZ;
 
     }
 }
