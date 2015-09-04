@@ -6,14 +6,19 @@
 
 
 	POR HACER
+-Añadir campos tabla ventas:
+	tipo (factura, nota crédito, nota debito)
+	número factura, nota crédito o nota debito
+	nro CAE
+
 -frmArticulos
 -Libro iva
 -citiVentas
+-citiAlicuotas
 -informe ventas por cliente con cae AFIP 
 	datos: nro cuit, nro CAE, fecha emisión, tipo comprobante, nro  
+-informe ventas: total 21%, total 15%, gravado neto
 
-http://www.codeproject.com/Articles/2048/Simple-MAPI-NET
-http://www.codeproject.com/Articles/17561/Programmatically-adding-attachments-to-emails-in-C
 
 
 
