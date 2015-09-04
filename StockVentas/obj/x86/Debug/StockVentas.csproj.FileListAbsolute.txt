@@ -507,4 +507,3 @@ C:\Trend\POS-Factura\trunk\StockVentas\bin\Debug\DAL.pdb
 C:\Trend\POS-Factura\trunk\StockVentas\obj\x86\Debug\StockVentas.csprojResolveAssemblyReference.cache
 C:\Trend\POS-Factura\trunk\StockVentas\obj\x86\Debug\StockVentas.csproj.GenerateResource.Cache
 C:\Trend\POS-Factura\trunk\StockVentas\obj\x86\Debug\StockVentas.frmPruebas.resources
-C:\Trend\POS-Factura\trunk\StockVentas\obj\x86\Debug\StockVentas.frmOpcionFactura.resources

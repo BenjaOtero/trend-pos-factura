@@ -99,8 +99,24 @@ namespace StockVentas
         private void btnMail_Click(object sender, EventArgs e)
         {
             CreatePDF();
-            MailAddress from = new MailAddress(tblRazonSocial.Rows[0]["CorreoRAZ"].ToString());
-            MailAddress to = new MailAddress(tblCliente.Rows[0]["CorreoCLI"].ToString());
+            MailAddress from = null;
+            MailAddress to = null;
+            if (!string.IsNullOrEmpty(tblRazonSocial.Rows[0]["CorreoRAZ"].ToString()))
+            {
+                from = new MailAddress(tblRazonSocial.Rows[0]["CorreoRAZ"].ToString());
+            }
+            else
+            {
+                MessageBox.Show("Debe ingresar una dirección de correo en los datos de la empresa", "TREND", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            if (!string.IsNullOrEmpty(tblCliente.Rows[0]["CorreoCLI"].ToString()))
+            {
+                to = new MailAddress(tblCliente.Rows[0]["CorreoCLI"].ToString());
+            }
+            else
+            {
+                to = new MailAddress("destinatario@dominio.com");
+            }            
             var mailMessage = new MailMessage(from, to);
             mailMessage.Subject = "Your subject here";
             mailMessage.IsBodyHtml = true;
@@ -111,15 +127,6 @@ namespace StockVentas
             mailMessage.Save(filename); // utilizo el metodo save de la clase MailUtility en Utilitarios.cs
             //Open the file with the default associated application registered on the local machine
             Process.Start(filename);
-            try
-            {
-
-            }
-            catch (ArgumentException)
-            {
-
-            }
-
         }
 
         void CreatePDF()

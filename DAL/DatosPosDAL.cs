@@ -12,42 +12,41 @@ namespace DAL
 {
     public class DatosPosDAL
     {
-        private static MySqlConnection SqlConnection1;
-        private static MySqlDataAdapter SqlDataAdapter1;
-        private static MySqlCommand SqlSelectCommand1;
-        private static MySqlCommand SqlDeleteCommand1;
-        public static DataSet dt;
+        public static DataSet datos;
 
-        public static DataSet GetAll()
+        public static DataSet GetDatos()
         {
-            SqlConnection1 = DALBase.GetRemoteConnection();
-            MySqlDataAdapter da = AdaptadorSELECT(SqlConnection1);
-            dt = new DataSet();
-            da.Fill(dt);
-            SqlConnection1.Close();
-            return dt;
-        }
-
-        private static MySqlDataAdapter AdaptadorSELECT(MySqlConnection SqlConnection1)
-        {            
+            MySqlConnection SqlConnection1;
+            MySqlDataAdapter SqlDataAdapter1;
+            MySqlCommand SqlSelectCommand1;
+            SqlConnection1 = DALBase.GetConnection();
             SqlDataAdapter1 = new MySqlDataAdapter();
             SqlSelectCommand1 = new MySqlCommand("DatosPos_Listar", SqlConnection1);
             SqlDataAdapter1.SelectCommand = SqlSelectCommand1;
             SqlSelectCommand1.CommandType = CommandType.StoredProcedure;
-            return SqlDataAdapter1;
+            datos = new DataSet();
+            SqlDataAdapter1.Fill(datos);
+            SqlConnection1.Close();
+            return datos;
+        }        
+
+        public static DataTable Articulos()
+        {
+            DataTable tblArticulos = datos.Tables[0];
+            tblArticulos.TableName = "Articulos";
+            return tblArticulos;
         }
 
-        public static void DeleteAll(Int16 existenClientesFallidas)
+        public static DataTable Clientes()
         {
-            SqlConnection1 = DALBase.GetConnection();
-            SqlConnection1.Open();
-            SqlDataAdapter1 = new MySqlDataAdapter();
-            SqlDeleteCommand1 = new MySqlCommand("DatosPos_Borrar", SqlConnection1);
-            SqlDeleteCommand1.Parameters.AddWithValue("p_existe", existenClientesFallidas);
-            SqlDataAdapter1.DeleteCommand = SqlDeleteCommand1;
-            SqlDeleteCommand1.CommandType = CommandType.StoredProcedure;
-            SqlDeleteCommand1.ExecuteNonQuery();
-            SqlConnection1.Close();
+            DataTable tblClientes = datos.Tables[1];
+            tblClientes.TableName = "clientes";
+            if (!tblClientes.Constraints.Contains("descripcionConstraint"))
+            {
+                UniqueConstraint uniqueConstraint = new UniqueConstraint("descripcionConstraint", tblClientes.Columns["CUIT"]);
+                tblClientes.Constraints.Add(uniqueConstraint);
+            }
+            return tblClientes;
         }
     }
 

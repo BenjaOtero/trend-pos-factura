@@ -31,110 +31,11 @@ namespace BL
             return ds;
         }
 
-        public static void GrabarDB(DataSet dt, DataTable tblFallidas ,ref int? codigoError, bool grabarFallidas)
+        public static void GrabarDB(DataTable tbl)
         {
-            try
-            {
-                if (grabarFallidas == false)
-                {
-                    DataSet dsRemoto;
-                    dsRemoto = dt.GetChanges();
-                    DAL.ClientesDAL.GrabarDB(dt, grabarFallidas);
-                    lock (_sync)
-                    {
-                      //  Thread t = new Thread(() => ThreadSaveEnRemoteServer(dsRemoto, tblFallidas));
-                     //   t.Start();
-                    }
-                }
-                else
-                {
-                    DAL.ClientesDAL.GrabarDB(dt, grabarFallidas);
-                }
-            }
-            catch (MySqlException ex)
-            {
-                if (ex.Number == 1042) //no se pudo abrir la conexion por falta de internet
-                {
-                    dt.RejectChanges(); ;
-                    codigoError = 1042;
-                }
-                else
-                {
-                    dt.RejectChanges();
-                    codigoError = ex.Number;
-                }
-            }
+            DAL.ClientesDAL.GrabarDB(tbl);
         }
 
-        //Despues de grabar localmente utilizo un hilo secundario para grabar remotamente
-        public static void ThreadSaveEnRemoteServer(DataSet dsRemoto, DataTable tblFallidas)
-        {
-            try
-            {
-                DAL.ClientesDAL.GrabarDB(dsRemoto, true);
-            }
-            catch (MySqlException ex)
-            {
-                if (ex.Number == 1042 || ex.Number == 0) //no se pudo abrir la conexion por falta de internet o timeout expired
-                {
-                    ThreadSaveEnClientesFallidas(tblFallidas);
-                }
-            }
-            catch (TimeoutException)
-            {
-                ThreadSaveEnClientesFallidas(tblFallidas);
-            }
-        }
-
-        public static void GrabarFallidasRemoteServer(DataSet dt, ref int? codigoError, bool grabarFallidas, string accionFallidas)
-        {
-            try
-            {
-                DAL.ClientesDAL.GrabarDB(dt, grabarFallidas);
-                DAL.ClientesDAL.BorrarClienteFallidasByAccion(accionFallidas);
-            }
-            catch (MySqlException ex)
-            {
-                if (ex.Number == 1042) //no se pudo abrir la conexion por falta de internet
-                {
-                    dt.RejectChanges(); ;
-                    codigoError = 1042;
-                }
-                else
-                {
-                    dt.RejectChanges();
-                    codigoError = ex.Number;
-                }
-            }
-            catch (TimeoutException)
-            {
-            }
-        }
-
-        //borrar fallidas en remote server
-        public static void BorrarByPK(DataTable tbl, ref int? codigoError)
-        {
-            try
-            {
-                DAL.ClientesDAL.BorrarByPK(tbl);
-                //borro los registros de la tabla ClientesFallidas que hacen referencia a los movimientos que no se borraron 
-                DAL.ClientesDAL.BorrarClienteFallidasByAccion("Delete");
-            }
-            catch (MySqlException ex)
-            {
-                if (ex.Number == 1042) //no se pudo abrir la conexion por falta de internet
-                {
-                    codigoError = 1042;
-                }
-                else
-                {
-                    codigoError = ex.Number;
-                }
-            }
-            catch (TimeoutException)
-            {
-            }
-        }
 
         // Inserta los datos remotos obtenidos del servidor al iniciar la aplicación (Tablas articulos, clientes, FormasPago)
         public static void InsertRemotos(DataSet dt)

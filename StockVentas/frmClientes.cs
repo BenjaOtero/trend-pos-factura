@@ -13,11 +13,9 @@ namespace StockVentas
     public partial class frmClientes : Form
     {
         frmVentas instanciaVentas = null;
-        DataSet dsClientes;
         private DataTable tblClientes;
         private DataTable tblCondicionIva;
         DataTable tblFallidas;
-        private int? codigoError = null;
 
         public enum FormState
         {
@@ -45,8 +43,7 @@ namespace StockVentas
             this.ControlBox = true;
             this.MaximizeBox = false;
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            dsClientes = BL.ClientesBLL.GetClientes();
-            tblClientes = dsClientes.Tables[0];
+            tblClientes = BL.DatosPosBLL.Clientes();
             tblCondicionIva = BL.CondicionIvaBLL.GetCondicionIva();
             BL.Utilitarios.AddEventosABM(grpCampos, ref btnGrabar, ref tblClientes);
             tblFallidas = new DataTable();
@@ -62,6 +59,15 @@ namespace StockVentas
             cmbCondicionIvaCLI.DataSource = tblCondicionIva;
             cmbCondicionIvaCLI.DisplayMember = "DescripcionCIVA";
             cmbCondicionIvaCLI.ValueMember = "IdCondicionIvaCIVA";
+            AutoCompleteStringCollection condicionColection = new AutoCompleteStringCollection();
+            foreach (DataRow row in tblClientes.Rows)
+            {
+                condicionColection.Add(Convert.ToString(row["DescripcionCIVA"]));
+            }
+            cmbCondicionIvaCLI.AutoCompleteCustomSource = condicionColection;
+            cmbCondicionIvaCLI.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbCondicionIvaCLI.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            cmbCondicionIvaCLI.Validating += new System.ComponentModel.CancelEventHandler(BL.Utilitarios.ValidarComboBox);
             BL.Utilitarios.DataBindingsAdd(bindingSource1, grpCampos);
             gvwDatos.DataSource = bindingSource1;
             gvwDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -142,11 +148,20 @@ namespace StockVentas
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {
-            bindingSource1.EndEdit();
-            bindingSource1.Position = 0;
-            bindingSource1.Sort = "RazonSocialCLI";
-            SetStateForm(FormState.inicial);
-            bindingSource1.RemoveFilter();
+            try
+            {
+                bindingSource1.EndEdit();
+                bindingSource1.Position = 0;
+                bindingSource1.Sort = "RazonSocialCLI";
+                SetStateForm(FormState.inicial);
+                bindingSource1.RemoveFilter();
+            }
+            catch (ConstraintException)
+            {
+                string mensaje = "No se puede agregar el cliente '" + txtRazonSocialCLI.Text.ToUpper() + "' porque ya existe un cliente con el mismo número de CUIT";
+                MessageBox.Show(mensaje, "Trend", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtCUIT.Focus();                
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -166,7 +181,7 @@ namespace StockVentas
             bindingSource1.EndEdit();
             if (tblClientes.GetChanges() != null)
             {
-                BL.ClientesBLL.GrabarDB(dsClientes, tblFallidas, ref codigoError, false);
+                 BL.ClientesBLL.GrabarDB(tblClientes);
             }
             bindingSource1.RemoveFilter();
             if (instanciaVentas != null) instanciaVentas.idCliente = Convert.ToInt32(txtIdClienteCLI.Text);
@@ -361,7 +376,6 @@ namespace StockVentas
                 txtTelefonoCLI.ReadOnly = false;
                 txtMovilCLI.ReadOnly = false;
                 txtCorreoCLI.ReadOnly = false;
-                txtIdClienteCLI.Clear();
                 txtRazonSocialCLI.Clear();
                 txtCUIT.Clear();
                 txtDireccionCLI.Clear();

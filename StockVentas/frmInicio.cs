@@ -73,6 +73,7 @@ namespace StockVentas
                     label1.Text = "Configurando servidor de base de datos . . .";
                     ConfigurarMySQL();
                 }
+                DataSet ds = BL.DatosPosBLL.GetDatos();
             }
             else
             {

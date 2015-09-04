@@ -56,11 +56,13 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.baseDeDatosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.alícuotasIVAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.artículosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.condiciónIVAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.datosEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripCredito = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDebito = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripCredito = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.artículosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -263,6 +265,8 @@
             // 
             this.baseDeDatosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.alícuotasIVAToolStripMenuItem,
+            this.artículosToolStripMenuItem1,
+            this.clientesToolStripMenuItem1,
             this.condiciónIVAToolStripMenuItem,
             this.datosEmpresaToolStripMenuItem});
             this.baseDeDatosToolStripMenuItem1.Name = "baseDeDatosToolStripMenuItem1";
@@ -272,21 +276,35 @@
             // alícuotasIVAToolStripMenuItem
             // 
             this.alícuotasIVAToolStripMenuItem.Name = "alícuotasIVAToolStripMenuItem";
-            this.alícuotasIVAToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.alícuotasIVAToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.alícuotasIVAToolStripMenuItem.Text = "Alícuotas IVA";
             this.alícuotasIVAToolStripMenuItem.Click += new System.EventHandler(this.alícuotasIVAToolStripMenuItem_Click);
+            // 
+            // artículosToolStripMenuItem1
+            // 
+            this.artículosToolStripMenuItem1.Name = "artículosToolStripMenuItem1";
+            this.artículosToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.artículosToolStripMenuItem1.Text = "Artículos";
+            this.artículosToolStripMenuItem1.Click += new System.EventHandler(this.btnArticulos_Click);
+            // 
+            // clientesToolStripMenuItem1
+            // 
+            this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
+            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.clientesToolStripMenuItem1.Text = "Clientes";
+            this.clientesToolStripMenuItem1.Click += new System.EventHandler(this.clientesToolStripMenuItem1_Click);
             // 
             // condiciónIVAToolStripMenuItem
             // 
             this.condiciónIVAToolStripMenuItem.Name = "condiciónIVAToolStripMenuItem";
-            this.condiciónIVAToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.condiciónIVAToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.condiciónIVAToolStripMenuItem.Text = "Condición IVA";
             this.condiciónIVAToolStripMenuItem.Click += new System.EventHandler(this.condiciónIVAToolStripMenuItem_Click);
             // 
             // datosEmpresaToolStripMenuItem
             // 
             this.datosEmpresaToolStripMenuItem.Name = "datosEmpresaToolStripMenuItem";
-            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.datosEmpresaToolStripMenuItem.Text = "Datos empresa";
             this.datosEmpresaToolStripMenuItem.Click += new System.EventHandler(this.datosEmpresaToolStripMenuItem_Click);
             // 
@@ -297,19 +315,19 @@
             this.toolStripMenuItem13.Text = "&Factura";
             this.toolStripMenuItem13.Click += new System.EventHandler(this.ventasToolStripMenuItem_Click);
             // 
-            // toolStripCredito
-            // 
-            this.toolStripCredito.Name = "toolStripCredito";
-            this.toolStripCredito.Size = new System.Drawing.Size(93, 20);
-            this.toolStripCredito.Text = "&Nota de crédito";
-            this.toolStripCredito.Click += new System.EventHandler(this.toolStripCredito_Click);
-            // 
             // toolStripDebito
             // 
             this.toolStripDebito.Name = "toolStripDebito";
             this.toolStripDebito.Size = new System.Drawing.Size(90, 20);
             this.toolStripDebito.Text = "N&ota de débito";
             this.toolStripDebito.Click += new System.EventHandler(this.toolStripDebito_Click);
+            // 
+            // toolStripCredito
+            // 
+            this.toolStripCredito.Name = "toolStripCredito";
+            this.toolStripCredito.Size = new System.Drawing.Size(93, 20);
+            this.toolStripCredito.Text = "&Nota de crédito";
+            this.toolStripCredito.Click += new System.EventHandler(this.toolStripCredito_Click);
             // 
             // toolStripMenuItem19
             // 
@@ -428,6 +446,8 @@
         private System.Windows.Forms.ToolStripMenuItem datosEmpresaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pruebaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripDebito;
+        private System.Windows.Forms.ToolStripMenuItem artículosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem1;
     }
 }
 

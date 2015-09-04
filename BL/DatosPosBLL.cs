@@ -14,18 +14,25 @@ namespace BL
 {
     public class DatosPosBLL
     {
-        public DataSet dt;
-        public DataTable tblClientes;
 
-        public static DataSet GetAll()
+        public static DataSet GetDatos()
         {
-            DataSet ds = DAL.DatosPosDAL.GetAll();
-            return ds;
+            DataSet datos = DAL.DatosPosDAL.GetDatos();
+            return datos;
         }
 
-        public static void DeleteAll(Int16 existenClientesFallidas)
+        public static DataTable Articulos()
         {
-            DAL.DatosPosDAL.DeleteAll(existenClientesFallidas);
+            DataTable tblArticulos = DAL.DatosPosDAL.Articulos();
+            tblArticulos.TableName = "articulos";
+            return tblArticulos;
+        }
+
+        public static DataTable Clientes()
+        {
+            DataTable tblClientes = DAL.DatosPosDAL.Clientes();
+            tblClientes.TableName = "clientes";
+            return tblClientes;
         }
 
     }

@@ -96,7 +96,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Fallidas.cs" />
     <Compile Include="customDgvw.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -112,12 +111,6 @@
     </Compile>
     <Compile Include="frmArqueoCaja.Designer.cs">
       <DependentUpon>frmArqueoCaja.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmArticulos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmArticulos.Designer.cs">
-      <DependentUpon>frmArticulos.cs</DependentUpon>
     </Compile>
     <Compile Include="frmClientes.cs">
       <SubType>Form</SubType>
@@ -137,6 +130,12 @@
     <Compile Include="frmFondoCajaPunto.designer.cs">
       <DependentUpon>frmFondoCajaPunto.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmArticulos.designer.cs">
+      <DependentUpon>frmArticulos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,12 +147,6 @@
     </Compile>
     <Compile Include="frmArqueoInter.designer.cs">
       <DependentUpon>frmArqueoInter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmOpcionFactura.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmOpcionFactura.Designer.cs">
-      <DependentUpon>frmOpcionFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
@@ -248,10 +241,6 @@
     <EmbeddedResource Include="frmArqueoCaja.resx">
       <DependentUpon>frmArqueoCaja.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmArticulos.resx">
-      <DependentUpon>frmArticulos.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </EmbeddedResource>
@@ -261,14 +250,14 @@
     <EmbeddedResource Include="frmFondoCajaPunto.resx">
       <DependentUpon>frmFondoCajaPunto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmArticulos.resx">
+      <DependentUpon>frmArticulos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmInicio.resx">
       <DependentUpon>frmInicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmArqueoInter.resx">
       <DependentUpon>frmArqueoInter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmOpcionFactura.resx">
-      <DependentUpon>frmOpcionFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>

@@ -203,10 +203,6 @@ namespace StockVentas
                     case "frmVentasPesosCons":
                         dsVentasPesosCons = BL.VentasBLL.CrearDatasetVentasPesos(forma, strFechaDesde, strFechaHasta, locales, ref codigoError);
                         break;
-                    case "ActualizarBD":
-                        BL.Utilitarios.ActualizarBD();
-                        codigoError = null;
-                        break;
                 }
             }
             else  //grabar en base de datos

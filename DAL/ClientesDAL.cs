@@ -39,19 +39,12 @@ namespace DAL
             return dt;
         }
 
-        public static void GrabarDB(DataSet dt, bool grabarFallidas)
+        public static void GrabarDB(DataTable tbl)
         {
             MySqlConnection SqlConnection1;
-            if (grabarFallidas == false)
-            {
-                SqlConnection1 = DALBase.GetConnection();
-            }
-            else
-            {
-                SqlConnection1 = DALBase.GetRemoteConnection();
-            }
+            SqlConnection1 = DALBase.GetConnection();
             MySqlDataAdapter da = AdaptadorABM(SqlConnection1);
-            da.Update(dt, "clientes");
+            da.Update(tbl);
             SqlConnection1.Close();
         }
 

@@ -30,7 +30,6 @@ namespace StockVentas
                 }
             }
             this.instanciaInicio = instanciaInicio;
-            Fallidas fllds = new Fallidas();
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
@@ -42,6 +41,13 @@ namespace StockVentas
         private void alícuotasIVAToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAlicuotasIva newMDIChild = new frmAlicuotasIva();
+            newMDIChild.MdiParent = this;
+            newMDIChild.Show();
+        }
+
+        private void clientesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmClientes newMDIChild = new frmClientes();
             newMDIChild.MdiParent = this;
             newMDIChild.Show();
         }
@@ -128,7 +134,7 @@ namespace StockVentas
 
         public static void bckWrk_DoWork()
         {
-            DataSet ds = BL.Utilitarios.ActualizarBD();
+          //  DataSet ds = BL.Utilitarios.ActualizarBD();
         }
 
         private void pruebaToolStripMenuItem_Click(object sender, EventArgs e)

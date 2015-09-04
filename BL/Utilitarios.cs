@@ -116,61 +116,6 @@ namespace BL
             return conexion;
         }
 
-        public static DataSet ActualizarBD()
-        {
-            Int16 existenClientes = 1;
-            DataSet ds = BL.DatosPosBLL.GetAll();
-            DataTable tblArticulos = ds.Tables[0];
-            tblArticulos.TableName = "Articulos";
-            DataTable tblClientes = ds.Tables[1];
-            tblClientes.TableName = "Clientes";
-            DataTable tblFormasPago = ds.Tables[2];
-            tblFormasPago.TableName = "FormasPago";
-        /*    DataTable tblAlicuotasIva = ds.Tables[3];
-            tblAlicuotasIva.TableName = "AlicuotasIva";*/
-            if (tblArticulos.Rows.Count > 0)
-            {
-                foreach (DataRow rowArticulo in tblArticulos.Rows)
-                {
-                    rowArticulo.SetAdded();
-                }
-            }
-            if (!DAL.ClientesDAL.ExistenClientesFallidas()) //si hay registros pendientes de grabar en el remote server no actualizo clientes
-            {
-                if (tblClientes.Rows.Count > 0)
-                {
-                    foreach (DataRow rowCliente in tblClientes.Rows)
-                    {
-                        rowCliente.SetAdded();
-                    }
-                }
-                existenClientes = 0;
-            }
-            if (tblFormasPago.Rows.Count > 0)
-            {
-                foreach (DataRow rowForma in tblFormasPago.Rows)
-                {
-                    rowForma.SetAdded();
-                }
-            }
-        /*    if (tblAlicuotasIva.Rows.Count > 0)
-            {
-                foreach (DataRow rowAlicuota in tblAlicuotasIva.Rows)
-                {
-                    rowAlicuota.SetAdded();
-                }
-            }*/
-            if (ds.Tables.Count == 3)
-            {
-                BL.DatosPosBLL.DeleteAll(existenClientes);
-                BL.ArticulosBLL.InsertarRemotos(ds);
-                if(existenClientes ==0) BL.ClientesBLL.InsertRemotos(ds);
-                BL.FormasPagoBLL.InsertRemotos(ds);
-                BL.AlicuotasIvaBLL.InsertRemotos(ds);
-            }
-            return ds;
-        }
-
         public static void SelTextoTextBox(object sender, EventArgs e)
         {
             TextBox tb = (TextBox)sender;

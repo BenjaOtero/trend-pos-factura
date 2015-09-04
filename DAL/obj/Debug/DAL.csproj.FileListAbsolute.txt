@@ -94,3 +94,4 @@ C:\Trend\POS-Factura\trunk\DAL\bin\Debug\DAL.dll
 C:\Trend\POS-Factura\trunk\DAL\bin\Debug\DAL.pdb
 C:\Trend\POS-Factura\trunk\DAL\obj\Debug\DAL.dll
 C:\Trend\POS-Factura\trunk\DAL\obj\Debug\DAL.pdb
+C:\Trend\POS-Factura\trunk\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache

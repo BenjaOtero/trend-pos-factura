@@ -485,11 +485,11 @@ namespace StockVentas
 
         private void btnArticulos_Click(object sender, EventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
+          /*  Cursor.Current = Cursors.WaitCursor;
             frmArticulos articulos = new frmArticulos(ref instanciaVentas, tblArticulos);
             articulos.Show(this);
             articulos.FormClosed += frmArticulos_FormClosed;
-            Cursor.Current = Cursors.Arrow;
+            Cursor.Current = Cursors.Arrow;*/
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)

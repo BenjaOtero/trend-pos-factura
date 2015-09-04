@@ -114,7 +114,7 @@
             this.grpCampos.Controls.Add(this.txtTelefonoCLI);
             this.grpCampos.Controls.Add(this.txtContactoCLI);
             this.grpCampos.Controls.Add(this.txtIdClienteCLI);
-            this.grpCampos.Location = new System.Drawing.Point(12, 255);
+            this.grpCampos.Location = new System.Drawing.Point(12, 177);
             this.grpCampos.Name = "grpCampos";
             this.grpCampos.Size = new System.Drawing.Size(392, 343);
             this.grpCampos.TabIndex = 0;
@@ -354,7 +354,7 @@
             this.gvwDatos.Location = new System.Drawing.Point(12, 10);
             this.gvwDatos.Name = "gvwDatos";
             this.gvwDatos.ReadOnly = true;
-            this.gvwDatos.Size = new System.Drawing.Size(607, 239);
+            this.gvwDatos.Size = new System.Drawing.Size(607, 159);
             this.gvwDatos.TabIndex = 0;
             this.gvwDatos.Text = "DataGridView1";
             // 
@@ -367,7 +367,7 @@
             this.groupBox2.Controls.Add(this.btnEditar);
             this.groupBox2.Controls.Add(this.btnNuevo);
             this.groupBox2.Controls.Add(this.btnBuscar);
-            this.groupBox2.Location = new System.Drawing.Point(410, 315);
+            this.groupBox2.Location = new System.Drawing.Point(410, 237);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(209, 283);
             this.groupBox2.TabIndex = 2;
@@ -447,7 +447,7 @@
             // 
             this.groupBox1.Controls.Add(this.txtParametros);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.groupBox1.Location = new System.Drawing.Point(410, 255);
+            this.groupBox1.Location = new System.Drawing.Point(410, 177);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(210, 54);
             this.groupBox1.TabIndex = 1;
@@ -477,7 +477,7 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 614);
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 534);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -563,7 +563,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 639);
+            this.ClientSize = new System.Drawing.Size(632, 559);
             this.ControlBox = false;
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.grpCampos);

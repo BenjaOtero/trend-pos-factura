@@ -18,3 +18,4 @@ C:\Trend\POS-Factura\trunk\CustomActions\obj\Debug\CustomActions.Installer1.reso
 C:\Trend\POS-Factura\trunk\CustomActions\obj\Debug\CustomActions.dll
 C:\Trend\POS-Factura\trunk\CustomActions\obj\Debug\CustomActions.pdb
 C:\Trend\POS-Factura\trunk\CustomActions\obj\Debug\CustomActions.csproj.GenerateResource.Cache
+C:\Trend\POS-Factura\trunk\CustomActions\obj\Debug\CustomActions.csprojResolveAssemblyReference.cache
