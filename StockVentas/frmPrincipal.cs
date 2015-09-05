@@ -102,10 +102,9 @@ namespace StockVentas
 
         private void btnArticulos_Click(object sender, EventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            frmArticulos articulos = new frmArticulos();
-            articulos.Show();
-            Cursor.Current = Cursors.Arrow;
+            frmArticulos newMDIChild = new frmArticulos();
+            newMDIChild.MdiParent = this;
+            newMDIChild.Show();
         }
 
         private void actualizarDatos_Click(object sender, EventArgs e)

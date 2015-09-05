@@ -56,7 +56,7 @@
             this.txtContactoCLI = new System.Windows.Forms.TextBox();
             this.txtIdClienteCLI = new System.Windows.Forms.TextBox();
             this.gvwDatos = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpBotones = new System.Windows.Forms.GroupBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
@@ -80,7 +80,7 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpCampos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvwDatos)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.grpBotones.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -116,7 +116,7 @@
             this.grpCampos.Controls.Add(this.txtIdClienteCLI);
             this.grpCampos.Location = new System.Drawing.Point(12, 177);
             this.grpCampos.Name = "grpCampos";
-            this.grpCampos.Size = new System.Drawing.Size(392, 343);
+            this.grpCampos.Size = new System.Drawing.Size(375, 343);
             this.grpCampos.TabIndex = 0;
             this.grpCampos.TabStop = false;
             // 
@@ -125,7 +125,7 @@
             this.txtCUIT.Location = new System.Drawing.Point(92, 71);
             this.txtCUIT.Mask = "00-00000000-0";
             this.txtCUIT.Name = "txtCUIT";
-            this.txtCUIT.Size = new System.Drawing.Size(285, 20);
+            this.txtCUIT.Size = new System.Drawing.Size(265, 20);
             this.txtCUIT.TabIndex = 2;
             this.txtCUIT.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
@@ -134,7 +134,7 @@
             this.cmbCondicionIvaCLI.FormattingEnabled = true;
             this.cmbCondicionIvaCLI.Location = new System.Drawing.Point(92, 97);
             this.cmbCondicionIvaCLI.Name = "cmbCondicionIvaCLI";
-            this.cmbCondicionIvaCLI.Size = new System.Drawing.Size(285, 21);
+            this.cmbCondicionIvaCLI.Size = new System.Drawing.Size(265, 21);
             this.cmbCondicionIvaCLI.TabIndex = 3;
             // 
             // label13
@@ -274,7 +274,7 @@
             this.txtProvinciaCLI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtProvinciaCLI.Location = new System.Drawing.Point(92, 177);
             this.txtProvinciaCLI.Name = "txtProvinciaCLI";
-            this.txtProvinciaCLI.Size = new System.Drawing.Size(285, 20);
+            this.txtProvinciaCLI.Size = new System.Drawing.Size(265, 20);
             this.txtProvinciaCLI.TabIndex = 6;
             // 
             // txtRazonSocialCLI
@@ -282,7 +282,7 @@
             this.txtRazonSocialCLI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRazonSocialCLI.Location = new System.Drawing.Point(92, 45);
             this.txtRazonSocialCLI.Name = "txtRazonSocialCLI";
-            this.txtRazonSocialCLI.Size = new System.Drawing.Size(285, 20);
+            this.txtRazonSocialCLI.Size = new System.Drawing.Size(265, 20);
             this.txtRazonSocialCLI.TabIndex = 1;
             // 
             // txtLocalidadCLI
@@ -290,7 +290,7 @@
             this.txtLocalidadCLI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLocalidadCLI.Location = new System.Drawing.Point(92, 151);
             this.txtLocalidadCLI.Name = "txtLocalidadCLI";
-            this.txtLocalidadCLI.Size = new System.Drawing.Size(285, 20);
+            this.txtLocalidadCLI.Size = new System.Drawing.Size(265, 20);
             this.txtLocalidadCLI.TabIndex = 5;
             // 
             // txtDireccionCLI
@@ -298,7 +298,7 @@
             this.txtDireccionCLI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDireccionCLI.Location = new System.Drawing.Point(92, 125);
             this.txtDireccionCLI.Name = "txtDireccionCLI";
-            this.txtDireccionCLI.Size = new System.Drawing.Size(285, 20);
+            this.txtDireccionCLI.Size = new System.Drawing.Size(265, 20);
             this.txtDireccionCLI.TabIndex = 4;
             // 
             // txtCorreoCLI
@@ -306,7 +306,7 @@
             this.txtCorreoCLI.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txtCorreoCLI.Location = new System.Drawing.Point(92, 203);
             this.txtCorreoCLI.Name = "txtCorreoCLI";
-            this.txtCorreoCLI.Size = new System.Drawing.Size(285, 20);
+            this.txtCorreoCLI.Size = new System.Drawing.Size(265, 20);
             this.txtCorreoCLI.TabIndex = 7;
             // 
             // txtTransporteCLI
@@ -314,21 +314,21 @@
             this.txtTransporteCLI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTransporteCLI.Location = new System.Drawing.Point(92, 283);
             this.txtTransporteCLI.Name = "txtTransporteCLI";
-            this.txtTransporteCLI.Size = new System.Drawing.Size(285, 20);
+            this.txtTransporteCLI.Size = new System.Drawing.Size(265, 20);
             this.txtTransporteCLI.TabIndex = 10;
             // 
             // txtMovilCLI
             // 
             this.txtMovilCLI.Location = new System.Drawing.Point(92, 256);
             this.txtMovilCLI.Name = "txtMovilCLI";
-            this.txtMovilCLI.Size = new System.Drawing.Size(285, 20);
+            this.txtMovilCLI.Size = new System.Drawing.Size(265, 20);
             this.txtMovilCLI.TabIndex = 9;
             // 
             // txtTelefonoCLI
             // 
             this.txtTelefonoCLI.Location = new System.Drawing.Point(92, 230);
             this.txtTelefonoCLI.Name = "txtTelefonoCLI";
-            this.txtTelefonoCLI.Size = new System.Drawing.Size(285, 20);
+            this.txtTelefonoCLI.Size = new System.Drawing.Size(265, 20);
             this.txtTelefonoCLI.TabIndex = 8;
             // 
             // txtContactoCLI
@@ -336,14 +336,14 @@
             this.txtContactoCLI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtContactoCLI.Location = new System.Drawing.Point(92, 309);
             this.txtContactoCLI.Name = "txtContactoCLI";
-            this.txtContactoCLI.Size = new System.Drawing.Size(285, 20);
+            this.txtContactoCLI.Size = new System.Drawing.Size(265, 20);
             this.txtContactoCLI.TabIndex = 11;
             // 
             // txtIdClienteCLI
             // 
             this.txtIdClienteCLI.Location = new System.Drawing.Point(92, 20);
             this.txtIdClienteCLI.Name = "txtIdClienteCLI";
-            this.txtIdClienteCLI.Size = new System.Drawing.Size(285, 20);
+            this.txtIdClienteCLI.Size = new System.Drawing.Size(265, 20);
             this.txtIdClienteCLI.TabIndex = 0;
             // 
             // gvwDatos
@@ -354,30 +354,31 @@
             this.gvwDatos.Location = new System.Drawing.Point(12, 10);
             this.gvwDatos.Name = "gvwDatos";
             this.gvwDatos.ReadOnly = true;
-            this.gvwDatos.Size = new System.Drawing.Size(607, 159);
+            this.gvwDatos.Size = new System.Drawing.Size(559, 159);
             this.gvwDatos.TabIndex = 0;
             this.gvwDatos.Text = "DataGridView1";
+            this.gvwDatos.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.gvwDatos_DataError);
             // 
-            // groupBox2
+            // grpBotones
             // 
-            this.groupBox2.Controls.Add(this.btnCancelar);
-            this.groupBox2.Controls.Add(this.btnSalir);
-            this.groupBox2.Controls.Add(this.btnGrabar);
-            this.groupBox2.Controls.Add(this.btnBorrar);
-            this.groupBox2.Controls.Add(this.btnEditar);
-            this.groupBox2.Controls.Add(this.btnNuevo);
-            this.groupBox2.Controls.Add(this.btnBuscar);
-            this.groupBox2.Location = new System.Drawing.Point(410, 237);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(209, 283);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
+            this.grpBotones.Controls.Add(this.btnCancelar);
+            this.grpBotones.Controls.Add(this.btnSalir);
+            this.grpBotones.Controls.Add(this.btnGrabar);
+            this.grpBotones.Controls.Add(this.btnBorrar);
+            this.grpBotones.Controls.Add(this.btnEditar);
+            this.grpBotones.Controls.Add(this.btnNuevo);
+            this.grpBotones.Controls.Add(this.btnBuscar);
+            this.grpBotones.Location = new System.Drawing.Point(397, 237);
+            this.grpBotones.Name = "grpBotones";
+            this.grpBotones.Size = new System.Drawing.Size(174, 283);
+            this.grpBotones.TabIndex = 2;
+            this.grpBotones.TabStop = false;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(24, 179);
+            this.btnCancelar.Location = new System.Drawing.Point(13, 179);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(160, 26);
+            this.btnCancelar.Size = new System.Drawing.Size(148, 26);
             this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -385,9 +386,9 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(24, 211);
+            this.btnSalir.Location = new System.Drawing.Point(13, 211);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(160, 26);
+            this.btnSalir.Size = new System.Drawing.Size(148, 26);
             this.btnSalir.TabIndex = 6;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -395,9 +396,9 @@
             // 
             // btnGrabar
             // 
-            this.btnGrabar.Location = new System.Drawing.Point(24, 147);
+            this.btnGrabar.Location = new System.Drawing.Point(13, 147);
             this.btnGrabar.Name = "btnGrabar";
-            this.btnGrabar.Size = new System.Drawing.Size(160, 26);
+            this.btnGrabar.Size = new System.Drawing.Size(148, 26);
             this.btnGrabar.TabIndex = 4;
             this.btnGrabar.Text = "Grabar";
             this.btnGrabar.UseVisualStyleBackColor = true;
@@ -405,9 +406,9 @@
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(24, 115);
+            this.btnBorrar.Location = new System.Drawing.Point(13, 115);
             this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(160, 26);
+            this.btnBorrar.Size = new System.Drawing.Size(148, 26);
             this.btnBorrar.TabIndex = 3;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
@@ -415,9 +416,9 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(24, 83);
+            this.btnEditar.Location = new System.Drawing.Point(13, 83);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(160, 26);
+            this.btnEditar.Size = new System.Drawing.Size(148, 26);
             this.btnEditar.TabIndex = 2;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -425,9 +426,9 @@
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(24, 51);
+            this.btnNuevo.Location = new System.Drawing.Point(13, 51);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(160, 26);
+            this.btnNuevo.Size = new System.Drawing.Size(148, 26);
             this.btnNuevo.TabIndex = 1;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
@@ -435,9 +436,9 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(24, 19);
+            this.btnBuscar.Location = new System.Drawing.Point(13, 19);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(160, 26);
+            this.btnBuscar.Size = new System.Drawing.Size(148, 26);
             this.btnBuscar.TabIndex = 0;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -447,19 +448,20 @@
             // 
             this.groupBox1.Controls.Add(this.txtParametros);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.groupBox1.Location = new System.Drawing.Point(410, 177);
+            this.groupBox1.Location = new System.Drawing.Point(397, 177);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(210, 54);
+            this.groupBox1.Size = new System.Drawing.Size(174, 54);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar";
             // 
             // txtParametros
             // 
-            this.txtParametros.Location = new System.Drawing.Point(6, 20);
+            this.txtParametros.Location = new System.Drawing.Point(10, 20);
             this.txtParametros.Name = "txtParametros";
-            this.txtParametros.Size = new System.Drawing.Size(188, 20);
+            this.txtParametros.Size = new System.Drawing.Size(155, 20);
             this.txtParametros.TabIndex = 0;
+            this.txtParametros.Enter += new System.EventHandler(this.txtParametros_Enter);
             // 
             // bindingNavigator1
             // 
@@ -484,7 +486,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(632, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(585, 25);
             this.bindingNavigator1.TabIndex = 29;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -563,12 +565,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 559);
+            this.ClientSize = new System.Drawing.Size(585, 559);
             this.ControlBox = false;
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.grpCampos);
             this.Controls.Add(this.gvwDatos);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.grpBotones);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -579,7 +581,7 @@
             this.grpCampos.ResumeLayout(false);
             this.grpCampos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvwDatos)).EndInit();
-            this.groupBox2.ResumeLayout(false);
+            this.grpBotones.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
@@ -608,7 +610,7 @@
         private System.Windows.Forms.TextBox txtContactoCLI;
         private System.Windows.Forms.TextBox txtIdClienteCLI;
         internal System.Windows.Forms.DataGridView gvwDatos;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpBotones;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnGrabar;

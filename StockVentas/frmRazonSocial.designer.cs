@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpBotones = new System.Windows.Forms.GroupBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
@@ -61,23 +61,23 @@
             this.txtIdRazonSocialRAZ = new System.Windows.Forms.TextBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.groupBox2.SuspendLayout();
+            this.grpBotones.SuspendLayout();
             this.grpCampos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox2
+            // grpBotones
             // 
-            this.groupBox2.Controls.Add(this.btnCancelar);
-            this.groupBox2.Controls.Add(this.btnSalir);
-            this.groupBox2.Controls.Add(this.btnGrabar);
-            this.groupBox2.Controls.Add(this.btnEditar);
-            this.groupBox2.Location = new System.Drawing.Point(11, 348);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(509, 53);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
+            this.grpBotones.Controls.Add(this.btnCancelar);
+            this.grpBotones.Controls.Add(this.btnSalir);
+            this.grpBotones.Controls.Add(this.btnGrabar);
+            this.grpBotones.Controls.Add(this.btnEditar);
+            this.grpBotones.Location = new System.Drawing.Point(11, 348);
+            this.grpBotones.Name = "grpBotones";
+            this.grpBotones.Size = new System.Drawing.Size(509, 53);
+            this.grpBotones.TabIndex = 1;
+            this.grpBotones.TabStop = false;
             // 
             // btnCancelar
             // 
@@ -158,7 +158,7 @@
             this.txtInicioActividadRAZ.Mask = "00/00/0000";
             this.txtInicioActividadRAZ.Name = "txtInicioActividadRAZ";
             this.txtInicioActividadRAZ.Size = new System.Drawing.Size(368, 20);
-            this.txtInicioActividadRAZ.TabIndex = 11;
+            this.txtInicioActividadRAZ.TabIndex = 10;
             this.txtInicioActividadRAZ.ValidatingType = typeof(System.DateTime);
             this.txtInicioActividadRAZ.Enter += new System.EventHandler(this.txtInicioActividadRAZ_Enter);
             // 
@@ -168,7 +168,7 @@
             this.txtPuntoVentaRAZ.Mask = "9999";
             this.txtPuntoVentaRAZ.Name = "txtPuntoVentaRAZ";
             this.txtPuntoVentaRAZ.Size = new System.Drawing.Size(368, 20);
-            this.txtPuntoVentaRAZ.TabIndex = 3;
+            this.txtPuntoVentaRAZ.TabIndex = 2;
             this.txtPuntoVentaRAZ.Enter += new System.EventHandler(this.txtPuntoVentaRAZ_Enter);
             // 
             // cmbIdCondicionIvaRAZ
@@ -177,7 +177,7 @@
             this.cmbIdCondicionIvaRAZ.Location = new System.Drawing.Point(121, 200);
             this.cmbIdCondicionIvaRAZ.Name = "cmbIdCondicionIvaRAZ";
             this.cmbIdCondicionIvaRAZ.Size = new System.Drawing.Size(368, 21);
-            this.cmbIdCondicionIvaRAZ.TabIndex = 8;
+            this.cmbIdCondicionIvaRAZ.TabIndex = 7;
             // 
             // label10
             // 
@@ -317,7 +317,7 @@
             this.txtIngresosBrutosRAZ.Location = new System.Drawing.Point(121, 253);
             this.txtIngresosBrutosRAZ.Name = "txtIngresosBrutosRAZ";
             this.txtIngresosBrutosRAZ.Size = new System.Drawing.Size(368, 20);
-            this.txtIngresosBrutosRAZ.TabIndex = 10;
+            this.txtIngresosBrutosRAZ.TabIndex = 9;
             // 
             // txtCuitRAZ
             // 
@@ -325,7 +325,7 @@
             this.txtCuitRAZ.Location = new System.Drawing.Point(121, 227);
             this.txtCuitRAZ.Name = "txtCuitRAZ";
             this.txtCuitRAZ.Size = new System.Drawing.Size(368, 20);
-            this.txtCuitRAZ.TabIndex = 9;
+            this.txtCuitRAZ.TabIndex = 8;
             // 
             // txtProvinciaRAZ
             // 
@@ -333,7 +333,7 @@
             this.txtProvinciaRAZ.Location = new System.Drawing.Point(121, 175);
             this.txtProvinciaRAZ.Name = "txtProvinciaRAZ";
             this.txtProvinciaRAZ.Size = new System.Drawing.Size(368, 20);
-            this.txtProvinciaRAZ.TabIndex = 7;
+            this.txtProvinciaRAZ.TabIndex = 6;
             // 
             // txtLocalidadRAZ
             // 
@@ -341,7 +341,7 @@
             this.txtLocalidadRAZ.Location = new System.Drawing.Point(121, 149);
             this.txtLocalidadRAZ.Name = "txtLocalidadRAZ";
             this.txtLocalidadRAZ.Size = new System.Drawing.Size(368, 20);
-            this.txtLocalidadRAZ.TabIndex = 6;
+            this.txtLocalidadRAZ.TabIndex = 5;
             // 
             // txtDomicilioRAZ
             // 
@@ -349,7 +349,7 @@
             this.txtDomicilioRAZ.Location = new System.Drawing.Point(121, 123);
             this.txtDomicilioRAZ.Name = "txtDomicilioRAZ";
             this.txtDomicilioRAZ.Size = new System.Drawing.Size(368, 20);
-            this.txtDomicilioRAZ.TabIndex = 5;
+            this.txtDomicilioRAZ.TabIndex = 4;
             // 
             // txtNombreFantasiaRAZ
             // 
@@ -357,7 +357,7 @@
             this.txtNombreFantasiaRAZ.Location = new System.Drawing.Point(121, 97);
             this.txtNombreFantasiaRAZ.Name = "txtNombreFantasiaRAZ";
             this.txtNombreFantasiaRAZ.Size = new System.Drawing.Size(368, 20);
-            this.txtNombreFantasiaRAZ.TabIndex = 4;
+            this.txtNombreFantasiaRAZ.TabIndex = 3;
             // 
             // txtCorreoRAZ
             // 
@@ -365,7 +365,7 @@
             this.txtCorreoRAZ.Location = new System.Drawing.Point(121, 305);
             this.txtCorreoRAZ.Name = "txtCorreoRAZ";
             this.txtCorreoRAZ.Size = new System.Drawing.Size(368, 20);
-            this.txtCorreoRAZ.TabIndex = 2;
+            this.txtCorreoRAZ.TabIndex = 11;
             // 
             // txtRazonSocialRAZ
             // 
@@ -373,7 +373,7 @@
             this.txtRazonSocialRAZ.Location = new System.Drawing.Point(121, 45);
             this.txtRazonSocialRAZ.Name = "txtRazonSocialRAZ";
             this.txtRazonSocialRAZ.Size = new System.Drawing.Size(368, 20);
-            this.txtRazonSocialRAZ.TabIndex = 2;
+            this.txtRazonSocialRAZ.TabIndex = 1;
             // 
             // txtIdRazonSocialRAZ
             // 
@@ -381,7 +381,7 @@
             this.txtIdRazonSocialRAZ.Location = new System.Drawing.Point(121, 19);
             this.txtIdRazonSocialRAZ.Name = "txtIdRazonSocialRAZ";
             this.txtIdRazonSocialRAZ.Size = new System.Drawing.Size(368, 20);
-            this.txtIdRazonSocialRAZ.TabIndex = 1;
+            this.txtIdRazonSocialRAZ.TabIndex = 0;
             // 
             // errorProvider1
             // 
@@ -394,12 +394,12 @@
             this.ClientSize = new System.Drawing.Size(529, 408);
             this.ControlBox = false;
             this.Controls.Add(this.grpCampos);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.grpBotones);
             this.Name = "frmRazonSocial";
             this.Text = "Datos comerciales";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRazonSocial_FormClosing);
             this.Load += new System.EventHandler(this.frmRazonSocial_Load);
-            this.groupBox2.ResumeLayout(false);
+            this.grpBotones.ResumeLayout(false);
             this.grpCampos.ResumeLayout(false);
             this.grpCampos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
@@ -410,7 +410,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpBotones;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnGrabar;

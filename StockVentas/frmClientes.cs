@@ -15,7 +15,17 @@ namespace StockVentas
         frmVentas instanciaVentas = null;
         private DataTable tblClientes;
         private DataTable tblCondicionIva;
-        DataTable tblFallidas;
+        private const int CP_NOCLOSE_BUTTON = 0x200;  //junto con protected override CreateParams inhabilitan el boton cerrar de frmProgress
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+                return myCp;
+            }
+        } 
 
         public enum FormState
         {
@@ -44,36 +54,27 @@ namespace StockVentas
             this.MaximizeBox = false;
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             tblClientes = BL.DatosPosBLL.Clientes();
-            tblCondicionIva = BL.CondicionIvaBLL.GetCondicionIva();
             BL.Utilitarios.AddEventosABM(grpCampos, ref btnGrabar, ref tblClientes);
-            tblFallidas = new DataTable();
-            tblFallidas.TableName = "ClientesFallidas";
-            tblFallidas.Columns.Add("Id", typeof(int));
-            tblFallidas.Columns.Add("Accion", typeof(string));
-            tblFallidas.Columns["Id"].Unique = true;
-            tblFallidas.PrimaryKey = new DataColumn[] { tblFallidas.Columns["Id"] };
-            DataView viewClientes = new DataView(tblClientes);
-            bindingSource1.DataSource = viewClientes;
+            bindingSource1.DataSource = tblClientes;
             bindingNavigator1.BindingSource = bindingSource1;
             tblCondicionIva = BL.CondicionIvaBLL.GetCondicionIva();
             cmbCondicionIvaCLI.DataSource = tblCondicionIva;
             cmbCondicionIvaCLI.DisplayMember = "DescripcionCIVA";
             cmbCondicionIvaCLI.ValueMember = "IdCondicionIvaCIVA";
             AutoCompleteStringCollection condicionColection = new AutoCompleteStringCollection();
-            foreach (DataRow row in tblClientes.Rows)
+            foreach (DataRow row in tblCondicionIva.Rows)
             {
                 condicionColection.Add(Convert.ToString(row["DescripcionCIVA"]));
             }
             cmbCondicionIvaCLI.AutoCompleteCustomSource = condicionColection;
             cmbCondicionIvaCLI.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cmbCondicionIvaCLI.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            cmbCondicionIvaCLI.Validating += new System.ComponentModel.CancelEventHandler(BL.Utilitarios.ValidarComboBox);
-            BL.Utilitarios.DataBindingsAdd(bindingSource1, grpCampos);
+            cmbCondicionIvaCLI.Validating += new System.ComponentModel.CancelEventHandler(BL.Utilitarios.ValidarComboBox);            
             gvwDatos.DataSource = bindingSource1;
             gvwDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gvwDatos.Columns["IdClienteCLI"].HeaderText = "Nº cliente";
             gvwDatos.Columns["RazonSocialCLI"].HeaderText = "Razon social";
-            gvwDatos.Columns["CUIT"].Visible = false;
+            gvwDatos.Columns["CUIT"].HeaderText = "Número de CUIT"; ;
             gvwDatos.Columns["DireccionCLI"].Visible = false;
             gvwDatos.Columns["LocalidadCLI"].Visible = false;
             gvwDatos.Columns["ProvinciaCLI"].Visible = false;
@@ -85,10 +86,8 @@ namespace StockVentas
             gvwDatos.Columns["CondicionIvaCLI"].Visible = false;
             gvwDatos.Columns["DescripcionCIVA"].Visible = false;
             bindingSource1.Sort = "RazonSocialCLI";
-            int itemFound = bindingSource1.Find("RazonSocialCLI", "PUBLICO");
+            int itemFound = bindingSource1.Find("RazonSocialCLI", "JUAN PEREZS");
             bindingSource1.Position = itemFound;
-            tblClientes.RowChanging += new DataRowChangeEventHandler(Row_Changing);
-            tblClientes.RowDeleting += new DataRowChangeEventHandler(Row_Deleting);
             foreach (Control ctl in grpCampos.Controls)
             {
                 if (ctl is TextBox || ctl is MaskedTextBox || ctl is ComboBox)
@@ -97,6 +96,12 @@ namespace StockVentas
                     ctl.Validated += new System.EventHandler(this.Validado);
                 }
             }
+            BL.Utilitarios.DataBindingsAdd(bindingSource1, grpCampos);
+            bindingSource1.BindingComplete += new BindingCompleteEventHandler(bindingSource1_BindingComplete);
+            grpBotones.CausesValidation = false;
+            btnCancelar.CausesValidation = false;
+            txtParametros.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            txtParametros.Text = "Ingrese CUIT o nombre";
             SetStateForm(FormState.inicial);  
         }        
 
@@ -177,7 +182,6 @@ namespace StockVentas
 
         private void frmClientes_FormClosing(object sender, FormClosingEventArgs e)
         {
-            tblClientes.RowChanging -= new DataRowChangeEventHandler(Row_Changing);
             bindingSource1.EndEdit();
             if (tblClientes.GetChanges() != null)
             {
@@ -185,55 +189,6 @@ namespace StockVentas
             }
             bindingSource1.RemoveFilter();
             if (instanciaVentas != null) instanciaVentas.idCliente = Convert.ToInt32(txtIdClienteCLI.Text);
-        }
-
-        private void Row_Deleting(object sender, DataRowChangeEventArgs e)
-        {
-            int clave = Convert.ToInt32(e.Row["IdClienteCLI"].ToString());
-            DataRow foundRow = tblFallidas.Rows.Find(clave);
-            if (foundRow != null)
-            {
-                string accionNueva = e.Action.ToString();
-                string accionAnterior = foundRow["Accion"].ToString();
-                switch (accionAnterior)
-                {
-                    case "Add":
-                        foundRow.Delete();
-                        break;
-                    case "Change":
-                        foundRow["Accion"] = "Delete";
-                        break;
-                }
-            }
-            else
-            {
-                DataRow row = tblFallidas.NewRow();
-                row["Id"] = Convert.ToInt32(e.Row["IdClienteCLI"].ToString());
-                row["Accion"] = e.Action.ToString(); ;
-                tblFallidas.Rows.Add(row);
-            }
-        }
-
-        private void Row_Changing(object sender, DataRowChangeEventArgs e)
-        {
-            int clave = Convert.ToInt32(e.Row["IdClienteCLI"].ToString());
-            DataRow foundRow = tblFallidas.Rows.Find(clave);
-            if (foundRow != null)
-            {
-                string accionNueva = e.Action.ToString();
-                string accionAnterior = foundRow["Accion"].ToString();
-                if (accionAnterior == "delete" && accionNueva == "add") //coincide el id de registro borrado con el nuevo añadido
-                {
-                    foundRow["Accion"] = "change";
-                }
-            }
-            else
-            {
-                DataRow row = tblFallidas.NewRow();
-                row["Id"] = Convert.ToInt32(e.Row["IdClienteCLI"].ToString());
-                row["Accion"] = e.Action.ToString(); ;
-                tblFallidas.Rows.Add(row);
-            }
         }
 
         private void Validar(object sender, CancelEventArgs e)
@@ -328,6 +283,22 @@ namespace StockVentas
             }
         }
 
+        private void txtParametros_Enter(object sender, EventArgs e)
+        {
+            txtParametros.Clear();
+            txtParametros.ForeColor = System.Drawing.SystemColors.ControlText;            
+        }
+
+        private void bindingSource1_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            // Check if the data source has been updated, and that no error has occured.
+            if (e.BindingCompleteContext ==
+                BindingCompleteContext.DataSourceUpdate && e.Exception == null)
+
+                // If not, end the current edit.
+                e.Binding.BindingManagerBase.EndCurrentEdit();
+        }
+
         public void SetStateForm(FormState state)
         {
             if (state == FormState.inicial)
@@ -417,6 +388,11 @@ namespace StockVentas
                 btnCancelar.Enabled = true;
                 btnSalir.Enabled = false;
             }
+        }
+
+        private void gvwDatos_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            return;
         }
 
     }

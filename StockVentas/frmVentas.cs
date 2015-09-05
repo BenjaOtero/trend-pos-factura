@@ -108,8 +108,8 @@ namespace StockVentas
             dsForaneos = BL.VentasBLL.CrearDatasetForaneos();
             tblLocales = dsForaneos.Tables[3];
             tblPcs = dsForaneos.Tables[4];
-            CargarComboLocales();            
-            tblArticulos = dsForaneos.Tables[0];
+            CargarComboLocales();
+            tblArticulos = BL.DatosPosBLL.Articulos();
             tblArticulos.TableName = "Articulos";
             var source = new AutoCompleteStringCollection();
             String[] stringArray =
@@ -393,7 +393,7 @@ namespace StockVentas
                 row["DescripcionDVEN"] = txtDescripcion.Text;
                 row["CantidadDVEN"] = txtCantidad.Text;
                 row["PrecioPublicoDVEN"] = txtPrecio.Text;
-                row["PrecioCostoDVEN"] = txtCosto.Text;
+                row["PrecioCostoDVEN"] = 0;
                 row["PrecioMayorDVEN"] = 0;
                 row["IdFormaPagoDVEN"] = cmbForma.SelectedValue;
                 int checkeado;

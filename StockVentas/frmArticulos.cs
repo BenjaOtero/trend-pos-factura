@@ -13,6 +13,17 @@ namespace StockVentas
     public partial class frmArticulos : Form
     {
         private DataTable tblArticulos;
+        private const int CP_NOCLOSE_BUTTON = 0x200;  //junto con protected override CreateParams inhabilitan el boton cerrar de frmProgress
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+                return myCp;
+            }
+        } 
 
         public enum FormState
         {
@@ -32,14 +43,16 @@ namespace StockVentas
 
         private void frmArticulos_Load(object sender, EventArgs e)
         {
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             System.Drawing.Icon ico = Properties.Resources.icono_app;
             this.Icon = ico;
+            this.Text = "Artículos";
             this.ControlBox = true;
             this.MaximizeBox = false;
+
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             bindingSource1.DataSource = tblArticulos;
-            bindingNavigator1.BindingSource = bindingSource1;
-            BL.Utilitarios.DataBindingsAdd(bindingSource1, grpCampos);
+            bindingNavigator1.BindingSource = bindingSource1;            
             gvwDatos.DataSource = bindingSource1;
             gvwDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gvwDatos.Columns["IdArticuloART"].HeaderText = "Código";
@@ -48,7 +61,25 @@ namespace StockVentas
             gvwDatos.Columns["PrecioCostoART"].Visible = false;
             gvwDatos.Columns["PrecioMayorART"].Visible = false;
             gvwDatos.Columns["IdAliculotaIvaART"].Visible = false;
+            gvwDatos.Columns["PorcentajeALI"].Visible = false;
             bindingSource1.Sort = "DescripcionART";
+            DataTable tblAlicuotas = BL.AlicuotasIvaBLL.GetAlicuotasIva();
+            cmbIdAliculotaIvaART.ValueMember = "IdAlicuotaALI";
+            cmbIdAliculotaIvaART.DisplayMember = "PorcentajeALI";
+            cmbIdAliculotaIvaART.DropDownStyle = ComboBoxStyle.DropDown;
+            cmbIdAliculotaIvaART.DataSource = tblAlicuotas;
+            cmbIdAliculotaIvaART.SelectedValue = -1;
+            BL.Utilitarios.DataBindingsAdd(bindingSource1, grpCampos);
+            btnCancelar.CausesValidation = false;
+            grpBotones.CausesValidation = false;
+            foreach (Control ctl in grpCampos.Controls)
+            {
+                if (ctl is TextBox || ctl is MaskedTextBox || ctl is ComboBox)
+                {
+                    ctl.Validating += new System.ComponentModel.CancelEventHandler(this.Validar);
+                    ctl.Validated += new System.EventHandler(this.Validado);
+                }
+            }
             SetStateForm(FormState.inicial);   
         }        
 
@@ -59,17 +90,13 @@ namespace StockVentas
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
-        {
+        {                       
             bindingSource1.AddNew();
-            DataTable tmp = tblArticulos.Copy();
-            tmp.AcceptChanges();
-            // utilizo tmp porque si hay filas borradas en tblArticulos el select max da error
-            var maxValue = tmp.Rows.OfType<DataRow>().Select(row => row["IdFormaPagoFOR"]).Max();
-            int clave = Convert.ToInt32(maxValue) + 1;
             bindingSource1.Position = bindingSource1.Count - 1;
             txtIdArticuloART.ReadOnly = false;
-            txtIdArticuloART.Text = clave.ToString();
+            txtIdArticuloART.Text = GenerarCodigo();
             txtIdArticuloART.ReadOnly = true;
+            cmbIdAliculotaIvaART.SelectedValue = 1;
             txtDescripcionART.Focus();
             SetStateForm(FormState.insercion);   
         }
@@ -102,7 +129,7 @@ namespace StockVentas
             }
             catch (ConstraintException)
             {
-                string mensaje = "No se puede agregar la forma de pago '" + txtDescripcionART.Text.ToUpper() + "' porque ya existe";
+                string mensaje = "No se puede agregar el artículo '" + txtDescripcionART.Text.ToUpper() + "' porque ya existe";
                 MessageBox.Show(mensaje, "Trend", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtDescripcionART.Focus();
             }
@@ -124,8 +151,7 @@ namespace StockVentas
             bindingSource1.EndEdit();
             if (tblArticulos.GetChanges() != null)
             {
-                frmProgress progreso = new frmProgress(tblArticulos, "frmArticulos", "grabar");
-                progreso.ShowDialog();
+                BL.ArticulosBLL.GrabarDB(tblArticulos);
             }
             bindingSource1.RemoveFilter();
         }
@@ -191,6 +217,62 @@ namespace StockVentas
         private void gvwDatos_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             return;
+        }
+
+        private string GenerarCodigo()
+        {
+            DataTable tblArticulosCopia = tblArticulos.Copy();
+            tblArticulosCopia.AcceptChanges();
+            DataTable tbl = new DataTable();
+            tbl.Columns.Add("Id", typeof(int));
+            tbl.PrimaryKey = new DataColumn[] { tbl.Columns["Id"] };
+            foreach (DataRow rowArticulo in tblArticulosCopia.Rows)
+            {
+                DataRow nuevaFila;
+                nuevaFila = tbl.NewRow();
+                nuevaFila[0] = Convert.ToInt32(rowArticulo["IdArticuloART"].ToString());
+                tbl.Rows.Add(nuevaFila);
+            }
+            int buscado = 1;
+            bool existe = true;
+            while (existe == true)
+            {
+                DataRow foundRow;
+                foundRow = tbl.Rows.Find(buscado);
+                if (foundRow == null) existe = false;
+                else buscado++;                
+            }
+            string codigo = Convert.ToString(buscado);
+            if (codigo.Length == 1) codigo = "00" + codigo;
+            else if (codigo.Length == 2) codigo = "0" + codigo;            
+            return codigo;
+        }
+
+        private void Validar(object sender, CancelEventArgs e)
+        {
+            if ((sender == (object)txtDescripcionART) && string.IsNullOrEmpty(txtDescripcionART.Text))
+            {
+                this.errorProvider1.SetError(txtDescripcionART, "Debe escribir una descripción del artículo.");
+                e.Cancel = true;
+            }
+            if ((sender == (object)txtPrecioPublicoART) && string.IsNullOrEmpty(txtPrecioPublicoART.Text))
+            {
+                this.errorProvider1.SetError(txtPrecioPublicoART, "Debe escribir un precio.");
+                e.Cancel = true;
+            }
+
+            if ((sender == (object)cmbIdAliculotaIvaART) && string.IsNullOrEmpty(cmbIdAliculotaIvaART.Text))
+            {
+                this.errorProvider1.SetError(cmbIdAliculotaIvaART, "Debe seleccionar una alícuota de IVA.");
+                e.Cancel = true;
+            }
+        }
+
+        private void Validado(object sender, EventArgs e)
+        {
+            if ((sender == (object)txtDescripcionART)) this.errorProvider1.SetError(txtDescripcionART, "");
+            if ((sender == (object)txtPrecioPublicoART)) this.errorProvider1.SetError(txtPrecioPublicoART, "");
+            if ((sender == (object)cmbIdAliculotaIvaART)) this.errorProvider1.SetError(cmbIdAliculotaIvaART, "");                     
         }
 
     }

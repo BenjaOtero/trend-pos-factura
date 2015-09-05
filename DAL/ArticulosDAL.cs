@@ -25,9 +25,9 @@ namespace DAL
             SqlConnection1 = DALBase.GetConnection();
             MySqlDataAdapter da = AdaptadorSELECT(SqlConnection1);
             ds = new DataSet();
-            da.Fill(ds, "Articulos");
+            da.Fill(ds, "articulos");
             SqlConnection1.Close();
-            return ds.Tables["Articulos"];
+            return ds.Tables["articulos"];
         }
 
         private static MySqlDataAdapter AdaptadorSELECT(MySqlConnection SqlConnection1)
@@ -39,46 +39,44 @@ namespace DAL
             return SqlDataAdapter1;
         }
 
-        public static void InsertarRemotos(DataSet dt, MySqlConnection conn, MySqlTransaction tr)
+        public static void GrabarDB(DataTable tblArticulos)
         {
-            try
-            {
-                MySqlDataAdapter da = AdaptadorInsert(conn, tr);
-                da.Update(dt, "Articulos");
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.ToString(), "Trend", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dt.RejectChanges();
-            }
+            MySqlDataAdapter da = AdaptadorABM();
+            da.Update(tblArticulos);
         }
 
-        private static MySqlDataAdapter AdaptadorInsert(MySqlConnection SqlConnection1, MySqlTransaction tr)
+        private static MySqlDataAdapter AdaptadorABM()
         {
-            SqlDataAdapter1 = new MySqlDataAdapter();
-            SqlInsertCommand1 = new MySqlCommand("Articulos_Insertar", SqlConnection1);
-            SqlInsertCommand1.Transaction = tr;
+            MySqlConnection SqlConnection1 = DAL.DALBase.GetConnection();
+            MySqlDataAdapter SqlDataAdapter1 = new MySqlDataAdapter();
+            MySqlCommand SqlInsertCommand1 = new MySqlCommand("Articulos_Insertar", SqlConnection1);
+            MySqlCommand SqlUpdateCommand1 = new MySqlCommand("Articulos_Actualizar", SqlConnection1);
+            MySqlCommand SqlDeleteCommand1 = new MySqlCommand("Articulos_Borrar", SqlConnection1);
+            SqlDataAdapter1.DeleteCommand = SqlDeleteCommand1;
             SqlDataAdapter1.InsertCommand = SqlInsertCommand1;
+            SqlDataAdapter1.UpdateCommand = SqlUpdateCommand1;
+
+            // IMPLEMENTACIÓN DE LA ORDEN UPDATE
+            SqlUpdateCommand1.Parameters.Add("p_id", MySqlDbType.VarChar, 55, "IdArticuloART");
+            SqlUpdateCommand1.Parameters.Add("p_idAlicuota", MySqlDbType.Int16, 3, "IdAliculotaIvaART");
+            SqlUpdateCommand1.Parameters.Add("p_descripcion", MySqlDbType.VarChar, 55, "DescripcionART");
+            SqlUpdateCommand1.Parameters.Add("p_precioCosto", MySqlDbType.String, 19, "PrecioCostoART");
+            SqlUpdateCommand1.Parameters.Add("p_precioPublico", MySqlDbType.String, 19, "PrecioPublicoART");
+            SqlUpdateCommand1.Parameters.Add("p_precioMayor", MySqlDbType.String, 19, "PrecioMayorART");
+            SqlUpdateCommand1.CommandType = CommandType.StoredProcedure;
 
             // IMPLEMENTACIÓN DE LA ORDEN INSERT
             SqlInsertCommand1.Parameters.Add("p_id", MySqlDbType.VarChar, 55, "IdArticuloART");
-            SqlInsertCommand1.Parameters.Add("p_idItem", MySqlDbType.Int32, 11, "IdItemART");
-            SqlInsertCommand1.Parameters.Add("p_idColor", MySqlDbType.Int32, 11, "IdColorART");
             SqlInsertCommand1.Parameters.Add("p_idAlicuota", MySqlDbType.Int16, 3, "IdAliculotaIvaART");
-            SqlInsertCommand1.Parameters.Add("p_talle", MySqlDbType.VarChar, 50, "TalleART");
-            SqlInsertCommand1.Parameters.Add("p_idProveedor", MySqlDbType.Int32, 11, "IdProveedorART");
             SqlInsertCommand1.Parameters.Add("p_descripcion", MySqlDbType.VarChar, 55, "DescripcionART");
-            SqlInsertCommand1.Parameters.Add("p_descripcionWeb", MySqlDbType.VarChar, 50, "DescripcionWebART");
-            SqlInsertCommand1.Parameters.Add("p_precioCosto", MySqlDbType.Decimal, 19, "PrecioCostoART");
-            SqlInsertCommand1.Parameters.Add("p_precioPublico", MySqlDbType.Decimal, 19, "PrecioPublicoART");
-            SqlInsertCommand1.Parameters.Add("p_precioMayor", MySqlDbType.Decimal, 19, "PrecioMayorART");
-            SqlInsertCommand1.Parameters.Add("p_fecha", MySqlDbType.DateTime, 19, "FechaART");
-            SqlInsertCommand1.Parameters.Add("p_imagen", MySqlDbType.VarChar, 50, "ImagenART");
-            SqlInsertCommand1.Parameters.Add("p_imagenBack", MySqlDbType.VarChar, 50, "ImagenBackART");
-            SqlInsertCommand1.Parameters.Add("p_imagenColor", MySqlDbType.VarChar, 50, "ImagenColorART");
-            SqlInsertCommand1.Parameters.Add("p_activoWeb", MySqlDbType.Int32, 1, "ActivoWebART");
-            SqlInsertCommand1.Parameters.Add("p_nuevo", MySqlDbType.Int32, 1, "NuevoART");
+            SqlInsertCommand1.Parameters.Add("p_precioCosto", MySqlDbType.String, 19, "PrecioCostoART");
+            SqlInsertCommand1.Parameters.Add("p_precioPublico", MySqlDbType.String, 19, "PrecioPublicoART");
+            SqlInsertCommand1.Parameters.Add("p_precioMayor", MySqlDbType.String, 19, "PrecioMayorART");
             SqlInsertCommand1.CommandType = CommandType.StoredProcedure;
+
+            // IMPLEMENTACIÓN DE LA ORDEN DELETE
+            SqlDeleteCommand1.Parameters.Add("p_id", MySqlDbType.VarChar, 55, "IdArticuloART");
+            SqlDeleteCommand1.CommandType = CommandType.StoredProcedure;
 
             return SqlDataAdapter1;
         }

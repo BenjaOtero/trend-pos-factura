@@ -33,7 +33,7 @@ namespace DAL
         public static DataTable Articulos()
         {
             DataTable tblArticulos = datos.Tables[0];
-            tblArticulos.TableName = "Articulos";
+            tblArticulos.TableName = "articulos";
             return tblArticulos;
         }
 

@@ -24,14 +24,12 @@ namespace BL
         public static DataTable Articulos()
         {
             DataTable tblArticulos = DAL.DatosPosDAL.Articulos();
-            tblArticulos.TableName = "articulos";
             return tblArticulos;
         }
 
         public static DataTable Clientes()
         {
             DataTable tblClientes = DAL.DatosPosDAL.Clientes();
-            tblClientes.TableName = "clientes";
             return tblClientes;
         }
 

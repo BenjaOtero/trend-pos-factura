@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
   <Header>
-    <Title>Table.NewRow</Title>
+    <Title>Table.ImportRow</Title>
     <Author>autor</Author>
-    <Shortcut>snptTableNewRow</Shortcut>
-    <Description>Agrega una fila a un datatable atraves del metodo NewRow</Description>
+    <Shortcut>snptTableImportRow</Shortcut>
+    <Description>Importa una fila a un datatable</Description>
     <SnippetTypes>
       <SnippetType>SurroundsWith</SnippetType>
       <SnippetType>Expansion</SnippetType>
@@ -19,11 +19,7 @@
     </Declarations>
     <Code Language="CSharp">
       <![CDATA[
-                DataRow nuevaFila;
-                nuevaFila = tbl.NewRow();
-                nuevaFila[0] = 1;
-                nuevaFila[1] = "Pepe";
-                tbl.Rows.Add(nuevaFila);
+            tbl.ImportRow(foundRow[0]);  
             ]]>
     </Code>
   </Snippet>

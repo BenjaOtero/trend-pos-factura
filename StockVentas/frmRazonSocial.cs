@@ -13,6 +13,17 @@ namespace StockVentas
     public partial class frmRazonSocial : Form
     {
         private DataTable tblRazonSocial;
+        private const int CP_NOCLOSE_BUTTON = 0x200;  //junto con protected override CreateParams inhabilitan el boton cerrar de frmProgress
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+                return myCp;
+            }
+        } 
 
         public enum FormState
         {
@@ -33,6 +44,7 @@ namespace StockVentas
         {
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             btnCancelar.CausesValidation = false;
+            grpBotones.CausesValidation = false;
             System.Drawing.Icon ico = Properties.Resources.icono_app;
             this.Icon = ico;
             this.ControlBox = true;
@@ -47,7 +59,6 @@ namespace StockVentas
             BL.Utilitarios.DataBindingsAdd(bindingSource1, grpCampos);
             BL.Utilitarios.AddEventosABM(grpCampos, ref btnGrabar, ref tblRazonSocial);
             txtPuntoVentaRAZ.KeyPress += new KeyPressEventHandler(BL.Utilitarios.SoloNumeros);  
-            this.txtPuntoVentaRAZ.Validated += new System.EventHandler(this.txtPuntoVentaRAZ_Validated);
             this.txtPuntoVentaRAZ.Validating += new System.ComponentModel.CancelEventHandler(this.Validar);
             foreach (Control ctl in grpCampos.Controls)
             {
@@ -95,7 +106,6 @@ namespace StockVentas
 
         private void frmRazonSocial_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = false; // permite cerrar el form por mas que 'this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;'
             bindingSource1.EndEdit();
             if (tblRazonSocial.GetChanges() != null)
             {
@@ -126,16 +136,6 @@ namespace StockVentas
             {
                 txtPuntoVentaRAZ.SelectAll();
             });
-        }
-
-        private void txtPuntoVentaRAZ_Validating(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void txtPuntoVentaRAZ_Validated(object sender, EventArgs e)
-        {
-            errorProvider1.SetError(txtPuntoVentaRAZ, "");
         }
 
         private void Validar(object sender, CancelEventArgs e)
@@ -297,7 +297,6 @@ namespace StockVentas
 
             if (state == FormState.inicial)
             {
-
                 txtIdRazonSocialRAZ.ReadOnly = true;
                 txtRazonSocialRAZ.ReadOnly = true;
                 txtPuntoVentaRAZ.ReadOnly = true;
@@ -334,6 +333,7 @@ namespace StockVentas
                 btnGrabar.Enabled = false;
                 btnCancelar.Enabled = true;
                 btnSalir.Enabled = false;
+                txtRazonSocialRAZ.Focus();
             }
         }
 

@@ -26,24 +26,9 @@ namespace BL
             return dt;
         }
 
-        public static void InsertarRemotos(DataSet dt)
+        public static void GrabarDB(DataTable tblArticulos)
         {
-            MySqlTransaction tr = null;
-            try
-            {
-                MySqlConnection SqlConnection1 = DALBase.GetConnection();
-                SqlConnection1.Open();
-                tr = SqlConnection1.BeginTransaction();
-                DAL.ArticulosDAL.InsertarRemotos(dt, SqlConnection1, tr);
-                tr.Commit();
-                SqlConnection1.Close();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.ToString(), "Trend", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dt.RejectChanges();
-                tr.Rollback();
-            }
+            DAL.ArticulosDAL.GrabarDB(tblArticulos);
         }
 
     }

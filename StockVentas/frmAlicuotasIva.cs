@@ -28,15 +28,16 @@ namespace StockVentas
             BL.Utilitarios.AddEventosABM(grpCampos, ref btnGrabar, ref tblAlicuotasIva);
             bindingSource1.BindingComplete += new BindingCompleteEventHandler(bindingSource1_BindingComplete);
             txtIdAlicuotaALI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(BL.Utilitarios.SoloNumeros);
-            txtPorcentajeALI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(BL.Utilitarios.SoloNumerosConComa);            
+            txtPorcentajeALI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(BL.Utilitarios.SoloNumerosConComa);
+            txtPorcentajeALI.Validating += new System.ComponentModel.CancelEventHandler(this.Validar);
+            txtPorcentajeALI.Validated += new System.EventHandler(this.Validado);
         }
 
         private void frmAlicuotasIva_Load(object sender, EventArgs e)
         {
             System.Drawing.Icon ico = Properties.Resources.icono_app;
             this.Icon = ico;
-            this.ControlBox = true;
-            this.MaximizeBox = false;
+            this.ControlBox = false;
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             bindingSource1.DataSource = tblAlicuotasIva;
             bindingNavigator1.BindingSource = bindingSource1;
@@ -46,6 +47,8 @@ namespace StockVentas
             gvwDatos.Columns["IdAlicuotaALI"].HeaderText = "ID";
             gvwDatos.Columns["PorcentajeALI"].HeaderText = "Porcentaje";
             bindingSource1.Sort = "IdAlicuotaALI";
+            grpBotones.CausesValidation = false;
+            btnCancelar.CausesValidation = false;            
             SetStateForm(FormState.inicial);   
         }        
 
@@ -69,17 +72,18 @@ namespace StockVentas
         private void btnEditar_Click(object sender, EventArgs e)
         {
             if (bindingSource1.Count == 0) return;
+            if (MessageBox.Show("La modificación de las alícuotas de IVA puede generar un mal funcionamiento del sistema.¿Está seguro que desea continuar?", "Trend",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.No) return;
             SetStateForm(FormState.edicion);
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             if (bindingSource1.Count == 0) return;
-            if (MessageBox.Show("¿Desea borrar este registro?", "Buscar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                bindingSource1.RemoveCurrent();
-                bindingSource1.EndEdit();
-            }
+            if (MessageBox.Show("La eliminación de las alícuotas de IVA puede generar un mal funcionamiento del sistema.¿Está seguro que desea continuar?", "Trend",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.No) return;
+            bindingSource1.RemoveCurrent();
+            bindingSource1.EndEdit();
             SetStateForm(FormState.inicial); 
         }
 
@@ -144,6 +148,25 @@ namespace StockVentas
                 e.Binding.BindingManagerBase.EndCurrentEdit();
         }
 
+        private void gvwDatos_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            return;
+        }
+
+        private void Validar(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtPorcentajeALI.Text))
+            {
+                this.errorProvider1.SetError(txtPorcentajeALI, "Debe escribir un porcentaje.");
+                e.Cancel = true;
+            }
+        }
+
+        private void Validado(object sender, EventArgs e)
+        {
+            if ((sender == (object)txtPorcentajeALI)) this.errorProvider1.SetError(txtPorcentajeALI, "");
+        }
+
         public void SetStateForm(FormState state)
         {
 
@@ -163,10 +186,8 @@ namespace StockVentas
             if (state == FormState.insercion)
             {
                 gvwDatos.Enabled = false;
-                txtIdAlicuotaALI.ReadOnly = false;
                 txtPorcentajeALI.ReadOnly = false;
                 txtPorcentajeALI.Clear();
-                txtIdAlicuotaALI.Focus();
                 btnNuevo.Enabled = false;
                 btnEditar.Enabled = false;
                 btnBorrar.Enabled = false;
@@ -179,21 +200,15 @@ namespace StockVentas
             if (state == FormState.edicion)
             {
                 gvwDatos.Enabled = false;
-                txtIdAlicuotaALI.ReadOnly = false;
-                txtPorcentajeALI.ReadOnly = false;
-                txtIdAlicuotaALI.Focus();
+                txtPorcentajeALI.ReadOnly = false;                
                 btnNuevo.Enabled = false;
                 btnEditar.Enabled = false;
                 btnBorrar.Enabled = false;
                 btnGrabar.Enabled = false;
                 btnCancelar.Enabled = true;
                 btnSalir.Enabled = false;
+                txtPorcentajeALI.Focus();
             }
-        }
-
-        private void gvwDatos_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            return;
         }
 
     }

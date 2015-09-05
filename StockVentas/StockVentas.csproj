@@ -346,14 +346,16 @@
     <None Include="Snippets\datarowview_foreach_dataview.snippet" />
     <None Include="Snippets\datarowview_foreach_listbox.snippet" />
     <None Include="Snippets\dataview_row_filter.snippet" />
+    <None Include="Snippets\SnippetFile1.snippet" />
+    <None Include="Snippets\table_create.snippet" />
     <None Include="Snippets\table_find_row.snippet" />
     <None Include="Snippets\random.snippet" />
     <None Include="Snippets\datagridview_sort.snippet" />
-    <None Include="Snippets\table_primarykey.snippet" />
     <None Include="Snippets\mysql_connection.snippet" />
     <None Include="Snippets\datarowview_delete_row.snippet" />
     <None Include="Snippets\table_delete_row.snippet" />
     <None Include="Snippets\table_edit_row.snippet" />
+    <None Include="Snippets\table_import_row.snippet" />
     <None Include="Snippets\table_new_row.snippet" />
     <None Include="Snippets\xml_read.snippet" />
     <None Include="Snippets\xml_write.snippet" />

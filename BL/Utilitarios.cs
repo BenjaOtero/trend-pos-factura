@@ -150,7 +150,6 @@ namespace BL
                 if (ctl is ComboBox)
                 {
                     ctl.KeyDown += new System.Windows.Forms.KeyEventHandler(EnterTab);
-                    ctl.TextChanged += new System.EventHandler(HabilitarGrabar);
                 }
             }
         }
