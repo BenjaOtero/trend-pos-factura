@@ -723,7 +723,7 @@ namespace StockVentas
             this.Close();
         }
 
-        private void ImprimirFactura()
+        private void ImprimirFacturaProgress()
         {
             DataTable tblIVA = new DataTable();
             tblIVA.Columns.Add("Articulo", typeof(string));
@@ -755,6 +755,44 @@ namespace StockVentas
                 fila["SubtotalIva"] = cantidad * ivaImporte;
                 tblIVA.Rows.Add(fila);                
             }
+            string idCliente = cmbCliente.SelectedValue.ToString();
+            string strFechaEmision = dateTimePicker1.Value.ToString("dd/MM/yyyy");
+            frmProgressAfip frmAFIP = new frmProgressAfip(tblIVA, tblClientes, idCliente, strTipo, strFechaEmision);
+            frmAFIP.ShowDialog();
+        }
+
+        private void ImprimirFactura()
+        {
+            DataTable tblIVA = new DataTable();
+            tblIVA.Columns.Add("Articulo", typeof(string));
+            tblIVA.Columns.Add("Descripcion", typeof(string));
+            tblIVA.Columns.Add("Cantidad", typeof(int));
+            tblIVA.Columns.Add("IdAlicuota", typeof(int));
+            tblIVA.Columns.Add("PorcentajeIva", typeof(decimal));
+            tblIVA.Columns.Add("Precio", typeof(decimal));
+            tblIVA.Columns.Add("SubtotalSinIva", typeof(decimal));
+            tblIVA.Columns.Add("SubtotalIva", typeof(decimal));
+            foreach (DataGridViewRow rowGrid in dgvDatos.Rows)
+            {
+                string articulo = rowGrid.Cells["IdArticuloDVEN"].Value.ToString();
+                DataRow[] foundRow = tblArticulos.Select("IdArticuloART = '" + articulo + "'");
+                string descripcion = foundRow[0]["DescripcionART"].ToString();
+                int cantidad = Convert.ToInt32(rowGrid.Cells["CantidadDVEN"].Value.ToString());
+                int idAlicuota = Convert.ToInt16(foundRow[0]["IdAliculotaIvaART"].ToString());
+                decimal porcentajeIva = Convert.ToDecimal(foundRow[0]["PorcentajeALI"].ToString()) / 100 + 1;
+                decimal precio = decimal.Round(Convert.ToDecimal(foundRow[0]["PrecioPublicoART"].ToString()) / porcentajeIva, 2);
+                decimal ivaImporte = decimal.Round(Convert.ToDecimal(foundRow[0]["PrecioPublicoART"].ToString()) - precio, 2);
+                DataRow fila = tblIVA.NewRow();
+                fila["Articulo"] = articulo;
+                fila["Descripcion"] = descripcion;
+                fila["Cantidad"] = cantidad;
+                fila["IdAlicuota"] = idAlicuota;
+                fila["PorcentajeIva"] = porcentajeIva;
+                fila["Precio"] = precio;
+                fila["SubtotalSinIva"] = cantidad * precio;
+                fila["SubtotalIva"] = cantidad * ivaImporte;
+                tblIVA.Rows.Add(fila);
+            }
 
             string idCliente = cmbCliente.SelectedValue.ToString();
             DataRow[] foundCliente = tblClientes.Select("IdClienteCLI = '" + idCliente + "'");
@@ -763,11 +801,11 @@ namespace StockVentas
             int detalleDocTipo;
             string detalleDocNro;
             if (condicionIva == "RESPONSABLE INSCRIPTO")
-            {                
+            {
                 detalleDocTipo = 80;
                 detalleDocNro = foundCliente[0]["CUIT"].ToString();
                 switch (strTipo)
-                { 
+                {
                     case "factura":
                         cabeceraCbteTipo = 1;
                         this.strTipo = "FACTURA";
@@ -801,7 +839,7 @@ namespace StockVentas
                         cabeceraCbteTipo = 8;
                         break;
                 }
-            }         
+            }
 
             // Ver WSFEv1 Fallos conexión en Camuzzo
             WSAFIPFE.Factura fe = new WSAFIPFE.Factura();
@@ -817,7 +855,7 @@ namespace StockVentas
                 {
                     fe.F1CabeceraCantReg = 1;
                     fe.F1CabeceraPtoVta = 1;
-                    
+
 
                     /*Según el manual del desarrollador (pagina 15), el error 10007 se da por que no informas alguno de los 
                      * tipos validos son 01 02 03 04 05 34 39 60 63 para comprobantes A y 06 07 08 09 10 35 40 64 y 61 para los B.*/
@@ -827,7 +865,7 @@ namespace StockVentas
                     fe.F1DetalleConcepto = 1;  //Concepto del comprobante.  01-Productos, 02-Servicios, 03-Productos y Servicios
                     fe.F1DetalleDocTipo = detalleDocTipo;    // 96: DNI, 80: CUIT, 99: Consumidor Final
                     fe.F1DetalleDocNro = detalleDocNro;
-                 //   fe.F1DetalleDocNro = "30570135585";
+                    //   fe.F1DetalleDocNro = "30570135585";
                     fe.F1DetalleCbteDesde = nroComp;
                     fe.F1DetalleCbteHasta = nroComp; // Número de comprobante hasta. En caso de ser un solo comprobante, este dato coincide con el anterior.
 
@@ -838,13 +876,13 @@ namespace StockVentas
                     string fecha = DateTime.Now.ToString("yyyyMMdd");
                     fe.F1DetalleCbteFch = fecha;
 
-                  /*  fe.F1DetalleTributoItemCantidad = 1;  //preguntar Ariel Cantidad de Tributos relacionados al comprobante
-                    fe.f1IndiceItem = 0;
-                    fe.F1DetalleTributoId = 3;
-                    fe.F1DetalleTributoDesc = "Impuesto Municipal Matanza";
-                    fe.F1DetalleTributoBaseImp = 0;
-                    fe.F1DetalleTributoAlic = 5.2;
-                    fe.F1DetalleTributoImporte = 0;*/
+                    /*  fe.F1DetalleTributoItemCantidad = 1;  //preguntar Ariel Cantidad de Tributos relacionados al comprobante
+                      fe.f1IndiceItem = 0;
+                      fe.F1DetalleTributoId = 3;
+                      fe.F1DetalleTributoDesc = "Impuesto Municipal Matanza";
+                      fe.F1DetalleTributoBaseImp = 0;
+                      fe.F1DetalleTributoAlic = 5.2;
+                      fe.F1DetalleTributoImporte = 0;*/
                     var groupedData = from b in tblIVA.AsEnumerable()
                                       group b by b.Field<int>("IdAlicuota") into g
                                       select new
@@ -867,16 +905,16 @@ namespace StockVentas
                         indiceItem++;
                     }
 
-                    
-               /*     fe.f1IndiceItem = 0;
-                    fe.F1DetalleIvaId = 5;  //El código de la alícuota o tasa (obtenido de una lista de AFIP: 5 para 21% 4 para 10.50%, etc).
-                    fe.F1DetalleIvaBaseImp = 100;  //El precio del producto
-                    fe.F1DetalleIvaImporte = 21;  //El importe del impuesto.
 
-                    fe.f1IndiceItem = 1;
-                    fe.F1DetalleIvaId = 4;
-                    fe.F1DetalleIvaBaseImp = 50;
-                    fe.F1DetalleIvaImporte = 5.25;*/
+                    /*     fe.f1IndiceItem = 0;
+                         fe.F1DetalleIvaId = 5;  //El código de la alícuota o tasa (obtenido de una lista de AFIP: 5 para 21% 4 para 10.50%, etc).
+                         fe.F1DetalleIvaBaseImp = 100;  //El precio del producto
+                         fe.F1DetalleIvaImporte = 21;  //El importe del impuesto.
+
+                         fe.f1IndiceItem = 1;
+                         fe.F1DetalleIvaId = 4;
+                         fe.F1DetalleIvaBaseImp = 50;
+                         fe.F1DetalleIvaImporte = 5.25;*/
 
 
                     var detalleImpNeto = tblIVA.AsEnumerable().Sum(x => x.Field<decimal>("SubtotalSinIva"));
@@ -900,7 +938,7 @@ namespace StockVentas
 
                     fe.ArchivoXMLRecibido = @"c:\recibido.xml";
                     fe.ArchivoXMLEnviado = @"c:\enviado.xml";
-                //    bResultado = fe.F1CAESolicitar();
+                    bResultado = fe.F1CAESolicitar();
                     if (bResultado)
                     {
                         MessageBox.Show("resultado verdadero ");
@@ -922,7 +960,7 @@ namespace StockVentas
                         MessageBox.Show("error detallado comprobante: " + fe.F1RespuestaDetalleObservacionMsg1);
                     }
                     DataTable tblCliente = tblClientes.Clone();
-                    tblCliente.ImportRow(foundCliente[0]);                    
+                    tblCliente.ImportRow(foundCliente[0]);
                     string strNroCbte = nroComp.ToString();
                     string strFechaEmision = dateTimePicker1.Value.ToString("dd/MM/yyyy");
                     rptFactura informeFactura = new rptFactura(tblIVA, tblCliente, tblRazonSocial, strNroCbte, strFechaEmision, strTipo);
@@ -937,7 +975,7 @@ namespace StockVentas
             else
             {
                 MessageBox.Show("error inicio " + fe.UltimoMensajeError);
-            }        
+            }
         }
 
     }
