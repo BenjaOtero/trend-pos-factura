@@ -314,7 +314,7 @@ namespace StockVentas
                 {
                     txtCantidad.Text = "1";
                 }
-                txtPrecio.Text = filaActual["PrecioMayorART"].ToString();
+                txtPrecio.Text = filaActual["PrecioPublicoART"].ToString();
                 cmbForma.SelectedValue = "1";
                 txtCosto.Text = filaActual["PrecioCostoART"].ToString();
                 articuloOld = txtArticulo.Text;
@@ -498,6 +498,7 @@ namespace StockVentas
             if (!File.Exists(path + @"\licencia.lcn"))
             {
                 ImprimirFactura();
+                //ImprimirFacturaProgress();
             }
             else
             { 
